@@ -27,6 +27,15 @@ public enum PokemonList
     private Values basicValues;
     private Type type1, type2;
     private Ability[] possibleAbilities;
+    
+    public static PokemonList getPokemonByID(int id) throws Exception
+    {
+        for(PokemonList pl: PokemonList.values())
+            if(pl.id == id)
+                return pl;
+        
+        throw new Exception("Pokémon not found");
+    }
 
     public int getId()
     {
