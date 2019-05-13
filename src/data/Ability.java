@@ -11,5 +11,5 @@ package data;
  */
 public enum Ability
 {
-    
+    COMMING_SOON;
 }
