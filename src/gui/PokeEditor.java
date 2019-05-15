@@ -9,14 +9,15 @@ package gui;
  *
  * @author User
  */
-public class Team extends javax.swing.JFrame
+public class PokeEditor extends javax.swing.JDialog
 {
 
     /**
-     * Creates new form Team
+     * Creates new form PokeEditor
      */
-    public Team()
+    public PokeEditor(java.awt.Frame parent, boolean modal)
     {
+        super(parent, modal);
         initComponents();
     }
 
@@ -30,35 +31,18 @@ public class Team extends javax.swing.JFrame
     private void initComponents()
     {
 
-        lbSlot1 = new javax.swing.JLabel();
-        lbSlot2 = new javax.swing.JLabel();
-        lbSlot3 = new javax.swing.JLabel();
-        lbSlot4 = new javax.swing.JLabel();
-        lbSlot5 = new javax.swing.JLabel();
-        lbSlot6 = new javax.swing.JLabel();
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(250, 750));
-        setUndecorated(true);
-        getContentPane().setLayout(new java.awt.GridLayout(6, 1));
-
-        lbSlot1.setText("empty");
-        getContentPane().add(lbSlot1);
-
-        lbSlot2.setText("empty");
-        getContentPane().add(lbSlot2);
-
-        lbSlot3.setText("empty");
-        getContentPane().add(lbSlot3);
-
-        lbSlot4.setText("empty");
-        getContentPane().add(lbSlot4);
-
-        lbSlot5.setText("empty");
-        getContentPane().add(lbSlot5);
-
-        lbSlot6.setText("empty");
-        getContentPane().add(lbSlot6);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -85,35 +69,38 @@ public class Team extends javax.swing.JFrame
             }
         } catch (ClassNotFoundException ex)
         {
-            java.util.logging.Logger.getLogger(Team.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PokeEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex)
         {
-            java.util.logging.Logger.getLogger(Team.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PokeEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex)
         {
-            java.util.logging.Logger.getLogger(Team.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PokeEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex)
         {
-            java.util.logging.Logger.getLogger(Team.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PokeEditor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable()
         {
             public void run()
             {
-                new Team().setVisible(true);
+                PokeEditor dialog = new PokeEditor(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter()
+                {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e)
+                    {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lbSlot1;
-    private javax.swing.JLabel lbSlot2;
-    private javax.swing.JLabel lbSlot3;
-    private javax.swing.JLabel lbSlot4;
-    private javax.swing.JLabel lbSlot5;
-    private javax.swing.JLabel lbSlot6;
     // End of variables declaration//GEN-END:variables
 }
