@@ -17,5 +17,7 @@ public class main
     public static void main(String[] args)
     {
         Pokemon p = new Pokemon(PokemonList.BULNASAUR);
+        gui.PokeEditor pe = new gui.PokeEditor(null, true);
+        pe.setVisible(true);
     }
 }
