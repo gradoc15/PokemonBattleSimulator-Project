@@ -24,6 +24,29 @@ public class PokeEditor extends javax.swing.JDialog
         {
             cbPokemom.addItem(pkm);
         }
+        
+        for(data.Gender g : data.Gender.values())
+        {
+            cbGender.addItem(g);
+        }
+        
+        try
+        {
+            for(data.Ability ability : data.PokemonList.getPokemonByName(((data.PokemonList)cbPokemom.getSelectedItem()).getName()).getPossibleAbilities())
+                cbAbility.addItem(ability);
+            
+            lbType1.setText(data.PokemonList.getPokemonByName(((data.PokemonList)cbPokemom.getSelectedItem()).getName()).getType1().toString());
+            lbType2.setText(data.PokemonList.getPokemonByName(((data.PokemonList)cbPokemom.getSelectedItem()).getName()).getType2().toString());
+        }
+        catch(Exception e)
+        {
+            
+        }
+        
+        for(data.Nature nature : data.Nature.values())
+            cbNature.addItem(nature);
+        
+        
     }
 
     /**
@@ -111,9 +134,11 @@ public class PokeEditor extends javax.swing.JDialog
 
         jPanel3.setLayout(new java.awt.GridLayout(11, 2));
 
+        lbType1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbType1.setText("Type1");
         jPanel3.add(lbType1);
 
+        lbType2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbType2.setText("Type2");
         jPanel3.add(lbType2);
 
@@ -123,6 +148,8 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel6.setLayout(new java.awt.GridLayout(1, 2));
 
         slLvl.setMajorTickSpacing(1);
+        slLvl.setToolTipText("");
+        slLvl.setValue(100);
         slLvl.addChangeListener(new javax.swing.event.ChangeListener()
         {
             public void stateChanged(javax.swing.event.ChangeEvent evt)
@@ -131,6 +158,8 @@ public class PokeEditor extends javax.swing.JDialog
             }
         });
         jPanel6.add(slLvl);
+
+        tfLvl.setText("100");
         jPanel6.add(tfLvl);
 
         jPanel3.add(jPanel6);
@@ -146,20 +175,17 @@ public class PokeEditor extends javax.swing.JDialog
         lbAbility.setText("Gender: ");
         jPanel3.add(lbAbility);
 
-        cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cbGender);
 
         jLabel5.setText("Ability: ");
         jPanel3.add(jLabel5);
 
-        cbAbility.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cbAbility);
 
         jLabel6.setText("Nature: ");
         jLabel6.setToolTipText("");
         jPanel3.add(jLabel6);
 
-        cbNature.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cbNature);
 
         jLabel7.setText("Move 1: ");
@@ -631,13 +657,13 @@ public class PokeEditor extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbAbility;
-    private javax.swing.JComboBox<String> cbGender;
+    private javax.swing.JComboBox<data.Ability> cbAbility;
+    private javax.swing.JComboBox<data.Gender> cbGender;
     private javax.swing.JComboBox<String> cbMove1;
     private javax.swing.JComboBox<String> cbMove2;
     private javax.swing.JComboBox<String> cbMove3;
     private javax.swing.JComboBox<String> cbMove4;
-    private javax.swing.JComboBox<String> cbNature;
+    private javax.swing.JComboBox<data.Nature> cbNature;
     private javax.swing.JComboBox<data.PokemonList> cbPokemom;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;

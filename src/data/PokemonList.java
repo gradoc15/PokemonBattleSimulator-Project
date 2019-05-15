@@ -36,6 +36,15 @@ public enum PokemonList
         
         throw new Exception("Pokémon not found");
     }
+    
+    public static PokemonList getPokemonByName(String name) throws Exception
+    {
+        for(PokemonList pl: PokemonList.values())
+            if(pl.name == name)
+                return pl;
+        
+        throw new Exception("Pokémon not found");
+    }
 
     public int getId()
     {
