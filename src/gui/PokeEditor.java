@@ -5,6 +5,11 @@
  */
 package gui;
 
+import data.Pokemon;
+import data.Values;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author User
@@ -45,8 +50,13 @@ public class PokeEditor extends javax.swing.JDialog
         
         for(data.Nature nature : data.Nature.values())
             cbNature.addItem(nature);
-        
-        
+
+    }
+    
+    public PokeEditor(java.awt.Frame parent, boolean modal, data.Pokemon pkm)
+    {
+        super(parent, modal);
+        initComponents();
     }
 
     /**
@@ -68,8 +78,6 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel6 = new javax.swing.JPanel();
         slLvl = new javax.swing.JSlider();
         tfLvl = new javax.swing.JTextField();
-        lbNickname = new javax.swing.JLabel();
-        tfNickname = new javax.swing.JTextField();
         lbShiny = new javax.swing.JLabel();
         rbShiny = new javax.swing.JRadioButton();
         lbAbility = new javax.swing.JLabel();
@@ -86,6 +94,8 @@ public class PokeEditor extends javax.swing.JDialog
         cbMove3 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         cbMove4 = new javax.swing.JComboBox<>();
+        btSave = new javax.swing.JButton();
+        btCancle = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         lbIVHP = new javax.swing.JLabel();
@@ -128,6 +138,13 @@ public class PokeEditor extends javax.swing.JDialog
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        cbPokemom.addItemListener(new java.awt.event.ItemListener()
+        {
+            public void itemStateChanged(java.awt.event.ItemEvent evt)
+            {
+                onPokemonChanged(evt);
+            }
+        });
         getContentPane().add(cbPokemom, java.awt.BorderLayout.PAGE_START);
 
         jPanel1.setLayout(new java.awt.GridLayout(1, 2));
@@ -159,14 +176,11 @@ public class PokeEditor extends javax.swing.JDialog
         });
         jPanel6.add(slLvl);
 
+        tfLvl.setEditable(false);
         tfLvl.setText("100");
         jPanel6.add(tfLvl);
 
         jPanel3.add(jPanel6);
-
-        lbNickname.setText("Nickname: ");
-        jPanel3.add(lbNickname);
-        jPanel3.add(tfNickname);
 
         lbShiny.setText("Shiny: ");
         jPanel3.add(lbShiny);
@@ -191,26 +205,42 @@ public class PokeEditor extends javax.swing.JDialog
         jLabel7.setText("Move 1: ");
         jPanel3.add(jLabel7);
 
-        cbMove1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cbMove1);
 
         jLabel8.setText("Move 2: ");
         jPanel3.add(jLabel8);
 
-        cbMove2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cbMove2);
 
         jLabel9.setText("Move 3: ");
         jPanel3.add(jLabel9);
 
-        cbMove3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cbMove3);
 
         jLabel10.setText("Move 4: ");
         jPanel3.add(jLabel10);
 
-        cbMove4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel3.add(cbMove4);
+
+        btSave.setText("Save");
+        btSave.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btSave(evt);
+            }
+        });
+        jPanel3.add(btSave);
+
+        btCancle.setText("Cancle");
+        btCancle.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btCancle(evt);
+            }
+        });
+        jPanel3.add(btCancle);
 
         jPanel1.add(jPanel3);
 
@@ -471,6 +501,8 @@ public class PokeEditor extends javax.swing.JDialog
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private data.Pokemon pokemon;
+    private boolean okay = false;
     private void updateLvlField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_updateLvlField
     {//GEN-HEADEREND:event_updateLvlField
         tfLvl.setText(""+slLvl.getValue());
@@ -592,6 +624,45 @@ public class PokeEditor extends javax.swing.JDialog
         // TODO add your handling code here:
     }//GEN-LAST:event_onTypedInIvSpDef
 
+    private void btCancle(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btCancle
+    {//GEN-HEADEREND:event_btCancle
+        this.dispose();
+    }//GEN-LAST:event_btCancle
+
+    private void btSave(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btSave
+    {//GEN-HEADEREND:event_btSave
+        
+        pokemon.setLvl(slLvl.getValue());
+        pokemon.setShiny(rbShiny.isSelected());
+        pokemon.setGender((data.Gender) cbGender.getSelectedItem());
+        pokemon.setAbility((data.Ability) cbAbility.getSelectedItem());
+        pokemon.setNature((data.Nature) cbAbility.getSelectedItem());
+        
+        pokemon.setIv(new Values(slIvHP.getValue(), slIvAtk.getValue(), slIvDef.getValue(), slIvSpAtk.getValue(), slIvSpDef.getValue(), slIvInit.getValue()));
+        pokemon.setEv(new Values(slEvHP.getValue(), slEvAtk.getValue(), slEvDef.getValue(), slEvSpAtk.getValue(), slEvSpDef.getValue(), slEvInit.getValue()));
+        
+        data.Move m[] = new data.Move[4];
+        m[0] = (data.Move) cbMove1.getSelectedItem();
+        m[1] = (data.Move) cbMove2.getSelectedItem();
+        m[2] = (data.Move) cbMove3.getSelectedItem();
+        m[3] = (data.Move) cbMove4.getSelectedItem();
+        
+        
+        okay = true;
+        this.dispose();
+    }//GEN-LAST:event_btSave
+
+    private void onPokemonChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_onPokemonChanged
+    {//GEN-HEADEREND:event_onPokemonChanged
+        try
+        {
+            pokemon = new Pokemon(data.PokemonList.getPokemonByName(((data.PokemonList)cbPokemom.getSelectedItem()).getName()));
+        } catch (Exception ex)
+        {
+            Logger.getLogger(PokeEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_onPokemonChanged
+
     private int calcEvSum()
     {
         int sum = 0;
@@ -601,6 +672,11 @@ public class PokeEditor extends javax.swing.JDialog
         sum = slEvHP.getValue()+slEvAtk.getValue()+slEvDef.getValue()+slEvSpAtk.getValue()+slEvSpDef.getValue()+slEvInit.getValue();
         System.out.println(sum);
         return sum;
+    }
+    
+    public data.Pokemon getPokemon()
+    {
+        return pokemon;
     }
     /**
      * @param args the command line arguments
@@ -657,12 +733,14 @@ public class PokeEditor extends javax.swing.JDialog
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCancle;
+    private javax.swing.JButton btSave;
     private javax.swing.JComboBox<data.Ability> cbAbility;
     private javax.swing.JComboBox<data.Gender> cbGender;
-    private javax.swing.JComboBox<String> cbMove1;
-    private javax.swing.JComboBox<String> cbMove2;
-    private javax.swing.JComboBox<String> cbMove3;
-    private javax.swing.JComboBox<String> cbMove4;
+    private javax.swing.JComboBox<data.Move> cbMove1;
+    private javax.swing.JComboBox<data.Move> cbMove2;
+    private javax.swing.JComboBox<data.Move> cbMove3;
+    private javax.swing.JComboBox<data.Move> cbMove4;
     private javax.swing.JComboBox<data.Nature> cbNature;
     private javax.swing.JComboBox<data.PokemonList> cbPokemom;
     private javax.swing.JLabel jLabel10;
@@ -691,7 +769,6 @@ public class PokeEditor extends javax.swing.JDialog
     private javax.swing.JLabel lbIVSpAtk;
     private javax.swing.JLabel lbIVSpDef;
     private javax.swing.JLabel lbLvl;
-    private javax.swing.JLabel lbNickname;
     private javax.swing.JLabel lbShiny;
     private javax.swing.JLabel lbType1;
     private javax.swing.JLabel lbType2;
@@ -722,6 +799,5 @@ public class PokeEditor extends javax.swing.JDialog
     private javax.swing.JTextField tfIvSpAtk;
     private javax.swing.JTextField tfIvSpDef;
     private javax.swing.JTextField tfLvl;
-    private javax.swing.JTextField tfNickname;
     // End of variables declaration//GEN-END:variables
 }
