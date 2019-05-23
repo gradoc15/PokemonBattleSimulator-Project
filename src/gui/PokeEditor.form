@@ -271,6 +271,7 @@
                 <Component class="javax.swing.JTextField" name="tfIvHp">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="31"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbIVAtk">
@@ -290,6 +291,7 @@
                 <Component class="javax.swing.JTextField" name="tfIvAtk">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="31"/>
                   </Properties>
                   <Events>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="onTypedInIvAtk"/>
@@ -312,6 +314,7 @@
                 <Component class="javax.swing.JTextField" name="tfIvDef">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="31"/>
                   </Properties>
                   <Events>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="onTypedInIvDef"/>
@@ -334,6 +337,7 @@
                 <Component class="javax.swing.JTextField" name="tfIvSpAtk">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="31"/>
                   </Properties>
                   <Events>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="onTypedInIvSpAtk"/>
@@ -356,6 +360,7 @@
                 <Component class="javax.swing.JTextField" name="tfIvSpDef">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="31"/>
                   </Properties>
                   <Events>
                     <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="onTypedInIvSpDef"/>
@@ -378,6 +383,7 @@
                 <Component class="javax.swing.JTextField" name="tfIvInit">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="31"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -414,6 +420,7 @@
                 <Component class="javax.swing.JTextField" name="tfEvHp">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbEVAtk">
@@ -434,6 +441,7 @@
                 <Component class="javax.swing.JTextField" name="tfEvAtk">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbEVDef">
@@ -454,6 +462,7 @@
                 <Component class="javax.swing.JTextField" name="tfEvDef">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbEVSpAtk">
@@ -474,6 +483,7 @@
                 <Component class="javax.swing.JTextField" name="tfEvSpAtk">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbEVSpDef">
@@ -494,6 +504,7 @@
                 <Component class="javax.swing.JTextField" name="tfEvSpDef">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbEVInit">
@@ -514,6 +525,7 @@
                 <Component class="javax.swing.JTextField" name="tfEvInit">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
+                    <Property name="text" type="java.lang.String" value="0"/>
                   </Properties>
                 </Component>
               </SubComponents>

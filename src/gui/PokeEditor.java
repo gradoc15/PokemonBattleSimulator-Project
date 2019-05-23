@@ -264,6 +264,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel5.add(slIvHP);
 
         tfIvHp.setEditable(false);
+        tfIvHp.setText("31");
         jPanel5.add(tfIvHp);
 
         lbIVAtk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -281,6 +282,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel5.add(slIvAtk);
 
         tfIvAtk.setEditable(false);
+        tfIvAtk.setText("31");
         tfIvAtk.addPropertyChangeListener(new java.beans.PropertyChangeListener()
         {
             public void propertyChange(java.beans.PropertyChangeEvent evt)
@@ -305,6 +307,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel5.add(slIvDef);
 
         tfIvDef.setEditable(false);
+        tfIvDef.setText("31");
         tfIvDef.addPropertyChangeListener(new java.beans.PropertyChangeListener()
         {
             public void propertyChange(java.beans.PropertyChangeEvent evt)
@@ -329,6 +332,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel5.add(slIvSpAtk);
 
         tfIvSpAtk.setEditable(false);
+        tfIvSpAtk.setText("31");
         tfIvSpAtk.addPropertyChangeListener(new java.beans.PropertyChangeListener()
         {
             public void propertyChange(java.beans.PropertyChangeEvent evt)
@@ -353,6 +357,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel5.add(slIvSpDef);
 
         tfIvSpDef.setEditable(false);
+        tfIvSpDef.setText("31");
         tfIvSpDef.addPropertyChangeListener(new java.beans.PropertyChangeListener()
         {
             public void propertyChange(java.beans.PropertyChangeEvent evt)
@@ -377,6 +382,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel5.add(slIvInit);
 
         tfIvInit.setEditable(false);
+        tfIvInit.setText("31");
         jPanel5.add(tfIvInit);
 
         jPanel2.add(jPanel5);
@@ -400,6 +406,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel4.add(slEvHP);
 
         tfEvHp.setEditable(false);
+        tfEvHp.setText("0");
         jPanel4.add(tfEvHp);
 
         lbEVAtk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -418,6 +425,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel4.add(slEvAtk);
 
         tfEvAtk.setEditable(false);
+        tfEvAtk.setText("0");
         jPanel4.add(tfEvAtk);
 
         lbEVDef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -436,6 +444,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel4.add(slEvDef);
 
         tfEvDef.setEditable(false);
+        tfEvDef.setText("0");
         jPanel4.add(tfEvDef);
 
         lbEVSpAtk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -454,6 +463,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel4.add(slEvSpAtk);
 
         tfEvSpAtk.setEditable(false);
+        tfEvSpAtk.setText("0");
         jPanel4.add(tfEvSpAtk);
 
         lbEVSpDef.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -472,6 +482,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel4.add(slEvSpDef);
 
         tfEvSpDef.setEditable(false);
+        tfEvSpDef.setText("0");
         jPanel4.add(tfEvSpDef);
 
         lbEVInit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -490,6 +501,7 @@ public class PokeEditor extends javax.swing.JDialog
         jPanel4.add(slEvInit);
 
         tfEvInit.setEditable(false);
+        tfEvInit.setText("0");
         jPanel4.add(tfEvInit);
 
         jPanel2.add(jPanel4);

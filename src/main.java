@@ -1,6 +1,11 @@
 
 import data.Pokemon;
 import data.PokemonList;
+import database.DB;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import sun.security.pkcs11.Secmod;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,6 +22,13 @@ public class main
     public static void main(String[] args)
     {
         Pokemon p = new Pokemon(PokemonList.BULNASAUR);
+        try
+        {
+            database.DB db = database.DB.getInstance();
+        } catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
         gui.PokeEditor pe = new gui.PokeEditor(null, true);
         pe.setVisible(true);
     }
