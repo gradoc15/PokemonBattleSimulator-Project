@@ -37,16 +37,44 @@ public class PokeEditor extends javax.swing.JDialog
         initComponents();
         
         ini();
+        
+        int anz = cbPokemom.getItemCount();
+        for(int i = 0; i < anz; i++)
+            if(cbPokemom.getItemAt(i).getName().equals(pkm.getName()))
+                cbPokemom.setSelectedIndex(i);
+        
         slLvl.setValue(pkm.getLvl());
+        
+        if(pkm.isShiny())
+            rbShiny.setSelected(true);
+        
+        cbGender.setSelectedItem(pkm.getGender());
+        cbAbility.setSelectedItem(pkm.getAbility());
+        cbNature.setSelectedItem(pkm.getNature());
+        
+        cbMove1.setSelectedItem(pkm.getMove()[0]);
+        cbMove2.setSelectedItem(pkm.getMove()[1]);
+        cbMove3.setSelectedItem(pkm.getMove()[2]);
+        cbMove4.setSelectedItem(pkm.getMove()[3]);
+        
+        slIvHP.setValue(pkm.getIv().getHp());
+        slIvAtk.setValue(pkm.getIv().getAtk());
+        slIvDef.setValue(pkm.getIv().getDef());
+        slIvSpAtk.setValue(pkm.getIv().getSpAtk());
+        slIvSpDef.setValue(pkm.getIv().getSpDef());
+        slIvInit.setValue(pkm.getIv().getIni());
+        
+        slEvHP.setValue(pkm.getEv().getHp());
+        slEvAtk.setValue(pkm.getEv().getAtk());
+        slEvDef.setValue(pkm.getEv().getDef());
+        slEvSpAtk.setValue(pkm.getEv().getSpAtk());
+        slEvSpDef.setValue(pkm.getEv().getSpDef());
+        slEvInit.setValue(pkm.getEv().getIni());
         
     }
     
     public void ini()
     {
-//        for(data.PokemonList pkm: data.PokemonList.values())
-//        {
-//            cbPokemom.addItem(pkm);
-//        }
         for(data.Pokemon pkm: database.DB.getPokemonFromDB())
         {
             cbPokemom.addItem(pkm);
@@ -58,9 +86,6 @@ public class PokeEditor extends javax.swing.JDialog
             cbGender.addItem(g);
         }
 
-        
-            
-        
         for(data.Nature nature : data.Nature.values())
             cbNature.addItem(nature);
         
