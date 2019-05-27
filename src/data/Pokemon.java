@@ -5,22 +5,32 @@
  */
 package data;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author User
  */
 public class Pokemon
 {
-    public Pokemon(PokemonList pl)
+    /**
+     * private int id;
+    private String name;
+    private Values basicValues;
+    private Type type1, type2;
+    private Ability[] possibleAbilities;
+     */
+    public Pokemon(int id, String name, Values basicValues, String type1, String type2, LinkedList<Ability> ability)
     {
-        id = pl.getId();
-        name = pl.getName();
-        basicValues = pl.getBasicValues();
+        this.id = id;
+        this.name = name;
+        this.basicValues = basicValues;
         
         iv = new Values(31, 31, 31, 31, 31, 31);
         ev = new Values(0, 0, 0, 0, 0, 0);
         lvl = 100;
-        ability = pl.getPossibleAbilities()[0];
+        
+        this.ability = ability.getFirst();
     }
     
     private final int id;
@@ -158,6 +168,11 @@ public class Pokemon
     public int getCurrentHP()
     {
         return currentHP;
+    }
+    
+    public String toString()
+    {
+        return name;
     }
     
     

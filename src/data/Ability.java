@@ -9,7 +9,21 @@ package data;
  *
  * @author User
  */
-public enum Ability
+public class Ability
 {
-    COMMING_SOON;
+    private String bez;
+    public Ability(String bez)
+    {
+        this.bez = bez;
+    }
+
+    public String getBez()
+    {
+        return bez;
+    }
+    public String toString()
+    {
+        return bez;
+    }
+    
 }

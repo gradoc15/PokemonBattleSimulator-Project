@@ -7,6 +7,8 @@ package gui;
 
 import data.Pokemon;
 import data.Values;
+import database.DB;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,31 +43,35 @@ public class PokeEditor extends javax.swing.JDialog
     
     public void ini()
     {
-        for(data.PokemonList pkm: data.PokemonList.values())
+//        for(data.PokemonList pkm: data.PokemonList.values())
+//        {
+//            cbPokemom.addItem(pkm);
+//        }
+        for(data.Pokemon pkm: database.DB.getPokemonFromDB())
         {
             cbPokemom.addItem(pkm);
         }
+        
         
         for(data.Gender g : data.Gender.values())
         {
             cbGender.addItem(g);
         }
+
         
-        try
-        {
-            for(data.Ability ability : data.PokemonList.getPokemonByName(((data.PokemonList)cbPokemom.getSelectedItem()).getName()).getPossibleAbilities())
-                cbAbility.addItem(ability);
             
-            lbType1.setText(data.PokemonList.getPokemonByName(((data.PokemonList)cbPokemom.getSelectedItem()).getName()).getType1().toString());
-            lbType2.setText(data.PokemonList.getPokemonByName(((data.PokemonList)cbPokemom.getSelectedItem()).getName()).getType2().toString());
-        }
-        catch(Exception e)
-        {
-            
-        }
         
         for(data.Nature nature : data.Nature.values())
             cbNature.addItem(nature);
+        
+        try
+        {
+            for(data.Move m: DB.getMoveListFrom((data.Pokemon) cbPokemom.getSelectedItem()))
+                cbMove1.addItem(m);
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(PokeEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -677,7 +683,7 @@ public class PokeEditor extends javax.swing.JDialog
     {//GEN-HEADEREND:event_onPokemonChanged
         try
         {
-            pokemon = new Pokemon(data.PokemonList.getPokemonByName(((data.PokemonList)cbPokemom.getSelectedItem()).getName()));
+            pokemon = (data.Pokemon) cbPokemom.getSelectedItem();
         } catch (Exception ex)
         {
             Logger.getLogger(PokeEditor.class.getName()).log(Level.SEVERE, null, ex);
@@ -768,7 +774,7 @@ public class PokeEditor extends javax.swing.JDialog
     private javax.swing.JComboBox<data.Move> cbMove3;
     private javax.swing.JComboBox<data.Move> cbMove4;
     private javax.swing.JComboBox<data.Nature> cbNature;
-    private javax.swing.JComboBox<data.PokemonList> cbPokemom;
+    private javax.swing.JComboBox<data.Pokemon> cbPokemom;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

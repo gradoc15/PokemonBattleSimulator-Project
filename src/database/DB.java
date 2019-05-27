@@ -5,10 +5,16 @@
  */
 package database;
 
+import data.Ability;
+import data.Move;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -17,7 +23,9 @@ import java.sql.Statement;
 public class DB
 {
     private static DB instance;
-    private Connection con;
+    private static Connection con;
+    
+    private static ArrayList<data.Pokemon> pkm = new ArrayList();
     
     private DB() throws SQLException
     {
@@ -42,7 +50,7 @@ public class DB
             fillPokeMoves();
             
         }
-        
+        loadPokemon();
         instance = this;
     }
     
@@ -196,6 +204,99 @@ public class DB
         if(instance == null)
             instance = new DB();
         return instance;
+    }
+    
+    private void loadPokemon() throws SQLException
+    {
+        /*
+        private int id;
+        private String name;
+        private Values basicValues;
+        private Type type1, type2;
+        private Ability[] possibleAbilities;
+        */
+        
+        PreparedStatement actorInsertStmt;
+        String actorInsert = "SELECT * FROM pokemon";
+        actorInsertStmt = con.prepareStatement(actorInsert);
+        
+        ResultSet rs = actorInsertStmt.executeQuery();
+        ResultSet rsType;
+        ResultSet rsAbilities;
+        ResultSet rsAbility;
+        
+        String type1 = "none", type2 = "none"; 
+        
+        LinkedList<data.Ability> abilities = new LinkedList();
+        int c = 0;
+        
+        while(rs.next())
+        {
+            System.out.println(rs.getInt("BasicHP"));
+            
+            
+            actorInsert = "SELECT * FROM pokemontype WHERE "+rs.getInt("PID")+" = PID";
+            actorInsertStmt = con.prepareStatement(actorInsert);
+            rsType = actorInsertStmt.executeQuery();
+            
+            while(rsType.next())
+            {
+                if(c == 0)
+                    type1 = rsType.getString("Bez");
+                else
+                    type2 = rsType.getString("Bez");
+                c++;
+            }
+            c = 0;
+            
+            actorInsert = "SELECT * FROM pokemonability WHERE "+rs.getInt("PID")+" = PID";
+            actorInsertStmt = con.prepareStatement(actorInsert);
+            rsAbilities = actorInsertStmt.executeQuery();
+            
+            while(rsAbilities.next())
+            {
+                actorInsert = "SELECT * FROM ability WHERE "+rsAbilities.getInt("AID")+" = AID";
+                actorInsertStmt = con.prepareStatement(actorInsert);
+                rsAbility = actorInsertStmt.executeQuery();
+                
+                while(rsAbility.next())
+                    abilities.add(new Ability(rsAbility.getString("Bez")));
+            }
+
+            
+            data.Pokemon p = new data.Pokemon(rs.getInt("PID"), rs.getString("name"), new data.Values(rs.getInt("BasicHP"), rs.getInt("BasicATK"), rs.getInt("BasicDEF"), rs.getInt("BasicSPATK"), rs.getInt("BasicSPDEF"), rs.getInt("BasicINIT")), type1, type2, abilities);
+            pkm.add(p);
+        }
+
+    }
+    
+    public static ArrayList<data.Pokemon> getPokemonFromDB()
+    {
+        return pkm;
+    }
+    
+    public static ArrayList<data.Move> getMoveListFrom(data.Pokemon pkm) throws SQLException
+    {
+        ArrayList<data.Move> moveList = new ArrayList();
+        
+        PreparedStatement actorInsertStmt;
+        String actorInsert = "SELECT * FROM pokemonmove WHERE PID = "+pkm.getId();
+        actorInsertStmt = con.prepareStatement(actorInsert);
+        
+        ResultSet rs = actorInsertStmt.executeQuery();
+        ResultSet rsMove;
+        while(rs.next())
+        {
+            actorInsert = "SELECT * FROM move WHERE MID = " + rs.getInt("MID");
+            actorInsertStmt = con.prepareStatement(actorInsert);
+            rsMove = actorInsertStmt.executeQuery();
+            
+            while(rsMove.next())
+                moveList.add(new Move(rsMove.getString("Bez"), rsMove.getString("Type"), rsMove.getString("Category"), rsMove.getInt("Power"),rsMove.getInt("Accurance")));
+               
+        }
+        
+        return moveList;
     }
     
 }

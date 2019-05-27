@@ -1,6 +1,5 @@
 
 import data.Pokemon;
-import data.PokemonList;
 import database.DB;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -21,10 +20,10 @@ public class main
 {
     public static void main(String[] args)
     {
-        Pokemon p = new Pokemon(PokemonList.BULNASAUR);
         try
         {
             database.DB db = database.DB.getInstance();
+            db.getPokemonFromDB();
             
         } catch (SQLException ex)
         {
