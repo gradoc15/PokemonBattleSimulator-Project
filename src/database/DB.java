@@ -23,9 +23,9 @@ import java.util.LinkedList;
 public class DB
 {
     private static DB instance;
-    private static Connection con;
+    private Connection con;
     
-    private static ArrayList<data.Pokemon> pkm = new ArrayList();
+    private ArrayList<data.Pokemon> pkm = new ArrayList();
     
     private DB() throws SQLException
     {
@@ -270,12 +270,12 @@ public class DB
 
     }
     
-    public static ArrayList<data.Pokemon> getPokemonFromDB()
+    public ArrayList<data.Pokemon> getPokemonFromDB()
     {
         return pkm;
     }
     
-    public static ArrayList<data.Move> getMoveListFrom(data.Pokemon pkm) throws SQLException
+    public ArrayList<data.Move> getMoveListFrom(data.Pokemon pkm) throws SQLException
     {
         ArrayList<data.Move> moveList = new ArrayList();
         
@@ -299,7 +299,7 @@ public class DB
         return moveList;
     }
     
-    public static ArrayList<data.Ability> getAbilitiesFrom(data.Pokemon pkm) throws SQLException
+    public ArrayList<data.Ability> getAbilitiesFrom(data.Pokemon pkm) throws SQLException
     {
         ArrayList<data.Ability> abilities = new ArrayList();
         

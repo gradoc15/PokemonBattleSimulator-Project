@@ -11,6 +11,7 @@ import database.DB;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,11 +23,24 @@ public class PokeEditor extends javax.swing.JDialog
     /**
      * Creates new form PokeEditor
      */
+    
+    database.DB database = null;
     public PokeEditor(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
         initComponents();
         
+        if(database == null)
+        {
+            try
+            {
+                database = DB.getInstance();
+                System.out.println("asd");
+            } catch (SQLException ex)
+            {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        }
         ini();
 
     }
@@ -35,6 +49,14 @@ public class PokeEditor extends javax.swing.JDialog
     {
         super(parent, modal);
         initComponents();
+        
+        try
+        {
+            database = DB.getInstance();
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
         
         ini();
         
@@ -75,7 +97,7 @@ public class PokeEditor extends javax.swing.JDialog
     
     public void ini()
     {
-        for(data.Pokemon pkm: database.DB.getPokemonFromDB())
+        for(data.Pokemon pkm: database.getPokemonFromDB())
         {
             cbPokemom.addItem(pkm);
         }
@@ -91,7 +113,7 @@ public class PokeEditor extends javax.swing.JDialog
         
         try
         {
-            for(data.Move m: DB.getMoveListFrom((data.Pokemon) cbPokemom.getSelectedItem()))
+            for(data.Move m: database.getMoveListFrom((data.Pokemon) cbPokemom.getSelectedItem()))
             {
                 cbMove1.addItem(m);
                 cbMove2.addItem(m);
@@ -105,7 +127,7 @@ public class PokeEditor extends javax.swing.JDialog
         
         try
         {
-            for(data.Ability ability: DB.getAbilitiesFrom((data.Pokemon) cbPokemom.getSelectedItem()))            
+            for(data.Ability ability: database.getAbilitiesFrom((data.Pokemon) cbPokemom.getSelectedItem()))            
             {
                 cbAbility.addItem(ability);
             }
