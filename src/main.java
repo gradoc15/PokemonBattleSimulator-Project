@@ -25,6 +25,7 @@ public class main
         try
         {
             database.DB db = database.DB.getInstance();
+            
         } catch (SQLException ex)
         {
             ex.printStackTrace();
