@@ -25,6 +25,22 @@ public class PokeEditor extends javax.swing.JDialog
         super(parent, modal);
         initComponents();
         
+        ini();
+
+    }
+    
+    public PokeEditor(java.awt.Frame parent, boolean modal, data.Pokemon pkm)
+    {
+        super(parent, modal);
+        initComponents();
+        
+        ini();
+        slLvl.setValue(pkm.getLvl());
+        
+    }
+    
+    public void ini()
+    {
         for(data.PokemonList pkm: data.PokemonList.values())
         {
             cbPokemom.addItem(pkm);
@@ -50,13 +66,6 @@ public class PokeEditor extends javax.swing.JDialog
         
         for(data.Nature nature : data.Nature.values())
             cbNature.addItem(nature);
-
-    }
-    
-    public PokeEditor(java.awt.Frame parent, boolean modal, data.Pokemon pkm)
-    {
-        super(parent, modal);
-        initComponents();
     }
 
     /**
@@ -648,7 +657,7 @@ public class PokeEditor extends javax.swing.JDialog
         pokemon.setShiny(rbShiny.isSelected());
         pokemon.setGender((data.Gender) cbGender.getSelectedItem());
         pokemon.setAbility((data.Ability) cbAbility.getSelectedItem());
-        pokemon.setNature((data.Nature) cbAbility.getSelectedItem());
+        pokemon.setNature((data.Nature) cbNature.getSelectedItem());
         
         pokemon.setIv(new Values(slIvHP.getValue(), slIvAtk.getValue(), slIvDef.getValue(), slIvSpAtk.getValue(), slIvSpDef.getValue(), slIvInit.getValue()));
         pokemon.setEv(new Values(slEvHP.getValue(), slEvAtk.getValue(), slEvDef.getValue(), slEvSpAtk.getValue(), slEvSpDef.getValue(), slEvInit.getValue()));
@@ -689,6 +698,11 @@ public class PokeEditor extends javax.swing.JDialog
     public data.Pokemon getPokemon()
     {
         return pokemon;
+    }
+    
+    public boolean isOkay()
+    {
+        return okay;
     }
     /**
      * @param args the command line arguments

@@ -40,6 +40,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClick1"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbSlot2">
       <Properties>
@@ -51,6 +54,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClick2"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbSlot3">
       <Properties>
@@ -62,6 +68,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClick3"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbSlot4">
       <Properties>
@@ -73,6 +82,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClick4"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbSlot5">
       <Properties>
@@ -84,6 +96,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClick5"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbSlot6">
       <Properties>
@@ -95,6 +110,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClick6"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

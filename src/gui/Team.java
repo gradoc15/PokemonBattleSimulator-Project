@@ -5,6 +5,8 @@
  */
 package gui;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author User
@@ -15,9 +17,21 @@ public class Team extends javax.swing.JFrame
     /**
      * Creates new form Team
      */
+    private data.Pokemon team[] = new data.Pokemon[6];
+    private JLabel slots[] = new JLabel[6];
+    
     public Team()
     {
         initComponents();
+        for(int i = 0; i < team.length; i++)
+            team[i] = null;
+        
+        slots[0] = lbSlot1;
+        slots[1] = lbSlot2;
+        slots[2] = lbSlot3;
+        slots[3] = lbSlot4;
+        slots[4] = lbSlot5;
+        slots[5] = lbSlot6;
     }
 
     /**
@@ -45,36 +59,128 @@ public class Team extends javax.swing.JFrame
         lbSlot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot1.setText("empty");
         lbSlot1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClick1(evt);
+            }
+        });
         getContentPane().add(lbSlot1);
 
         lbSlot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot2.setText("empty");
         lbSlot2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClick2(evt);
+            }
+        });
         getContentPane().add(lbSlot2);
 
         lbSlot3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot3.setText("empty");
         lbSlot3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot3.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClick3(evt);
+            }
+        });
         getContentPane().add(lbSlot3);
 
         lbSlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot4.setText("empty");
         lbSlot4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClick4(evt);
+            }
+        });
         getContentPane().add(lbSlot4);
 
         lbSlot5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot5.setText("empty");
         lbSlot5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot5.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClick5(evt);
+            }
+        });
         getContentPane().add(lbSlot5);
 
         lbSlot6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot6.setText("empty");
         lbSlot6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot6.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClick6(evt);
+            }
+        });
         getContentPane().add(lbSlot6);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    private void onClick1(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick1
+    {//GEN-HEADEREND:event_onClick1
+        changePokemon(0);
+    }//GEN-LAST:event_onClick1
+
+    private void onClick2(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick2
+    {//GEN-HEADEREND:event_onClick2
+        changePokemon(1);
+    }//GEN-LAST:event_onClick2
+
+    private void onClick3(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick3
+    {//GEN-HEADEREND:event_onClick3
+        changePokemon(2);
+    }//GEN-LAST:event_onClick3
+
+    private void onClick4(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick4
+    {//GEN-HEADEREND:event_onClick4
+        changePokemon(3);
+    }//GEN-LAST:event_onClick4
+
+    private void onClick5(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick5
+    {//GEN-HEADEREND:event_onClick5
+        changePokemon(4);
+    }//GEN-LAST:event_onClick5
+
+    private void onClick6(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick6
+    {//GEN-HEADEREND:event_onClick6
+        changePokemon(5);
+    }//GEN-LAST:event_onClick6
+
+    public void changePokemon(int slot)
+    {
+        gui.PokeEditor pEdit = null;
+        if(team[slot] == null)
+            pEdit =  new gui.PokeEditor(this, true);
+        else
+            pEdit =  new gui.PokeEditor(this, true, team[slot]); 
+        
+        pEdit.setVisible(true);
+        
+        if(pEdit.isOkay())
+        {
+            team[slot] = pEdit.getPokemon();
+            slots[slot].setText(pEdit.getPokemon().getName());
+            System.out.println("change");
+        }
+    }
     /**
      * @param args the command line arguments
      */

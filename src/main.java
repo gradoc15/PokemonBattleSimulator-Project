@@ -29,7 +29,8 @@ public class main
         {
             ex.printStackTrace();
         }
-        gui.PokeEditor pe = new gui.PokeEditor(null, true);
-        pe.setVisible(true);
+        
+        gui.Team t = new gui.Team();
+        t.setVisible(true);
     }
 }
