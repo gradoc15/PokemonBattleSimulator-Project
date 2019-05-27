@@ -44,40 +44,23 @@ public class Team extends javax.swing.JFrame
     private void initComponents()
     {
 
-        lbSlot1 = new javax.swing.JLabel();
-        lbSlot2 = new javax.swing.JLabel();
+        btStartBattle = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         lbSlot3 = new javax.swing.JLabel();
-        lbSlot4 = new javax.swing.JLabel();
+        lbSlot1 = new javax.swing.JLabel();
         lbSlot5 = new javax.swing.JLabel();
+        lbSlot2 = new javax.swing.JLabel();
         lbSlot6 = new javax.swing.JLabel();
+        lbSlot4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(250, 750));
-        getContentPane().setLayout(new java.awt.GridLayout(6, 1));
+        setPreferredSize(new java.awt.Dimension(350, 750));
 
-        lbSlot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbSlot1.setText("empty");
-        lbSlot1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot1.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                onClick1(evt);
-            }
-        });
-        getContentPane().add(lbSlot1);
+        btStartBattle.setText("Start Battle");
+        getContentPane().add(btStartBattle, java.awt.BorderLayout.LINE_END);
 
-        lbSlot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbSlot2.setText("empty");
-        lbSlot2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot2.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
-                onClick2(evt);
-            }
-        });
-        getContentPane().add(lbSlot2);
+        jPanel1.setLayout(new java.awt.GridLayout(6, 0));
 
         lbSlot3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot3.setText("empty");
@@ -89,19 +72,19 @@ public class Team extends javax.swing.JFrame
                 onClick3(evt);
             }
         });
-        getContentPane().add(lbSlot3);
+        jPanel1.add(lbSlot3);
 
-        lbSlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbSlot4.setText("empty");
-        lbSlot4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot4.addMouseListener(new java.awt.event.MouseAdapter()
+        lbSlot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot1.setText("empty");
+        lbSlot1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot1.addMouseListener(new java.awt.event.MouseAdapter()
         {
             public void mouseClicked(java.awt.event.MouseEvent evt)
             {
-                onClick4(evt);
+                onClick1(evt);
             }
         });
-        getContentPane().add(lbSlot4);
+        jPanel1.add(lbSlot1);
 
         lbSlot5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot5.setText("empty");
@@ -113,7 +96,19 @@ public class Team extends javax.swing.JFrame
                 onClick5(evt);
             }
         });
-        getContentPane().add(lbSlot5);
+        jPanel1.add(lbSlot5);
+
+        lbSlot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot2.setText("empty");
+        lbSlot2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot2.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClick2(evt);
+            }
+        });
+        jPanel1.add(lbSlot2);
 
         lbSlot6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot6.setText("empty");
@@ -125,7 +120,21 @@ public class Team extends javax.swing.JFrame
                 onClick6(evt);
             }
         });
-        getContentPane().add(lbSlot6);
+        jPanel1.add(lbSlot6);
+
+        lbSlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot4.setText("empty");
+        lbSlot4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbSlot4.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClick4(evt);
+            }
+        });
+        jPanel1.add(lbSlot4);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,6 +235,8 @@ public class Team extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btStartBattle;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbSlot1;
     private javax.swing.JLabel lbSlot2;
     private javax.swing.JLabel lbSlot3;

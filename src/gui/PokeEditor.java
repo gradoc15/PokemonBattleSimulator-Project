@@ -30,17 +30,14 @@ public class PokeEditor extends javax.swing.JDialog
         super(parent, modal);
         initComponents();
         
-        if(database == null)
+        try
         {
-            try
-            {
-                database = DB.getInstance();
-                System.out.println("asd");
-            } catch (SQLException ex)
-            {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            }
+            database = DB.getInstance();
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        
         ini();
 
     }
