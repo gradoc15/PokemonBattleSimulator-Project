@@ -25,10 +25,11 @@ public class DB
         try
         {
           con = DriverManager.getConnection("jdbc:postgresql://localhost/pokemon_battle_simulator", "postgres", "postgres");
+          
         }
         catch(SQLException ex)
         {
-            
+           
             createDB();
             con = DriverManager.getConnection("jdbc:postgresql://localhost/pokemon_battle_simulator", "postgres", "postgres");
             createTables();
@@ -128,10 +129,26 @@ public class DB
         st.execute("INSERT INTO type VALUES('dragon');");
         st.execute("INSERT INTO type VALUES('steel');");
         st.execute("INSERT INTO type VALUES('fairy');");
-        System.out.println("filled");
-        
+        System.out.println("filled types");
     }
     
+    private void fillPokemon() throws SQLException
+    {
+        /*
+         " PID INTEGER PRIMARY KEY,"
+                + " NAME VARCHAR(30),"
+                + " BasicHP INTEGER,"
+                + " BasicATK INTEGER,"
+                + " BasicDEF INTEGER,"
+                + " BasicSPATK INTEGER,"
+                + " BasicSPDEF INTEGER,"
+                + " BasicINIT INTEGER);");
+        */
+        Statement st = con.createStatement();
+        st.execute("INSERT INTO pokemon VALUES(1, 'Bulbasaur', 45, 49, 49, 65, 65, 45);");
+        st.execute("INSERT INTO pokemon VALUES(2, 'Ivysaur', 60, 62, 63, 80, 80, 60);");
+        st.execute("INSERT INTO pokemon VALUES(3, 'Venusaur', 80, 82, 83, 100, 100, 80);");
+    }
     public static DB getInstance() throws SQLException
     {
         if(instance == null)
