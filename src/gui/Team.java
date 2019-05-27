@@ -42,22 +42,34 @@ public class Team extends javax.swing.JFrame
         setUndecorated(true);
         getContentPane().setLayout(new java.awt.GridLayout(6, 1));
 
+        lbSlot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot1.setText("empty");
+        lbSlot1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lbSlot1);
 
+        lbSlot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot2.setText("empty");
+        lbSlot2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lbSlot2);
 
+        lbSlot3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot3.setText("empty");
+        lbSlot3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lbSlot3);
 
+        lbSlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot4.setText("empty");
+        lbSlot4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lbSlot4);
 
+        lbSlot5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot5.setText("empty");
+        lbSlot5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lbSlot5);
 
+        lbSlot6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot6.setText("empty");
+        lbSlot6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         getContentPane().add(lbSlot6);
 
         pack();
