@@ -30,6 +30,9 @@ public class Pokemon
         ev = new Values(0, 0, 0, 0, 0, 0);
         lvl = 100;
         
+        this.type1 = type1;
+        this.type2 = type2;
+        
         this.ability = ability.getFirst();
     }
     
@@ -43,6 +46,7 @@ public class Pokemon
     private int lvl;
     private Move[] move = new Move[4];
     private boolean shiny;
+    private String type1, type2;
     
     private Values iv;
     private Values ev;
@@ -89,6 +93,18 @@ public class Pokemon
     {
         this.shiny = shiny;
     }
+
+    public String getType1()
+    {
+        return type1;
+    }
+
+    public String getType2()
+    {
+        return type2;
+    }
+    
+    
 
     public void setIv(Values iv)
     {
@@ -174,6 +190,8 @@ public class Pokemon
     {
         return name;
     }
+    
+    
     
     
    

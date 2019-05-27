@@ -44,7 +44,9 @@ public enum Nature
     
     private Nature(String bez, Stat plus, Stat minus)
     {
-        
+        this.bez = bez;
+        this.minus = minus;
+        this.plus = plus;
     }
     
     private String bez;

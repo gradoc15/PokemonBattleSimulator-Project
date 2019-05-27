@@ -702,6 +702,8 @@ public class PokeEditor extends javax.swing.JDialog
         try
         {
             pokemon = (data.Pokemon) cbPokemom.getSelectedItem();
+            lbType1.setText(pokemon.getType1());
+            lbType2.setText(pokemon.getType2());
         } catch (Exception ex)
         {
             Logger.getLogger(PokeEditor.class.getName()).log(Level.SEVERE, null, ex);
