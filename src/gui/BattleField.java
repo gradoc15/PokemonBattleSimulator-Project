@@ -51,15 +51,12 @@ public class BattleField extends javax.swing.JFrame
         teamSlots[4] = lbSlot5;
         teamSlots[5] = lbSlot6;
         
-        teamSlots[0].setText(ownTeam[0].getName());
-        teamSlots[1].setText(ownTeam[1].getName());
-        teamSlots[2].setText(ownTeam[2].getName());
-        teamSlots[3].setText(ownTeam[3].getName());
-        teamSlots[4].setText(ownTeam[4].getName());
-        teamSlots[5].setText(ownTeam[5].getName());
+        
         
         for(int i = 0; i < teamSlots.length; i++)
         {
+            if(ownTeam[i] != null)
+                teamSlots[i].setText(ownTeam[i].getName());
             teamSlots[i].setOpaque(true);
             teamSlots[i].setBackground(java.awt.Color.green);
         }
