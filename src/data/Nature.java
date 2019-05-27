@@ -11,5 +11,43 @@ package data;
  */
 public enum Nature
 {
+        //atk, def, spAtk, spDef, spd
+    HARDY("Hardy",Stat.ATK,Stat.ATK),
+    LONELY("Lonely",Stat.ATK,Stat.DEF),
+    ADAMANT("Adamant", Stat.ATK, Stat.DEF),
+    NAUGHTY("Naughty", Stat.ATK, Stat.SPDEF),
+    BRAVE("Brave",Stat.ATK,Stat.INIT),
+    
+    BOLD("Bold", Stat.DEF, Stat.ATK),
+    DOCILE("Docile",Stat.DEF,Stat.DEF),
+    IMPISH("Impish",Stat.DEF,Stat.SPATK),
+    LAX("Lax", Stat.DEF, Stat.SPDEF),
+    RELAXED("Relaxed", Stat.DEF,Stat.INIT),
+    
+    MODEST("Modest",Stat.SPATK,Stat.ATK),
+    MILD("Mild",Stat.SPATK,Stat.DEF),
+    BASHFUL("Bashful",Stat.SPATK,Stat.SPATK),
+    RASH("Rash",Stat.SPATK,Stat.SPDEF),
+    QUIET("Quiet",Stat.SPATK,Stat.INIT),
+    
+    CALM("Calm", Stat.SPDEF,Stat.ATK),
+    GENTLE("Gentle",Stat.SPDEF,Stat.DEF),
+    CAREFUL("Careful",Stat.SPDEF,Stat.SPATK),
+    QUIRKY("Quirky",Stat.SPDEF,Stat.SPDEF),
+    SASSY("Sassy",Stat.SPDEF,Stat.INIT),
+    
+    TIMID("Timid",Stat.INIT,Stat.ATK),
+    HASTY("Hasty",Stat.INIT,Stat.DEF),
+    JOLLY("Jolly",Stat.INIT,Stat.SPATK),
+    NAIVE("Naive",Stat.INIT,Stat.SPDEF),
+    SERIOUS("Serious",Stat.INIT,Stat.INIT);
+    
+    private Nature(String bez, Stat plus, Stat minus)
+    {
+        
+    }
+    
+    private String bez;
+    private Stat plus, minus;
     
 }

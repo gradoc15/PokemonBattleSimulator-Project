@@ -299,4 +299,29 @@ public class DB
         return moveList;
     }
     
+    public static ArrayList<data.Ability> getAbilitiesFrom(data.Pokemon pkm) throws SQLException
+    {
+        ArrayList<data.Ability> abilities = new ArrayList();
+        
+        PreparedStatement actorInsertStmt;
+        String actorInsert = "SELECT * FROM pokemonability WHERE " + pkm.getId() + " = PID";
+        actorInsertStmt = con.prepareStatement(actorInsert);
+        ResultSet rsAbilities = actorInsertStmt.executeQuery();
+        ResultSet rsAbility;
+
+        while (rsAbilities.next())
+        {
+            actorInsert = "SELECT * FROM ability WHERE " + rsAbilities.getInt("AID") + " = AID";
+            actorInsertStmt = con.prepareStatement(actorInsert);
+            rsAbility = actorInsertStmt.executeQuery();
+
+            while (rsAbility.next())
+            {
+                abilities.add(new Ability(rsAbility.getString("Bez")));
+            }
+        }
+
+        return abilities;
+    }
+    
 }

@@ -11,5 +11,6 @@ package data;
  */
 public enum Gender
 {
-    
+   M,
+   W;
 }

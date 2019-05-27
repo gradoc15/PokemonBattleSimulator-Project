@@ -67,11 +67,29 @@ public class PokeEditor extends javax.swing.JDialog
         try
         {
             for(data.Move m: DB.getMoveListFrom((data.Pokemon) cbPokemom.getSelectedItem()))
+            {
                 cbMove1.addItem(m);
+                cbMove2.addItem(m);
+                cbMove3.addItem(m);
+                cbMove4.addItem(m);
+            }
         } catch (SQLException ex)
         {
             Logger.getLogger(PokeEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try
+        {
+            for(data.Ability ability: DB.getAbilitiesFrom((data.Pokemon) cbPokemom.getSelectedItem()))            
+            {
+                cbAbility.addItem(ability);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(PokeEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+     
     }
 
     /**

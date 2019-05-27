@@ -53,7 +53,6 @@ public class Team extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(250, 750));
-        setUndecorated(true);
         getContentPane().setLayout(new java.awt.GridLayout(6, 1));
 
         lbSlot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
