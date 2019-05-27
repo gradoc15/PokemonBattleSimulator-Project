@@ -34,6 +34,12 @@ public class DB
             con = DriverManager.getConnection("jdbc:postgresql://localhost/pokemon_battle_simulator", "postgres", "postgres");
             createTables();
             fillType();
+            fillPokemon();
+            fillAbility();
+            fillMove();
+            fillPokeTypes();
+            fillPokeAbilities();
+            fillPokeMoves();
             
         }
         
@@ -134,21 +140,57 @@ public class DB
     
     private void fillPokemon() throws SQLException
     {
-        /*
-         " PID INTEGER PRIMARY KEY,"
-                + " NAME VARCHAR(30),"
-                + " BasicHP INTEGER,"
-                + " BasicATK INTEGER,"
-                + " BasicDEF INTEGER,"
-                + " BasicSPATK INTEGER,"
-                + " BasicSPDEF INTEGER,"
-                + " BasicINIT INTEGER);");
-        */
+        
         Statement st = con.createStatement();
         st.execute("INSERT INTO pokemon VALUES(1, 'Bulbasaur', 45, 49, 49, 65, 65, 45);");
         st.execute("INSERT INTO pokemon VALUES(2, 'Ivysaur', 60, 62, 63, 80, 80, 60);");
         st.execute("INSERT INTO pokemon VALUES(3, 'Venusaur', 80, 82, 83, 100, 100, 80);");
+        System.out.println("filled pokemon");
     }
+    
+    private void fillAbility() throws SQLException
+    {
+        Statement st = con.createStatement();
+        st.execute("INSERT INTO ability VALUES(0, 'COMMING_SOON');");
+        System.out.println("filled ability");
+    }
+    
+    private void fillMove() throws SQLException
+    {
+        Statement st = con.createStatement();
+        st.execute("INSERT INTO move VALUES(1, 'Tackle','normal','physic',40,100);");
+        System.out.println("moves filled");
+    }
+    
+    private void fillPokeTypes() throws SQLException
+    {
+        Statement st = con.createStatement();
+        //pid, type
+        st.execute("INSERT INTO pokemontype VALUES(1,'grass');");
+        st.execute("INSERT INTO pokemontype VALUES(1,'poison');");
+        st.execute("INSERT INTO pokemontype VALUES(2,'grass');");
+        st.execute("INSERT INTO pokemontype VALUES(2,'poison');");
+        st.execute("INSERT INTO pokemontype VALUES(3,'grass');");
+        st.execute("INSERT INTO pokemontype VALUES(3,'poison');");
+    }
+    private void fillPokeMoves() throws SQLException
+    {
+        Statement st = con.createStatement();
+        //pid, mid
+        st.execute("INSERT INTO pokemonmove VALUES(1, 1);");
+        st.execute("INSERT INTO pokemonmove VALUES(2, 1);");
+        st.execute("INSERT INTO pokemonmove VALUES(3, 1);");
+    }
+    
+    private void fillPokeAbilities() throws SQLException
+    {
+        Statement st = con.createStatement();
+        //pid, aid
+        st.execute("INSERT INTO pokemonability VALUES(1,0);");
+        st.execute("INSERT INTO pokemonability VALUES(2,0);");
+        st.execute("INSERT INTO pokemonability VALUES(3,0);");
+    }
+    
     public static DB getInstance() throws SQLException
     {
         if(instance == null)
