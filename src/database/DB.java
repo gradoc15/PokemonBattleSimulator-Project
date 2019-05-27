@@ -32,6 +32,7 @@ public class DB
             createDB();
             con = DriverManager.getConnection("jdbc:postgresql://localhost/pokemon_battle_simulator", "postgres", "postgres");
             createTables();
+            fillType();
             
         }
         
@@ -105,6 +106,30 @@ public class DB
                 + " PID INTEGER,"
                 + " MID INTEGER,"
                 + " PRIMARY KEY(PID, MID));");
+    }
+    
+    private void fillType() throws SQLException
+    {
+        Statement st = con.createStatement();
+        st.execute("INSERT INTO type VALUES('normal');");
+        st.execute("INSERT INTO type VALUES('fire');");
+        st.execute("INSERT INTO type VALUES('water');");
+        st.execute("INSERT INTO type VALUES('grass');");
+        st.execute("INSERT INTO type VALUES('electric');");
+        st.execute("INSERT INTO type VALUES('ice');");
+        st.execute("INSERT INTO type VALUES('fighting');");
+        st.execute("INSERT INTO type VALUES('poison');");
+        st.execute("INSERT INTO type VALUES('ground');");
+        st.execute("INSERT INTO type VALUES('flying');");
+        st.execute("INSERT INTO type VALUES('psychic');");
+        st.execute("INSERT INTO type VALUES('bug');");
+        st.execute("INSERT INTO type VALUES('rock');");
+        st.execute("INSERT INTO type VALUES('ghost');");
+        st.execute("INSERT INTO type VALUES('dragon');");
+        st.execute("INSERT INTO type VALUES('steel');");
+        st.execute("INSERT INTO type VALUES('fairy');");
+        System.out.println("filled");
+        
     }
     
     public static DB getInstance() throws SQLException
