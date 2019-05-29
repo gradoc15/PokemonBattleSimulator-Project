@@ -97,6 +97,7 @@ public class PokeEditor extends javax.swing.JDialog
         for(data.Pokemon pkm: database.getPokemonFromDB())
         {
             cbPokemom.addItem(pkm);
+            System.out.println(pkm.getType2()+ "   "+pkm.getName());
         }
         
         
@@ -750,12 +751,29 @@ public class PokeEditor extends javax.swing.JDialog
             pokemon = (data.Pokemon) cbPokemom.getSelectedItem();
             lbType1.setText(pokemon.getType1());
             lbType2.setText(pokemon.getType2());
+            System.out.println("asd");
+            
+            cbMove1.removeAllItems();
+            cbMove2.removeAllItems();
+            cbMove3.removeAllItems();
+            cbMove4.removeAllItems();
+            
+            for(data.Move m: database.getMoveListFrom((data.Pokemon) cbPokemom.getSelectedItem()))
+            {
+                cbMove1.addItem(m);
+                cbMove2.addItem(m);
+                cbMove3.addItem(m);
+                cbMove4.addItem(m);
+            }
+            
+            
         } catch (Exception ex)
         {
             Logger.getLogger(PokeEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_onPokemonChanged
 
+    
     private int calcEvSum()
     {
         int sum = 0;

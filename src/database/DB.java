@@ -229,12 +229,17 @@ public class DB
         st.execute("INSERT INTO pokemontype VALUES(3,'grass');");
         st.execute("INSERT INTO pokemontype VALUES(3,'poison');");
         st.execute("INSERT INTO pokemontype VALUES(4,'fire');");
+        st.execute("INSERT INTO pokemontype VALUES(4,'none');");
         st.execute("INSERT INTO pokemontype VALUES(5,'fire');");
+        st.execute("INSERT INTO pokemontype VALUES(5,'none');");
         st.execute("INSERT INTO pokemontype VALUES(6,'fire');");
         st.execute("INSERT INTO pokemontype VALUES(6,'flying');");
         st.execute("INSERT INTO pokemontype VALUES(7,'water');");
+        st.execute("INSERT INTO pokemontype VALUES(7,'none');");
         st.execute("INSERT INTO pokemontype VALUES(8,'water');");
+        st.execute("INSERT INTO pokemontype VALUES(8,'none');");
         st.execute("INSERT INTO pokemontype VALUES(9,'water');");
+        st.execute("INSERT INTO pokemontype VALUES(9,'none');");
     }
     private void fillPokeMoves() throws SQLException
     {
