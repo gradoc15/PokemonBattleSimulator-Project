@@ -14,12 +14,16 @@ import java.util.LinkedList;
 public class PokemonExtended extends Pokemon
 {
     private Values realStats;
+    private boolean battleRdy = true;
     private int currentHP;
     private int movePP[] = new int[4];
+
     
     public PokemonExtended(int id, String name, Values basicValues, String type1, String type2, Ability ability)
     {
         super(id, name, basicValues, type1, type2, ability);
+        
+        
     }
     
     public PokemonExtended(data.Pokemon pkm)
@@ -27,6 +31,8 @@ public class PokemonExtended extends Pokemon
         
         super(pkm.getId(), pkm.getName(), pkm.getBasicValues(), pkm.getType1(), pkm.getType2(), pkm.getAbility());
         
+        super.setNature(pkm.getNature());
+
         realStats = new Values((((2*super.getBasicValues().getHp()+super.getIv().getHp()+super.getEv().getHp()/4)*super.getLvl())/100)+5, 
                 (int) ((int) ((((2*super.getBasicValues().getAtk()+super.getIv().getAtk()+super.getEv().getAtk()/4)*super.getLvl())/100)+5) 
                     * (super.getNature().getPositiv().equals(super.getNature().getNegativ()) ? 1 : super.getNature().getPositiv().equals(Stat.ATK) ? 1.1 : (super.getNature().getNegativ().equals(Stat.ATK) ? 0.9 : 1))), 
@@ -48,6 +54,9 @@ public class PokemonExtended extends Pokemon
     public void minusHP(int amount)
     {
         currentHP-= amount;
+        
+        if(currentHP <= 0)
+            battleRdy = false;
     }
     
     public int getHP()
@@ -55,15 +64,24 @@ public class PokemonExtended extends Pokemon
         return currentHP;
     }
     
-    public void makeMove(int moveSlot)
+    public void moveMake(int moveSlot, PokemonExtended enemy) throws Exception
     {
-        
+        if(movePP[moveSlot] <= 0)
+            throw new Exception("There not enought pp");
+        enemy.minusHP(calcDmg(moveSlot, enemy));
+        movePP[moveSlot]--;
     }
+
     
-    public int getDmgCalculation()
+    public int calcDmg(int moveSlot, PokemonExtended enemy)
     {
         
-        return 0;
+        return (int) ((int) ((int) 
+                ((super.getMove()[moveSlot].getPower()*(super.getLvl()*2/5+2)
+                    * (super.getMove()[moveSlot].getCat().equals("physic") ? realStats.getAtk()/enemy.getRealStats().getDef() : realStats.getSpAtk()/enemy.getRealStats().getSpDef()) +2) 
+                    * (super.getMove()[moveSlot].getType().equals(super.getType1()) || super.getMove()[moveSlot].getType().equals(super.getType2()) ? 1.5 : 1))
+                    * getTypeEffi(super.getMove()[moveSlot].getType(), enemy.getType1()))
+                    * (!enemy.getType2().equals("none") ? getTypeEffi(super.getMove()[moveSlot].getType(), enemy.getType2()) : 1));
     }
     
     public double getTypeEffi(String atkType, String defType)
@@ -288,5 +306,29 @@ public class PokemonExtended extends Pokemon
     {
         return getTypeEffi(atkType, defType1)* getTypeEffi(atkType, defType2);
     }
+
+    public Values getRealStats()
+    {
+        return realStats;
+    }
+
+    public boolean isBattleRdy()
+    {
+        return battleRdy;
+    }
+
+    public int getCurrentHP()
+    {
+        return currentHP;
+    }
+
+    public int[] getMovePP()
+    {
+        return movePP;
+    }
+    
+    
+    
+    
     
 }

@@ -181,10 +181,40 @@ public class Team extends javax.swing.JFrame
 
     private void btStartBattleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btStartBattleActionPerformed
     {//GEN-HEADEREND:event_btStartBattleActionPerformed
-        BattleField bf = new BattleField(team);
+        int anz = 0;
+        
+        sortTeam();
+        
+        for(int i = 0; i < team.length; i++)
+        {
+            if(team[i] != null)
+                anz++;
+        }
+        System.out.println(anz);
+        
+        BattleField bf = new BattleField(team, anz);
         bf.setVisible(true);
     }//GEN-LAST:event_btStartBattleActionPerformed
 
+    public void sortTeam()
+    {
+        for(int i = 0; i < team.length; i++)
+        {
+            if(team[i] == null)
+            {
+                for(int j = i+1; j < team.length; j++)
+                {
+                    if(team[j] != null)
+                    {
+                        team[i] = team[j];
+                        team[j] = null;
+                    }
+                }
+            }
+        }
+        
+        
+    }
     public void changePokemon(int slot)
     {
         gui.PokeEditor pEdit = null;

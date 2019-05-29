@@ -31,12 +31,23 @@ public class BattleField extends javax.swing.JFrame
         initComponents();
     }
 
-    public BattleField(Pokemon[] ownTeam)
+    public BattleField(Pokemon[] ownTeam, int amount)
     {
         initComponents();
         
-        this.ownTeam = ownTeam;
-        battleBl = new battle.battleBl(ownTeam);
+        this.ownTeam = new data.Pokemon[amount];
+        for(int i = 0; i < amount; i++)
+        {
+            this.ownTeam[i] = ownTeam[i];
+        }
+        
+        //Enemy Team
+        data.Pokemon p1 = ownTeam[0];
+        data.Pokemon enemyTeam[] = new data.Pokemon[1];
+        enemyTeam[0] = p1;
+
+        
+        battleBl = new battle.battleBl(this.ownTeam, enemyTeam);
         
         
         init();
@@ -53,20 +64,45 @@ public class BattleField extends javax.swing.JFrame
         
         for(int i = 0; i < teamSlots.length; i++)
         {
-            if(ownTeam[i] != null)
-                teamSlots[i].setText(ownTeam[i].getName());
-            teamSlots[i].setOpaque(true);
-            teamSlots[i].setBackground(java.awt.Color.green);
+            if(ownTeam.length > i)
+            {
+                if(ownTeam[i] != null)
+                    teamSlots[i].setText(ownTeam[i].getName());
+                teamSlots[i].setOpaque(true);
+                teamSlots[i].setBackground(java.awt.Color.green);
+            }
+            else
+            {
+                teamSlots[i].setOpaque(true);
+                teamSlots[i].setBackground(java.awt.Color.gray);
+            }
         }
         
         //Setting acutal Pokemon slot
-        for(int i = 0; i < ownTeam.length; i++)
+        battleBl.changeActPokemon(true, 0);
+        battleBl.changeActPokemon(false, 0);
+        
+        battleBl.setTurn(true);
+        updateUI(true);
+        battleBl.setTurn(false);
+        updateUI(false);
+    }
+    
+    
+    public void updateUI(boolean myTurn)
+    {
+        if(myTurn)
         {
-            if(ownTeam[i] != null)
-            {
-              
-                break;
-            }
+            System.out.println(battleBl.getActPokemon());
+            lbMyPokemon.setText(battleBl.getActPokemon().getName());
+            pbMyHP.setValue(battleBl.getHPPercent());
+            //pbMyHP.updateUI();
+
+        }
+        else
+        {
+            lbEnemyPokemon.setText(battleBl.getActPokemon().getName());
+            pbEnemyHP.setValue(battleBl.getHPPercent());
         }
     }
     
@@ -202,6 +238,7 @@ public class BattleField extends javax.swing.JFrame
         jPanel2.add(lbESlot6);
 
         pbMyHP.setToolTipText("");
+        pbMyHP.setValue(50);
         pbMyHP.setAutoscrolls(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,19 +250,21 @@ public class BattleField extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbMyPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pbMyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 289, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pbEnemyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbEnemyPokemon, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(258, 258, 258)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbMyPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pbMyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pbEnemyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbEnemyPokemon, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 287, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

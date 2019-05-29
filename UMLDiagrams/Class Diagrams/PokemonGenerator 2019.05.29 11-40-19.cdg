@@ -1,0 +1,2898 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="PokemonGenerator">
+  <ClassDiagramComponents>
+    <Class name="main" package="" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="spawn" returnType="void" visibility="public">
+          <Argument type="Route" name="r"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Enum name="MoveOLD" package="outdated.move" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Literals>
+        <Literal name="TACKLE"/>
+        <Literal name="GROWL"/>
+        <Literal name="LEECHSEED"/>
+        <Literal name="VINEWHIP"/>
+        <Literal name="POISONPOWDER"/>
+      </Literals>
+    </Enum>
+    <Class name="MoveStatusChangeOLD" package="outdated.move" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="effect" type="Status" visibility="private"/>
+        <Field name="chance" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Status" name="effect"/>
+          <Argument type="int" name="chance"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getEffect" returnType="Status" visibility="public"/>
+        <Method name="getChance" returnType="int" visibility="public"/>
+        <Method name="setChance" returnType="void" visibility="public">
+          <Argument type="int" name="chance"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StatManipulationOLD" package="outdated.move" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="chance" type="int" visibility="private"/>
+        <Field name="ownStats" type="Stats" visibility="private"/>
+        <Field name="ownStatChanges" type="boolean" visibility="private"/>
+        <Field name="enemyStats" type="Stats" visibility="private"/>
+        <Field name="enemyStatChanges" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="chance"/>
+          <Argument type="boolean" name="own"/>
+          <Argument type="pokemon.stats.StatChange" name="stat"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getChance" returnType="int" visibility="public"/>
+        <Method name="getOwnStats" returnType="Stats" visibility="public"/>
+        <Method name="getEnemyStats" returnType="Stats" visibility="public"/>
+        <Method name="isOwnStatChanges" returnType="boolean" visibility="public"/>
+        <Method name="isEnemyStatChanges" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="PokeBuilderInterfaceOLD" package="outdated.pokemon" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Methods>
+        <Method name="build" returnType="PokemonOLD" visibility="public"/>
+        <Method name="build" returnType="PokemonOLD" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="setID" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="setNickName" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setLevel" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="lvl"/>
+        </Method>
+        <Method name="setAbility" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="pokemon.other.Ability" name="ability"/>
+        </Method>
+        <Method name="setEV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="atk"/>
+          <Argument type="int" name="spAtk"/>
+          <Argument type="int" name="def"/>
+          <Argument type="int" name="spDef"/>
+          <Argument type="int" name="spd"/>
+          <Argument type="int" name="hp"/>
+        </Method>
+        <Method name="setEV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="pokemon.stats.EV" name="ev"/>
+        </Method>
+        <Method name="setIV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="atk"/>
+          <Argument type="int" name="spAtk"/>
+          <Argument type="int" name="def"/>
+          <Argument type="int" name="SpDef"/>
+          <Argument type="int" name="spd"/>
+          <Argument type="int" name="hp"/>
+        </Method>
+        <Method name="setIV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="pokemon.stats.IV" name="iv"/>
+        </Method>
+        <Method name="setGender" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="pokemon.other.Gender" name="gender"/>
+        </Method>
+        <Method name="setShiny" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="boolean" name="shiny"/>
+        </Method>
+        <Method name="setMove1" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+        </Method>
+        <Method name="setMove2" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+        </Method>
+        <Method name="setMove3" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+        </Method>
+        <Method name="setMove4" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+        </Method>
+        <Method name="clear" returnType="PokeBuilderInterfaceOLD" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Class name="PokeBuilderOLD" package="outdated.pokemon" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="rand" type="Random" visibility="package"/>
+        <Field name="temp" type="PokemonOLD" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="build" returnType="PokemonOLD" visibility="public"/>
+        <Method name="build" returnType="PokemonOLD" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="setID" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="setNickName" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setEV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="atk"/>
+          <Argument type="int" name="spAtk"/>
+          <Argument type="int" name="def"/>
+          <Argument type="int" name="spDef"/>
+          <Argument type="int" name="spd"/>
+          <Argument type="int" name="hp"/>
+        </Method>
+        <Method name="setEV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="EV" name="ev"/>
+        </Method>
+        <Method name="setIV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="atk"/>
+          <Argument type="int" name="spAtk"/>
+          <Argument type="int" name="def"/>
+          <Argument type="int" name="SpDef"/>
+          <Argument type="int" name="spd"/>
+          <Argument type="int" name="hp"/>
+        </Method>
+        <Method name="setIV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="IV" name="iv"/>
+        </Method>
+        <Method name="genIV" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="min"/>
+        </Method>
+        <Method name="setGender" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="Gender" name="gender"/>
+        </Method>
+        <Method name="setShiny" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="boolean" name="shiny"/>
+        </Method>
+        <Method name="setMove1" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="MoveList" name="move"/>
+        </Method>
+        <Method name="setMove2" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="MoveList" name="move"/>
+        </Method>
+        <Method name="setMove3" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="MoveList" name="move"/>
+        </Method>
+        <Method name="setMove4" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="MoveList" name="move"/>
+        </Method>
+        <Method name="setAbility" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="Ability" name="ability"/>
+        </Method>
+        <Method name="setLevel" returnType="PokeBuilderInterfaceOLD" visibility="public">
+          <Argument type="int" name="lvl"/>
+        </Method>
+        <Method name="clear" returnType="PokeBuilderOLD" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="PokeInfoOld" package="outdated.pokemon" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Literals>
+        <Literal name="Error"/>
+        <Literal name="BULBASAUR"/>
+        <Literal name="IVYSAUR"/>
+        <Literal name="VENUSAUR"/>
+        <Literal name="CHARMANDER"/>
+        <Literal name="CHARMELEON"/>
+        <Literal name="CHARIZARD"/>
+        <Literal name="SQUIRTLE"/>
+        <Literal name="WARTORTLE"/>
+        <Literal name="BLASTOISE"/>
+      </Literals>
+    </Enum>
+    <Class name="PokemonOLD" package="outdated.pokemon" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="basicValues" type="pokemon.stats.Stats" visibility="private"/>
+        <Field name="realStats" type="pokemon.stats.Stats" visibility="private"/>
+        <Field name="ev" type="pokemon.stats.EV" visibility="private"/>
+        <Field name="iv" type="pokemon.stats.IV" visibility="private"/>
+        <Field name="type1" type="pokemon.other.Type" visibility="private"/>
+        <Field name="ability" type="pokemon.other.Ability" visibility="private"/>
+        <Field name="nature" type="pokemon.other.Nature" visibility="private"/>
+        <Field name="level" type="int" visibility="private"/>
+        <Field name="exp" type="int" visibility="private"/>
+        <Field name="neededExp" type="int" visibility="private"/>
+        <Field name="shiny" type="boolean" visibility="private"/>
+        <Field name="gender" type="pokemon.other.Gender" visibility="private"/>
+        <Field name="moves" type="MoveList" visibility="private"/>
+        <Field name="currentHP" type="int" visibility="private"/>
+        <Field name="status" type="pokemon.other.Status" visibility="private"/>
+        <Field name="exists" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="ini" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="heal" returnType="void" visibility="public"/>
+        <Method name="lvlUp" returnType="void" visibility="public"/>
+        <Method name="evo" returnType="void" visibility="public"/>
+        <Method name="updateStats" returnType="void" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setNickname" returnType="void" visibility="public">
+          <Argument type="String" name="nickname"/>
+        </Method>
+        <Method name="setIv" returnType="void" visibility="public">
+          <Argument type="IV" name="iv"/>
+        </Method>
+        <Method name="setEv" returnType="void" visibility="public">
+          <Argument type="EV" name="ev"/>
+        </Method>
+        <Method name="calcIv" returnType="void" visibility="public">
+          <Argument type="int" name="min"/>
+        </Method>
+        <Method name="setAbility" returnType="void" visibility="public">
+          <Argument type="pokemon.other.Ability" name="ability"/>
+        </Method>
+        <Method name="setLevel" returnType="void" visibility="public">
+          <Argument type="int" name="level"/>
+        </Method>
+        <Method name="setShiny" returnType="void" visibility="public">
+          <Argument type="boolean" name="shiny"/>
+        </Method>
+        <Method name="setGender" returnType="void" visibility="public">
+          <Argument type="Gender" name="gender"/>
+        </Method>
+        <Method name="setCurrentHP" returnType="void" visibility="public">
+          <Argument type="int" name="currentHP"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="setMove1" returnType="void" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+        </Method>
+        <Method name="setMove2" returnType="void" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+        </Method>
+        <Method name="setMove3" returnType="void" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+        </Method>
+        <Method name="setMove4" returnType="void" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+        </Method>
+        <Method name="setMove" returnType="void" visibility="public">
+          <Argument type="pokemon.moves.MoveList" name="move"/>
+          <Argument type="int" name="slot"/>
+        </Method>
+        <Method name="getMove1" returnType="MoveList" visibility="public"/>
+        <Method name="getMove2" returnType="MoveList" visibility="public"/>
+        <Method name="getMove3" returnType="MoveList" visibility="public"/>
+        <Method name="getMove4" returnType="MoveList" visibility="public"/>
+        <Method name="getMove" returnType="MoveList" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="getStatus" returnType="Status" visibility="public"/>
+        <Method name="getNickname" returnType="String" visibility="public"/>
+        <Method name="getRealStats" returnType="Stats" visibility="public"/>
+        <Method name="getType1" returnType="Type" visibility="public"/>
+        <Method name="getType2" returnType="Type" visibility="public"/>
+        <Method name="getAbility" returnType="Ability" visibility="public"/>
+        <Method name="getLevel" returnType="int" visibility="public"/>
+        <Method name="isShiny" returnType="boolean" visibility="public"/>
+        <Method name="getGender" returnType="Gender" visibility="public"/>
+        <Method name="getCurrentHP" returnType="int" visibility="public"/>
+        <Method name="getIv" returnType="IV" visibility="public"/>
+        <Method name="minusHP" returnType="void" visibility="public">
+          <Argument type="int" name="anz"/>
+        </Method>
+        <Method name="changeStatus" returnType="void" visibility="public">
+          <Argument type="Status" name="st"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Enum name="Badge" package="player" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Literals/>
+    </Enum>
+    <Class name="Bag" package="player" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Enum name="NpcType" package="player.npc" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Literals>
+        <Literal name="TEST"/>
+      </Literals>
+    </Enum>
+    <Class name="Player" package="player" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="money" type="int" visibility="private"/>
+        <Field name="badges" type="Badge[]" visibility="private"/>
+        <Field name="team" type="pokemon.Pokemon[]" visibility="private"/>
+        <Field name="storageSystem" type="pokemon.Pokemon[][]" visibility="private"/>
+        <Field name="bag" type="Bag" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="int" name="money"/>
+          <Argument type="pokemon.Pokemon" name="starter"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="caughtPokemon" returnType="void" visibility="public">
+          <Argument type="Pokemon" name="pokemon"/>
+        </Method>
+        <Method name="getTeam" returnType="Pokemon[]" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Moves" package="pokemon.gui" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="pokemon" type="pokemon.Pokemon" visibility="private"/>
+        <Field name="lbMove1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbMove2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbMove3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbMove4" type="javax.swing.JLabel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="pokemon.Pokemon" name="p"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="click1" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="standart" package="pokemon.gui" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="pokemon" type="pokemon.Pokemon" visibility="private"/>
+        <Field name="lbAbility" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbIv" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbLvl" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbMoves" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbName" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbNature" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbType1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="lbType2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="plType" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="pokemon.Pokemon" name="p"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="lbMovesMouseClicked" returnType="void" visibility="private">
+          <Argument type="java.awt.event.MouseEvent" name="evt"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LearnPacket" package="pokemon.moves.data" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="move" type="MoveList" visibility="private"/>
+        <Field name="lvl" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MoveList" name="move"/>
+          <Argument type="int" name="lvl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMove" returnType="MoveList" visibility="public"/>
+        <Method name="getLvl" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="LearnSet1" package="pokemon.moves.data" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Literals>
+        <Literal name="ERROR"/>
+        <Literal name="BULBASAUR"/>
+        <Literal name="IVYSAUR"/>
+        <Literal name="VENUSAUR"/>
+        <Literal name="CHARMANDER"/>
+        <Literal name="CHARMELEON"/>
+        <Literal name="CHARIZARD"/>
+        <Literal name="SQUIRTLE"/>
+        <Literal name="WARTORTLE"/>
+        <Literal name="BLASTOISE"/>
+      </Literals>
+    </Enum>
+    <Enum name="Move1" package="pokemon.moves.data" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Literals>
+        <Literal name="TENMILLIONVOLTTHUNDERBOLT"/>
+        <Literal name="ABSORB"/>
+        <Literal name="ACCELEROCK"/>
+        <Literal name="ACID"/>
+        <Literal name="ACIDARMOR"/>
+        <Literal name="ACIDDOWNPOUR"/>
+        <Literal name="ACIDSPRAY"/>
+        <Literal name="ACROBATICS"/>
+        <Literal name="ACUPRESSURE"/>
+        <Literal name="AERIALACE"/>
+        <Literal name="AEROBLAST"/>
+        <Literal name="AFTERYOU"/>
+        <Literal name="AGILITY"/>
+        <Literal name="AIRCUTTER"/>
+        <Literal name="AIRSLASH"/>
+        <Literal name="ALLOUTPUMMELING"/>
+        <Literal name="ALLYSWITCH"/>
+        <Literal name="AMNESIA"/>
+        <Literal name="ANCHORSHOT"/>
+        <Literal name="ANCIENTPOWER"/>
+        <Literal name="AQUAJET"/>
+        <Literal name="AQUARING"/>
+        <Literal name="AQUATAIL"/>
+        <Literal name="ARMTHRUST"/>
+        <Literal name="AROMATHERAPY"/>
+        <Literal name="AROMATICMIST"/>
+        <Literal name="ASSIST"/>
+        <Literal name="ASSURANCE"/>
+        <Literal name="ASTONISH"/>
+        <Literal name="ATTACKORDER"/>
+        <Literal name="ATTRACT"/>
+        <Literal name="AURASPHERE"/>
+        <Literal name="AURORABEAM"/>
+        <Literal name="AURORAVEIL"/>
+        <Literal name="AUTOTOMIZE"/>
+        <Literal name="AVALANCHE"/>
+        <Literal name="BABYDOLLEYES"/>
+        <Literal name="BADDYBAD"/>
+        <Literal name="BANEFULBUNKER"/>
+        <Literal name="BARRAGE"/>
+        <Literal name="BARRIER"/>
+        <Literal name="BATONPASS"/>
+        <Literal name="BEAKBLAST"/>
+        <Literal name="BEATUP"/>
+        <Literal name="BELCH"/>
+        <Literal name="BELLYDRUM"/>
+        <Literal name="BESTOW"/>
+        <Literal name="BIDE"/>
+        <Literal name="BIND"/>
+        <Literal name="BITE"/>
+        <Literal name="BLACKHOLEECLIPSE"/>
+        <Literal name="BLASTBURN"/>
+        <Literal name="BLAZEKICK"/>
+        <Literal name="BLIZZARD"/>
+        <Literal name="BLOCK"/>
+        <Literal name="BLOOMDOOM"/>
+        <Literal name="BLUEFLARE"/>
+        <Literal name="BODYSLAM"/>
+        <Literal name="BOLTSTRIKE"/>
+        <Literal name="BONECLUB"/>
+        <Literal name="BONERUSH"/>
+        <Literal name="BONEMERANG"/>
+        <Literal name="BOOMBURST"/>
+        <Literal name="BOUNCE"/>
+        <Literal name="BOUNCYBUBBLE"/>
+        <Literal name="BRAVEBIRD"/>
+        <Literal name="BREAKNECKBLITZ"/>
+        <Literal name="BRICKBREAK"/>
+        <Literal name="BRINE"/>
+        <Literal name="BRUTALSWING"/>
+        <Literal name="BUBBLE"/>
+        <Literal name="BUBBLEBEAM"/>
+        <Literal name="BUGBITE"/>
+        <Literal name="BUGBUZZ"/>
+        <Literal name="BULKUP"/>
+        <Literal name="BULLDOZE"/>
+        <Literal name="BULLETPUNCH"/>
+        <Literal name="BULLETSEED"/>
+        <Literal name="BURNUP"/>
+        <Literal name="BUZZYBUZZ"/>
+        <Literal name="CALMMIND"/>
+        <Literal name="CAMOUFLAGE"/>
+        <Literal name="CAPTIVATE"/>
+        <Literal name="CATASTROPIKA"/>
+        <Literal name="CELEBRATE"/>
+        <Literal name="CHARGE"/>
+        <Literal name="CHARGEBEAM"/>
+        <Literal name="CHARM"/>
+        <Literal name="CHATTER"/>
+        <Literal name="CHIPAWAY"/>
+        <Literal name="CIRCLETHROW"/>
+        <Literal name="CLAMP"/>
+        <Literal name="CLANGINGSCALES"/>
+        <Literal name="CLANGOROUSSOULBLAZE"/>
+        <Literal name="CLEARSMOG"/>
+        <Literal name="CLOSECOMBAT"/>
+        <Literal name="COIL"/>
+        <Literal name="COMETPUNCH"/>
+        <Literal name="CONFIDE"/>
+        <Literal name="CONFUSERAY"/>
+        <Literal name="CONFUSION"/>
+        <Literal name="CONSTRICT"/>
+        <Literal name="CONTINENTALCRUSH"/>
+        <Literal name="CONVERSION"/>
+        <Literal name="CONVERSION2"/>
+        <Literal name="COPYCAT"/>
+        <Literal name="COREENFORCER"/>
+        <Literal name="CORKSCREWCRASH"/>
+        <Literal name="COSMICPOWER"/>
+        <Literal name="COTTONGUARD"/>
+        <Literal name="COTTONSPORE"/>
+        <Literal name="COUNTER"/>
+        <Literal name="COVET"/>
+        <Literal name="CRABHAMMER"/>
+        <Literal name="CRAFTYSHIELD"/>
+        <Literal name="CROSSCHOP"/>
+        <Literal name="CROSSPOISON"/>
+        <Literal name="CRUNCH"/>
+        <Literal name="CRUSHCLAW"/>
+        <Literal name="CRUSHGRIP"/>
+        <Literal name="CURSE"/>
+        <Literal name="CUT"/>
+        <Literal name="DARKPULSE"/>
+        <Literal name="DARKVOID"/>
+      </Literals>
+    </Enum>
+    <Enum name="Move2" package="pokemon.moves.data" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Literals>
+        <Literal name="DARKESTLARIAT"/>
+        <Literal name="DAZZLINGGLEAM"/>
+        <Literal name="DEFENDORDER"/>
+        <Literal name="DEFENSECURL"/>
+        <Literal name="DEFOG"/>
+        <Literal name="DESTINYBOND"/>
+        <Literal name="DETECT"/>
+        <Literal name="DEVASTATINGDRAKE"/>
+        <Literal name="DIAMONDSTORM"/>
+        <Literal name="DIG"/>
+        <Literal name="DISABLE"/>
+        <Literal name="DISARMINGVOICE"/>
+        <Literal name="DISCHARGE"/>
+        <Literal name="DIVE"/>
+        <Literal name="DIZZYPUNCH"/>
+        <Literal name="DOOMDESIRE"/>
+        <Literal name="DOUBLEEDGE"/>
+        <Literal name="DOUBLEHIT"/>
+        <Literal name="DOUBLEIRONBASH"/>
+        <Literal name="DOUBLEKICK"/>
+        <Literal name="DOUBLESLAP"/>
+        <Literal name="DOUBLETEAM"/>
+        <Literal name="DRACOMETEOR"/>
+        <Literal name="DRAGONASCENT"/>
+        <Literal name="DRAGONBREATH"/>
+        <Literal name="DRAGONCLAW"/>
+        <Literal name="DRAGONDANCE"/>
+        <Literal name="DRAGONHAMMER"/>
+        <Literal name="DRAGONPULSE"/>
+        <Literal name="DRAGONRAGE"/>
+        <Literal name="DRAGONRUSH"/>
+        <Literal name="DRAGONTAIL"/>
+        <Literal name="DRAININGKISS"/>
+        <Literal name="DRAINPUNCH"/>
+        <Literal name="DREAMEATER"/>
+        <Literal name="DRILLPECK"/>
+        <Literal name="DRILLRUN"/>
+        <Literal name="DUALCHOP"/>
+        <Literal name="DYNAMICPUNCH"/>
+        <Literal name="EARTHPOWER"/>
+        <Literal name="EARTHQUAKE"/>
+        <Literal name="ECHOEDVOICE"/>
+        <Literal name="EERIEIMPULSE"/>
+        <Literal name="EGGBOMB"/>
+        <Literal name="ELECTRICTERRAIN"/>
+        <Literal name="ELECTRIFY"/>
+        <Literal name="ELECTROBALL"/>
+        <Literal name="ELECTROWEB"/>
+        <Literal name="EMBARGO"/>
+        <Literal name="EMBER"/>
+        <Literal name="ENCORE"/>
+        <Literal name="ENDEAVOR"/>
+        <Literal name="ENDURE"/>
+        <Literal name="ENERGYBALL"/>
+        <Literal name="ENTRAINMENT"/>
+        <Literal name="ERUPTION"/>
+        <Literal name="EXPLOSION"/>
+        <Literal name="EXTRASENSORY"/>
+        <Literal name="EXTREMEEVOBOOST"/>
+        <Literal name="EXTREMESPEED"/>
+        <Literal name="FACADE"/>
+        <Literal name="FEINTATTACK"/>
+        <Literal name="FAIRYLOCK"/>
+        <Literal name="FAIRYWIND"/>
+        <Literal name="FAKEOUT"/>
+        <Literal name="FAKETEARS"/>
+        <Literal name="FALSESWIPE"/>
+        <Literal name="FEATHERDANCE"/>
+        <Literal name="FEINT"/>
+        <Literal name="FELLSTINGER"/>
+        <Literal name="FIERYDANCE"/>
+        <Literal name="FINALGAMBIT"/>
+        <Literal name="FIREBLAST"/>
+        <Literal name="FIREFANG"/>
+        <Literal name="FIRELASH"/>
+        <Literal name="FIREPLEDGE"/>
+        <Literal name="FIREPUNCH"/>
+        <Literal name="FIRESPIN"/>
+        <Literal name="FIRSTIMPRESSION"/>
+        <Literal name="FISSURE"/>
+        <Literal name="FLAIL"/>
+        <Literal name="FLAMEBURST"/>
+        <Literal name="FLAMECHARGE"/>
+        <Literal name="FLAMEWHEEL"/>
+        <Literal name="FLAMETHROWER"/>
+        <Literal name="FLAREBLITZ"/>
+        <Literal name="FLASH"/>
+        <Literal name="FLASHCANNON"/>
+        <Literal name="FLATTER"/>
+        <Literal name="FLEURCANNON"/>
+        <Literal name="FLING"/>
+        <Literal name="FLOATYFALL"/>
+        <Literal name="FLORALHEALING"/>
+        <Literal name="FLOWERSHIELD"/>
+        <Literal name="FLY"/>
+        <Literal name="FLYINGPRESS"/>
+        <Literal name="FOCUSBLAST"/>
+        <Literal name="FOCUSENERGY"/>
+        <Literal name="FOCUSPUNCH"/>
+        <Literal name="FOLLOWME"/>
+        <Literal name="FORCEPALM"/>
+        <Literal name="FORESIGHT"/>
+        <Literal name="FORESTSCURSE"/>
+        <Literal name="FOULPLAY"/>
+        <Literal name="FREEZEDRY"/>
+        <Literal name="FREEZESHOCK"/>
+        <Literal name="FREEZYFROST"/>
+        <Literal name="FRENZYPLANT"/>
+        <Literal name="FROSTBREATH"/>
+        <Literal name="FRUSTRATION"/>
+        <Literal name="FURYATTACK"/>
+        <Literal name="FURYCUTTER"/>
+        <Literal name="FURYSWIPES"/>
+        <Literal name="FUSIONBOLT"/>
+        <Literal name="FUSIONFLARE"/>
+        <Literal name="FUTURESIGHT"/>
+        <Literal name="GASTROACID"/>
+        <Literal name="GEARGRIND"/>
+        <Literal name="GEARUP"/>
+        <Literal name="GENESISSUPERNOVA"/>
+        <Literal name="GEOMANCY"/>
+        <Literal name="GIGADRAIN"/>
+        <Literal name="GIGAIMPACT"/>
+        <Literal name="GIGAVOLTHAVOC"/>
+        <Literal name="GLACIATE"/>
+      </Literals>
+    </Enum>
+    <Enum name="Move3" package="pokemon.moves.data" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Literals>
+        <Literal name="GLARE"/>
+        <Literal name="GLITZYGLOW"/>
+        <Literal name="GRASSKNOT"/>
+        <Literal name="GRASSPLEDGE"/>
+        <Literal name="GRASSWHISTLE"/>
+        <Literal name="GRASSYTERRAIN"/>
+        <Literal name="GRAVITY"/>
+        <Literal name="GROWL"/>
+        <Literal name="GROWTH"/>
+        <Literal name="GRUDGE"/>
+        <Literal name="GUARDSPLIT"/>
+        <Literal name="GUARDSWAP"/>
+        <Literal name="GUARDIANOFALOLA"/>
+        <Literal name="GUILLOTINE"/>
+        <Literal name="GUNKSHOT"/>
+        <Literal name="GUST"/>
+        <Literal name="GYROBALL"/>
+        <Literal name="HAIL"/>
+        <Literal name="HAMMERARM"/>
+        <Literal name="HAPPYHOUR"/>
+        <Literal name="HARDEN"/>
+        <Literal name="HAZE"/>
+        <Literal name="HEADCHARGE"/>
+        <Literal name="HEADSMASH"/>
+        <Literal name="HEADBUTT"/>
+        <Literal name="HEALBELL"/>
+        <Literal name="HEALBLOCK"/>
+        <Literal name="HEALORDER"/>
+        <Literal name="HEALPULSE"/>
+        <Literal name="HEALINGWISH"/>
+        <Literal name="HEARTSTAMP"/>
+        <Literal name="HEARTSWAP"/>
+        <Literal name="HEATCRASH"/>
+        <Literal name="HEATWAVE"/>
+        <Literal name="HEAVYSLAM"/>
+        <Literal name="HELPINGHAND"/>
+        <Literal name="HEX"/>
+        <Literal name="HIDDENPOWER"/>
+        <Literal name="HIDDENPOWERBUG"/>
+        <Literal name="HIDDENPOWERDARK"/>
+        <Literal name="HIDDENPOWERDRAGON"/>
+        <Literal name="HIDDENPOWERELECTRIC"/>
+        <Literal name="HIDDENPOWERFIGHTING"/>
+        <Literal name="HIDDENPOWERFIRE"/>
+        <Literal name="HIDDENPOWERFLYING"/>
+        <Literal name="HIDDENPOWERGHOST"/>
+        <Literal name="HIDDENPOWERGRASS"/>
+        <Literal name="HIDDENPOWERGROUND"/>
+        <Literal name="HIDDENPOWERICE"/>
+        <Literal name="HIDDENPOWERPOISON"/>
+        <Literal name="HIDDENPOWERPSYCHIC"/>
+        <Literal name="HIDDENPOWERROCK"/>
+        <Literal name="HIDDENPOWERSTEEL"/>
+        <Literal name="HIDDENPOWERWATER"/>
+        <Literal name="HIGHHORSEPOWER"/>
+        <Literal name="HIGHJUMPKICK"/>
+        <Literal name="HOLDBACK"/>
+        <Literal name="HOLDHANDS"/>
+        <Literal name="HONECLAWS"/>
+        <Literal name="HORNATTACK"/>
+        <Literal name="HORNDRILL"/>
+        <Literal name="HORNLEECH"/>
+        <Literal name="HOWL"/>
+        <Literal name="HURRICANE"/>
+        <Literal name="HYDROCANNON"/>
+        <Literal name="HYDROPUMP"/>
+        <Literal name="HYDROVORTEX"/>
+        <Literal name="HYPERBEAM"/>
+        <Literal name="HYPERFANG"/>
+        <Literal name="HYPERSPACEFURY"/>
+        <Literal name="HYPERSPACEHOLE"/>
+        <Literal name="HYPERVOICE"/>
+        <Literal name="HYPNOSIS"/>
+        <Literal name="ICEBALL"/>
+        <Literal name="ICEBEAM"/>
+        <Literal name="ICEBURN"/>
+        <Literal name="ICEFANG"/>
+        <Literal name="ICEHAMMER"/>
+        <Literal name="ICEPUNCH"/>
+        <Literal name="ICESHARD"/>
+        <Literal name="ICICLECRASH"/>
+        <Literal name="ICICLESPEAR"/>
+        <Literal name="ICYWIND"/>
+        <Literal name="IMPRISON"/>
+        <Literal name="INCINERATE"/>
+        <Literal name="INFERNO"/>
+        <Literal name="INFERNOOVERDRIVE"/>
+        <Literal name="INFESTATION"/>
+        <Literal name="INGRAIN"/>
+        <Literal name="INSTRUCT"/>
+        <Literal name="IONDELUGE"/>
+        <Literal name="IRONDEFENSE"/>
+        <Literal name="IRONHEAD"/>
+        <Literal name="IRONTAIL"/>
+        <Literal name="JUDGMENT"/>
+        <Literal name="JUMPKICK"/>
+        <Literal name="KARATECHOP"/>
+        <Literal name="KINESIS"/>
+        <Literal name="KINGSSHIELD"/>
+        <Literal name="KNOCKOFF"/>
+        <Literal name="LANDSWRATH"/>
+        <Literal name="LASERFOCUS"/>
+        <Literal name="LASTRESORT"/>
+        <Literal name="LAVAPLUME"/>
+        <Literal name="LEAFBLADE"/>
+        <Literal name="LEAFSTORM"/>
+        <Literal name="LEAFTORNADO"/>
+        <Literal name="LEAFAGE"/>
+        <Literal name="LEECHLIFE"/>
+        <Literal name="LEECHSEED"/>
+        <Literal name="LEER"/>
+        <Literal name="LETSSNUGGLEFOREVER"/>
+        <Literal name="LICK"/>
+        <Literal name="LIGHTOFRUIN"/>
+        <Literal name="LIGHTSCREEN"/>
+        <Literal name="LIGHTTHATBURNSTHESKY"/>
+        <Literal name="LIQUIDATION"/>
+        <Literal name="LOCKON"/>
+        <Literal name="LOVELYKISS"/>
+        <Literal name="LOWKICK"/>
+        <Literal name="LOWSWEEP"/>
+        <Literal name="LUCKYCHANT"/>
+        <Literal name="LUNARDANCE"/>
+        <Literal name="LUNGE"/>
+        <Literal name="LUSTERPURGE"/>
+      </Literals>
+    </Enum>
+    <Enum name="Move4" package="pokemon.moves.data" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Literals>
+        <Literal name="MACHPUNCH"/>
+        <Literal name="MAGICCOAT"/>
+        <Literal name="MAGICROOM"/>
+        <Literal name="MAGICALLEAF"/>
+        <Literal name="MAGMASTORM"/>
+        <Literal name="MAGNETBOMB"/>
+        <Literal name="MAGNETICFLUX"/>
+        <Literal name="MAGNETRISE"/>
+        <Literal name="MAGNITUDE"/>
+        <Literal name="MALICIOUSMOONSAULT"/>
+        <Literal name="MATBLOCK"/>
+        <Literal name="MEFIRST"/>
+        <Literal name="MEANLOOK"/>
+        <Literal name="MEDITATE"/>
+        <Literal name="MEGADRAIN"/>
+        <Literal name="MEGAKICK"/>
+        <Literal name="MEGAPUNCH"/>
+        <Literal name="MEGAHORN"/>
+        <Literal name="MEMENTO"/>
+        <Literal name="MENACINGMOONRAZEMAELSTROM"/>
+        <Literal name="METALBURST"/>
+        <Literal name="METALCLAW"/>
+        <Literal name="METALSOUND"/>
+        <Literal name="METEORMASH"/>
+        <Literal name="METRONOME"/>
+        <Literal name="MILKDRINK"/>
+        <Literal name="MIMIC"/>
+        <Literal name="MINDBLOWN"/>
+        <Literal name="MINDREADER"/>
+        <Literal name="MINIMIZE"/>
+        <Literal name="MIRACLEEYE"/>
+        <Literal name="MIRRORCOAT"/>
+        <Literal name="MIRRORMOVE"/>
+        <Literal name="MIRRORSHOT"/>
+        <Literal name="MIST"/>
+        <Literal name="MISTBALL"/>
+        <Literal name="MISTYTERRAIN"/>
+        <Literal name="MOONBLAST"/>
+        <Literal name="MOONGEISTBEAM"/>
+        <Literal name="MOONLIGHT"/>
+        <Literal name="MORNINGSUN"/>
+        <Literal name="MUDSLAP"/>
+        <Literal name="MUDBOMB"/>
+        <Literal name="MUDSHOT"/>
+        <Literal name="MUDSPORT"/>
+        <Literal name="MUDDYWATER"/>
+        <Literal name="MULTIATTACK"/>
+        <Literal name="MYSTICALFIRE"/>
+        <Literal name="NASTYPLOT"/>
+        <Literal name="NATURALGIFT"/>
+        <Literal name="NATUREPOWER"/>
+        <Literal name="NATURESMADNESS"/>
+        <Literal name="NEEDLEARM"/>
+        <Literal name="NEVERENDINGNIGHTMARE"/>
+        <Literal name="NIGHTDAZE"/>
+        <Literal name="NIGHTSHADE"/>
+        <Literal name="NIGHTSLASH"/>
+        <Literal name="NIGHTMARE"/>
+        <Literal name="NOBLEROAR"/>
+        <Literal name="NUZZLE"/>
+        <Literal name="OBLIVIONWING"/>
+        <Literal name="OCEANICOPERETTA"/>
+        <Literal name="OCTAZOOKA"/>
+        <Literal name="ODORSLEUTH"/>
+        <Literal name="OMINOUSWIND"/>
+        <Literal name="ORIGINPULSE"/>
+        <Literal name="OUTRAGE"/>
+        <Literal name="OVERHEAT"/>
+        <Literal name="PAINSPLIT"/>
+        <Literal name="PARABOLICCHARGE"/>
+        <Literal name="PARTINGSHOT"/>
+        <Literal name="PAYDAY"/>
+        <Literal name="PAYBACK"/>
+        <Literal name="PECK"/>
+        <Literal name="PERISHSONG"/>
+        <Literal name="PETALBLIZZARD"/>
+        <Literal name="PETALDANCE"/>
+        <Literal name="PHANTOMFORCE"/>
+        <Literal name="PHOTONGEYSER"/>
+        <Literal name="PIKAPAPOW"/>
+        <Literal name="PINMISSILE"/>
+        <Literal name="PLASMAFISTS"/>
+        <Literal name="PLAYNICE"/>
+        <Literal name="PLAYROUGH"/>
+        <Literal name="PLUCK"/>
+        <Literal name="POISONFANG"/>
+        <Literal name="POISONGAS"/>
+        <Literal name="POISONJAB"/>
+        <Literal name="POISONPOWDER"/>
+        <Literal name="POISONSTING"/>
+        <Literal name="POISONTAIL"/>
+        <Literal name="POLLENPUFF"/>
+        <Literal name="POUND"/>
+        <Literal name="POWDER"/>
+        <Literal name="POWDERSNOW"/>
+        <Literal name="POWERGEM"/>
+        <Literal name="POWERSPLIT"/>
+        <Literal name="POWERSWAP"/>
+        <Literal name="POWERTRICK"/>
+        <Literal name="POWERTRIP"/>
+        <Literal name="POWERUPPUNCH"/>
+        <Literal name="POWERWHIP"/>
+        <Literal name="PRECIPICEBLADES"/>
+        <Literal name="PRESENT"/>
+        <Literal name="PRISMATICLASER"/>
+        <Literal name="PROTECT"/>
+        <Literal name="PSYBEAM"/>
+        <Literal name="PSYCHUP"/>
+        <Literal name="PSYCHIC"/>
+        <Literal name="PSYCHICFANGS"/>
+        <Literal name="PSYCHICTERRAIN"/>
+        <Literal name="PSYCHOBOOST"/>
+        <Literal name="PSYCHOCUT"/>
+        <Literal name="PSYCHOSHIFT"/>
+        <Literal name="PSYSHOCK"/>
+        <Literal name="PSYSTRIKE"/>
+        <Literal name="PSYWAVE"/>
+        <Literal name="PULVERIZINGPANCAKE"/>
+        <Literal name="PUNISHMENT"/>
+        <Literal name="PURIFY"/>
+        <Literal name="PURSUIT"/>
+        <Literal name="QUASH"/>
+        <Literal name="QUICKATTACK"/>
+        <Literal name="QUICKGUARD"/>
+        <Literal name="QUIVERDANCE"/>
+      </Literals>
+    </Enum>
+    <Enum name="Move5" package="pokemon.moves.data" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Literals>
+        <Literal name="RAGE"/>
+        <Literal name="RAGEPOWDER"/>
+        <Literal name="RAINDANCE"/>
+        <Literal name="RAPIDSPIN"/>
+        <Literal name="RAZORLEAF"/>
+        <Literal name="RAZORSHELL"/>
+        <Literal name="RAZORWIND"/>
+        <Literal name="RECOVER"/>
+        <Literal name="RECYCLE"/>
+        <Literal name="REFLECT"/>
+        <Literal name="REFLECTTYPE"/>
+        <Literal name="REFRESH"/>
+        <Literal name="RELICSONG"/>
+        <Literal name="REST"/>
+        <Literal name="RETALIATE"/>
+        <Literal name="RETURN"/>
+        <Literal name="REVELATIONDANCE"/>
+        <Literal name="REVENGE"/>
+        <Literal name="REVERSAL"/>
+        <Literal name="ROAR"/>
+        <Literal name="ROAROFTIME"/>
+        <Literal name="ROCKBLAST"/>
+        <Literal name="ROCKCLIMB"/>
+        <Literal name="ROCKPOLISH"/>
+        <Literal name="ROCKSLIDE"/>
+        <Literal name="ROCKSMASH"/>
+        <Literal name="ROCKTHROW"/>
+        <Literal name="ROCKTOMB"/>
+        <Literal name="ROCKWRECKER"/>
+        <Literal name="ROLEPLAY"/>
+        <Literal name="ROLLINGKICK"/>
+        <Literal name="ROLLOUT"/>
+        <Literal name="ROOST"/>
+        <Literal name="ROTOTILLER"/>
+        <Literal name="ROUND"/>
+        <Literal name="SACREDFIRE"/>
+        <Literal name="SACREDSWORD"/>
+        <Literal name="SAFEGUARD"/>
+        <Literal name="SANDATTACK"/>
+        <Literal name="SANDTOMB"/>
+        <Literal name="SANDSTORM"/>
+        <Literal name="SAPPYSEED"/>
+        <Literal name="SAVAGESPINOUT"/>
+        <Literal name="SCALD"/>
+        <Literal name="SCARYFACE"/>
+        <Literal name="SCRATCH"/>
+        <Literal name="SCREECH"/>
+        <Literal name="SEARINGSHOT"/>
+        <Literal name="SEARINGSUNRAZESMASH"/>
+        <Literal name="SECRETPOWER"/>
+        <Literal name="SECRETSWORD"/>
+        <Literal name="SEEDBOMB"/>
+        <Literal name="SEEDFLARE"/>
+        <Literal name="SEISMICTOSS"/>
+        <Literal name="SELFDESTRUCT"/>
+        <Literal name="SHADOWBALL"/>
+        <Literal name="SHADOWBONE"/>
+        <Literal name="SHADOWCLAW"/>
+        <Literal name="SHADOWFORCE"/>
+        <Literal name="SHADOWPUNCH"/>
+        <Literal name="SHADOWSNEAK"/>
+        <Literal name="SHARPEN"/>
+        <Literal name="SHATTEREDPSYCHE"/>
+        <Literal name="SHEERCOLD"/>
+        <Literal name="SHELLSMASH"/>
+        <Literal name="SHELLTRAP"/>
+        <Literal name="SHIFTGEAR"/>
+        <Literal name="SHOCKWAVE"/>
+        <Literal name="SHOREUP"/>
+        <Literal name="SIGNALBEAM"/>
+        <Literal name="SILVERWIND"/>
+        <Literal name="SIMPLEBEAM"/>
+        <Literal name="SING"/>
+        <Literal name="SINISTERARROWRAID"/>
+        <Literal name="SIZZLYSLIDE"/>
+        <Literal name="SKETCH"/>
+        <Literal name="SKILLSWAP"/>
+        <Literal name="SKULLBASH"/>
+        <Literal name="SKYATTACK"/>
+        <Literal name="SKYDROP"/>
+        <Literal name="SKYUPPERCUT"/>
+        <Literal name="SLACKOFF"/>
+        <Literal name="SLAM"/>
+        <Literal name="SLASH"/>
+        <Literal name="SLEEPPOWDER"/>
+        <Literal name="SLEEPTALK"/>
+        <Literal name="SLUDGE"/>
+        <Literal name="SLUDGEBOMB"/>
+        <Literal name="SLUDGEWAVE"/>
+        <Literal name="SMACKDOWN"/>
+        <Literal name="SMARTSTRIKE"/>
+        <Literal name="SMELLINGSALTS"/>
+        <Literal name="SMOG"/>
+        <Literal name="SMOKESCREEN"/>
+        <Literal name="SNARL"/>
+        <Literal name="SNATCH"/>
+        <Literal name="SNORE"/>
+        <Literal name="SPECTRALTHIEF"/>
+        <Literal name="SPEEDSWAP"/>
+        <Literal name="SPIKYSHIELD"/>
+        <Literal name="SPIRITSHACKLE"/>
+        <Literal name="SOAK"/>
+        <Literal name="SOFTBOILED"/>
+        <Literal name="SOLARBEAM"/>
+        <Literal name="SOLARBLADE"/>
+        <Literal name="SONICBOOM"/>
+        <Literal name="SOULSTEALING7STARSTRIKE"/>
+        <Literal name="SPACIALREND"/>
+        <Literal name="SPARK"/>
+        <Literal name="SPARKLINGARIA"/>
+        <Literal name="SPARKLYSWIRL"/>
+        <Literal name="SPIDERWEB"/>
+        <Literal name="SPIKECANNON"/>
+        <Literal name="SPIKES"/>
+        <Literal name="SPITUP"/>
+        <Literal name="SPITE"/>
+        <Literal name="SPLASH"/>
+        <Literal name="SPLINTEREDSTORMSHARDS"/>
+        <Literal name="SPLISHYSPLASH"/>
+        <Literal name="SPORE"/>
+        <Literal name="SPOTLIGHT"/>
+        <Literal name="STEALTHROCK"/>
+        <Literal name="STEAMERUPTION"/>
+        <Literal name="STEELWING"/>
+        <Literal name="STICKYWEB"/>
+      </Literals>
+    </Enum>
+    <Enum name="Move6" package="pokemon.moves.data" visibility="public" xPosition="1520.0" yPosition="820.0">
+      <Literals>
+        <Literal name="STOCKPILE"/>
+        <Literal name="STOKEDSPARKSURFER"/>
+        <Literal name="STOMP"/>
+        <Literal name="STOMPINGTANTRUM"/>
+        <Literal name="STONEEDGE"/>
+        <Literal name="STOREDPOWER"/>
+        <Literal name="STORMTHROW"/>
+        <Literal name="STEAMROLLER"/>
+        <Literal name="STRENGTH"/>
+        <Literal name="STRENGTHSAP"/>
+        <Literal name="STRINGSHOT"/>
+        <Literal name="STRUGGLE"/>
+        <Literal name="STRUGGLEBUG"/>
+        <Literal name="STUNSPORE"/>
+        <Literal name="SUBMISSION"/>
+        <Literal name="SUBSTITUTE"/>
+        <Literal name="SUBZEROSLAMMER"/>
+        <Literal name="SUCKERPUNCH"/>
+        <Literal name="SUNNYDAY"/>
+        <Literal name="SUNSTEELSTRIKE"/>
+        <Literal name="SUPERFANG"/>
+        <Literal name="SUPERPOWER"/>
+        <Literal name="SUPERSONIC"/>
+        <Literal name="SUPERSONICSKYSTRIKE"/>
+        <Literal name="SURF"/>
+        <Literal name="SWAGGER"/>
+        <Literal name="SWALLOW"/>
+        <Literal name="SWEETKISS"/>
+        <Literal name="SWEETSCENT"/>
+        <Literal name="SWIFT"/>
+        <Literal name="SWITCHEROO"/>
+        <Literal name="SWORDSDANCE"/>
+        <Literal name="SYNCHRONOISE"/>
+        <Literal name="SYNTHESIS"/>
+        <Literal name="TACKLE"/>
+        <Literal name="TAILGLOW"/>
+        <Literal name="TAILSLAP"/>
+        <Literal name="TAILWHIP"/>
+        <Literal name="TAILWIND"/>
+        <Literal name="TAKEDOWN"/>
+        <Literal name="TAUNT"/>
+        <Literal name="TEARFULLOOK"/>
+        <Literal name="TECHNOBLAST"/>
+        <Literal name="TECTONICRAGE"/>
+        <Literal name="TEETERDANCE"/>
+        <Literal name="TELEKINESIS"/>
+        <Literal name="TELEPORT"/>
+        <Literal name="THIEF"/>
+        <Literal name="THOUSANDARROWS"/>
+        <Literal name="THOUSANDWAVES"/>
+        <Literal name="THRASH"/>
+        <Literal name="THROATCHOP"/>
+        <Literal name="THUNDER"/>
+        <Literal name="THUNDERFANG"/>
+        <Literal name="THUNDERPUNCH"/>
+        <Literal name="THUNDERSHOCK"/>
+        <Literal name="THUNDERWAVE"/>
+        <Literal name="THUNDERBOLT"/>
+        <Literal name="TICKLE"/>
+        <Literal name="TOPSYTURVY"/>
+        <Literal name="TORMENT"/>
+        <Literal name="TOXIC"/>
+        <Literal name="TOXICSPIKES"/>
+        <Literal name="TOXICTHREAD"/>
+        <Literal name="TRANSFORM"/>
+        <Literal name="TRIATTACK"/>
+        <Literal name="TRICK"/>
+        <Literal name="TRICKORTREAT"/>
+        <Literal name="TRICKROOM"/>
+        <Literal name="TRIPLEKICK"/>
+        <Literal name="TROPKICK"/>
+        <Literal name="TRUMPCARD"/>
+        <Literal name="TWINEEDLE"/>
+        <Literal name="TWINKLETACKLE"/>
+        <Literal name="TWISTER"/>
+        <Literal name="UTURN"/>
+        <Literal name="UPROAR"/>
+        <Literal name="VCREATE"/>
+        <Literal name="VACUUMWAVE"/>
+        <Literal name="VEEVEEVOLLEY"/>
+        <Literal name="VENOMDRENCH"/>
+        <Literal name="VENOSHOCK"/>
+        <Literal name="VICEGRIP"/>
+        <Literal name="VINEWHIP"/>
+        <Literal name="VITALTHROW"/>
+        <Literal name="VOLTSWITCH"/>
+        <Literal name="VOLTTACKLE"/>
+        <Literal name="WAKEUPSLAP"/>
+        <Literal name="WATERGUN"/>
+        <Literal name="WATERPLEDGE"/>
+        <Literal name="WATERPULSE"/>
+        <Literal name="WATERSPORT"/>
+        <Literal name="WATERSPOUT"/>
+        <Literal name="WATERFALL"/>
+        <Literal name="WATERSHURIKEN"/>
+        <Literal name="WEATHERBALL"/>
+        <Literal name="WHIRLPOOL"/>
+        <Literal name="WHIRLWIND"/>
+        <Literal name="WIDEGUARD"/>
+        <Literal name="WILDCHARGE"/>
+        <Literal name="WILLOWISP"/>
+        <Literal name="WINGATTACK"/>
+        <Literal name="WISH"/>
+        <Literal name="WITHDRAW"/>
+        <Literal name="WONDERROOM"/>
+        <Literal name="WOODHAMMER"/>
+        <Literal name="WORKUP"/>
+        <Literal name="WORRYSEED"/>
+        <Literal name="WRAP"/>
+        <Literal name="WRINGOUT"/>
+        <Literal name="XSCISSOR"/>
+        <Literal name="YAWN"/>
+        <Literal name="ZAPCANNON"/>
+        <Literal name="ZENHEADBUTT"/>
+        <Literal name="ZINGZAP"/>
+        <Literal name="ZIPPYZAP"/>
+        <Literal name="PALEOWAVE"/>
+        <Literal name="SHADOWSTRIKE"/>
+        <Literal name="MAGIKARPSREVENGE"/>
+      </Literals>
+    </Enum>
+    <Enum name="Category" package="pokemon.moves.enums" visibility="public" xPosition="1820.0" yPosition="820.0">
+      <Literals>
+        <Literal name="PHYSICAL"/>
+        <Literal name="SPECIAL"/>
+        <Literal name="STATUS"/>
+      </Literals>
+    </Enum>
+    <Enum name="FlagList" package="pokemon.moves.enums" visibility="public" xPosition="2120.0" yPosition="820.0">
+      <Literals>
+        <Literal name="AUTHENTIC"/>
+        <Literal name="BITE"/>
+        <Literal name="BULLET"/>
+        <Literal name="CHARGE"/>
+        <Literal name="CONTACT"/>
+        <Literal name="DANCE"/>
+        <Literal name="DEFROST"/>
+        <Literal name="DISTANCE"/>
+        <Literal name="GRAVITY"/>
+        <Literal name="HEAL"/>
+        <Literal name="MIRROR"/>
+        <Literal name="MYSTERY"/>
+        <Literal name="NONSKY"/>
+        <Literal name="POWDER"/>
+        <Literal name="PROTECT"/>
+        <Literal name="PULSE"/>
+        <Literal name="PUNCH"/>
+        <Literal name="RECHARGE"/>
+        <Literal name="REFLECTABLE"/>
+        <Literal name="SNATCH"/>
+        <Literal name="SOUND"/>
+      </Literals>
+    </Enum>
+    <Enum name="LearnList" package="pokemon.moves" visibility="public" xPosition="20.0" yPosition="1220.0">
+      <Literals>
+        <Literal name="ERROR"/>
+        <Literal name="BULBASAUR"/>
+        <Literal name="IVYSAUR"/>
+        <Literal name="VENUSAUR"/>
+        <Literal name="CHARMANDER"/>
+        <Literal name="CHARMELEON"/>
+        <Literal name="CHARIZARD"/>
+        <Literal name="SQUIRTLE"/>
+        <Literal name="WARTORTLE"/>
+        <Literal name="BLASTOISE"/>
+      </Literals>
+    </Enum>
+    <Class name="Move" package="pokemon.moves" visibility="public" xPosition="320.0" yPosition="1220.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="category" type="Category" visibility="private"/>
+        <Field name="type" type="Type" visibility="private"/>
+        <Field name="pp" type="int" visibility="private"/>
+        <Field name="power" type="Power" visibility="private"/>
+        <Field name="accurance" type="Accurance" visibility="private"/>
+        <Field name="prio" type="Prio" visibility="private"/>
+        <Field name="critratio" type="Critratio" visibility="private"/>
+        <Field name="ownStatChanges" type="StatChanges" visibility="private"/>
+        <Field name="enemyStatChangens" type="StatChanges" visibility="private"/>
+        <Field name="ownStatusChanges" type="StatusChanges" visibility="private"/>
+        <Field name="enemyStatusChanges" type="StatusChanges" visibility="private"/>
+        <Field name="additionalEffect" type="AdditionalEffect" visibility="private"/>
+        <Field name="flags" type="Flags" visibility="private"/>
+        <Field name="description" type="Description" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="Category" name="category"/>
+          <Argument type="Type" name="type"/>
+          <Argument type="int" name="pp"/>
+          <Argument type="MovePart" name="parts"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="partFactory" returnType="void" visibility="private">
+          <Argument type="MovePart[]" name="parts"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getCategory" returnType="Category" visibility="public"/>
+        <Method name="getType" returnType="Type" visibility="public"/>
+        <Method name="getPp" returnType="int" visibility="public"/>
+        <Method name="getPower" returnType="Power" visibility="public"/>
+        <Method name="getAccurance" returnType="Accurance" visibility="public"/>
+        <Method name="getPrio" returnType="Prio" visibility="public"/>
+        <Method name="getCritratio" returnType="Critratio" visibility="public"/>
+        <Method name="getOwnStatChanges" returnType="StatChanges" visibility="public"/>
+        <Method name="getEnemyStatChangens" returnType="StatChanges" visibility="public"/>
+        <Method name="getOwnStatusChanges" returnType="StatusChanges" visibility="public"/>
+        <Method name="getEnemyStatusChanges" returnType="StatusChanges" visibility="public"/>
+        <Method name="getAdditionalEffect" returnType="AdditionalEffect" visibility="public"/>
+        <Method name="getDescription" returnType="Description" visibility="public"/>
+        <Method name="getFlags" returnType="Flags" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="MoveList" package="pokemon.moves" visibility="public" xPosition="620.0" yPosition="1220.0">
+      <Literals>
+        <Literal name="ONEMILLIONVOLTTHUNDERBOLT"/>
+        <Literal name="ABSORB"/>
+        <Literal name="ACCELEROCK"/>
+        <Literal name="ACID"/>
+        <Literal name="ACIDARMOR"/>
+        <Literal name="ACIDDOWNPOUR"/>
+        <Literal name="ACIDSPRAY"/>
+        <Literal name="ACROBATICS"/>
+        <Literal name="ACUPRESSURE"/>
+        <Literal name="AERIALACE"/>
+        <Literal name="AEROBLAST"/>
+        <Literal name="AFTERYOU"/>
+        <Literal name="AGILITY"/>
+        <Literal name="AIRCUTTER"/>
+        <Literal name="AIRSLASH"/>
+        <Literal name="ALLOUTPUMMELING"/>
+        <Literal name="ALLYSWITCH"/>
+        <Literal name="AMNESIA"/>
+        <Literal name="ANCHORSHOT"/>
+        <Literal name="ANCIENTPOWER"/>
+        <Literal name="AQUAJET"/>
+        <Literal name="AQUARING"/>
+        <Literal name="AQUATAIL"/>
+        <Literal name="ARMTHRUST"/>
+        <Literal name="AROMATHERAPY"/>
+        <Literal name="AROMATICMIST"/>
+        <Literal name="ASSIST"/>
+        <Literal name="ASSURANCE"/>
+        <Literal name="ASTONISH"/>
+        <Literal name="ATTACKORDER"/>
+        <Literal name="ATTRACT"/>
+        <Literal name="AURASPHERE"/>
+        <Literal name="AURORABEAM"/>
+        <Literal name="AURORAVEIL"/>
+        <Literal name="AUTOTOMIZE"/>
+        <Literal name="AVALANCHE"/>
+        <Literal name="BABYDOLLEYES"/>
+        <Literal name="BADDYBAD"/>
+        <Literal name="BANEFULBUNKER"/>
+        <Literal name="BARRAGE"/>
+        <Literal name="BARRIER"/>
+        <Literal name="BATONPASS"/>
+        <Literal name="BEAKBLAST"/>
+        <Literal name="BEATUP"/>
+        <Literal name="BELCH"/>
+        <Literal name="BELLYDRUM"/>
+        <Literal name="BESTOW"/>
+        <Literal name="BIDE"/>
+        <Literal name="BIND"/>
+        <Literal name="BITE"/>
+        <Literal name="BLACKHOLEECLIPSE"/>
+        <Literal name="BLASTBURN"/>
+        <Literal name="BLAZEKICK"/>
+        <Literal name="BLIZZARD"/>
+        <Literal name="BLOCK"/>
+        <Literal name="BLOOMDOOM"/>
+        <Literal name="BLUEFLARE"/>
+        <Literal name="BODYSLAM"/>
+        <Literal name="BOLTSTRIKE"/>
+        <Literal name="BONECLUB"/>
+        <Literal name="BONERUSH"/>
+        <Literal name="BONEMERANG"/>
+        <Literal name="BOOMBURST"/>
+        <Literal name="BOUNCE"/>
+        <Literal name="BOUNCYBUBBLE"/>
+        <Literal name="BRAVEBIRD"/>
+        <Literal name="BREAKNECKBLITZ"/>
+        <Literal name="BRICKBREAK"/>
+        <Literal name="BRINE"/>
+        <Literal name="BRUTALSWING"/>
+        <Literal name="BUBBLE"/>
+        <Literal name="BUBBLEBEAM"/>
+        <Literal name="BUGBITE"/>
+        <Literal name="BUGBUZZ"/>
+        <Literal name="BULKUP"/>
+        <Literal name="BULLDOZE"/>
+        <Literal name="BULLETPUNCH"/>
+        <Literal name="BULLETSEED"/>
+        <Literal name="BURNUP"/>
+        <Literal name="BUZZYBUZZ"/>
+        <Literal name="CALMMIND"/>
+        <Literal name="CAMOUFLAGE"/>
+        <Literal name="CAPTIVATE"/>
+        <Literal name="CATASTROPIKA"/>
+        <Literal name="CELEBRATE"/>
+        <Literal name="CHARGE"/>
+        <Literal name="CHARGEBEAM"/>
+        <Literal name="CHARM"/>
+        <Literal name="CHATTER"/>
+        <Literal name="CHIPAWAY"/>
+        <Literal name="CIRCLETHROW"/>
+        <Literal name="CLAMP"/>
+        <Literal name="CLANGINGSCALES"/>
+        <Literal name="CLANGOROUSSOULBLAZE"/>
+        <Literal name="CLEARSMOG"/>
+        <Literal name="CLOSECOMBAT"/>
+        <Literal name="COIL"/>
+        <Literal name="COMETPUNCH"/>
+        <Literal name="CONFIDE"/>
+        <Literal name="CONFUSERAY"/>
+        <Literal name="CONFUSION"/>
+        <Literal name="CONSTRICT"/>
+        <Literal name="CONTINENTALCRUSH"/>
+        <Literal name="CONVERSION"/>
+        <Literal name="CONVERSION2"/>
+        <Literal name="COPYCAT"/>
+        <Literal name="COREENFORCER"/>
+        <Literal name="CORKSCREWCRASH"/>
+        <Literal name="COSMICPOWER"/>
+        <Literal name="COTTONGUARD"/>
+        <Literal name="COTTONSPORE"/>
+        <Literal name="COUNTER"/>
+        <Literal name="COVET"/>
+        <Literal name="CRABHAMMER"/>
+        <Literal name="CRAFTYSHIELD"/>
+        <Literal name="CROSSCHOP"/>
+        <Literal name="CROSSPOISON"/>
+        <Literal name="CRUNCH"/>
+        <Literal name="CRUSHCLAW"/>
+        <Literal name="CRUSHGRIP"/>
+        <Literal name="CURSE"/>
+        <Literal name="CUT"/>
+        <Literal name="DARKPULSE"/>
+        <Literal name="DARKVOID"/>
+        <Literal name="DARKESTLARIAT"/>
+        <Literal name="DAZZLINGGLEAM"/>
+        <Literal name="DEFENDORDER"/>
+        <Literal name="DEFENSECURL"/>
+        <Literal name="DEFOG"/>
+        <Literal name="DESTINYBOND"/>
+        <Literal name="DETECT"/>
+        <Literal name="DEVASTATINGDRAKE"/>
+        <Literal name="DIAMONDSTORM"/>
+        <Literal name="DIG"/>
+        <Literal name="DISABLE"/>
+        <Literal name="DISARMINGVOICE"/>
+        <Literal name="DISCHARGE"/>
+        <Literal name="DIVE"/>
+        <Literal name="DIZZYPUNCH"/>
+        <Literal name="DOOMDESIRE"/>
+        <Literal name="DOUBLEEDGE"/>
+        <Literal name="DOUBLEHIT"/>
+        <Literal name="DOUBLEIRONBASH"/>
+        <Literal name="DOUBLEKICK"/>
+        <Literal name="DOUBLESLAP"/>
+        <Literal name="DOUBLETEAM"/>
+        <Literal name="DRACOMETEOR"/>
+        <Literal name="DRAGONASCENT"/>
+        <Literal name="DRAGONBREATH"/>
+        <Literal name="DRAGONCLAW"/>
+        <Literal name="DRAGONDANCE"/>
+        <Literal name="DRAGONHAMMER"/>
+        <Literal name="DRAGONPULSE"/>
+        <Literal name="DRAGONRAGE"/>
+        <Literal name="DRAGONRUSH"/>
+        <Literal name="DRAGONTAIL"/>
+        <Literal name="DRAININGKISS"/>
+        <Literal name="DRAINPUNCH"/>
+        <Literal name="DREAMEATER"/>
+        <Literal name="DRILLPECK"/>
+        <Literal name="DRILLRUN"/>
+        <Literal name="DUALCHOP"/>
+        <Literal name="DYNAMICPUNCH"/>
+        <Literal name="EARTHPOWER"/>
+        <Literal name="EARTHQUAKE"/>
+        <Literal name="ECHOEDVOICE"/>
+        <Literal name="EERIEIMPULSE"/>
+        <Literal name="EGGBOMB"/>
+        <Literal name="ELECTRICTERRAIN"/>
+        <Literal name="ELECTRIFY"/>
+        <Literal name="ELECTROBALL"/>
+        <Literal name="ELECTROWEB"/>
+        <Literal name="EMBARGO"/>
+        <Literal name="EMBER"/>
+        <Literal name="ENCORE"/>
+        <Literal name="ENDEAVOR"/>
+        <Literal name="ENDURE"/>
+        <Literal name="ENERGYBALL"/>
+        <Literal name="ENTRAINMENT"/>
+        <Literal name="ERUPTION"/>
+        <Literal name="EXPLOSION"/>
+        <Literal name="EXTRASENSORY"/>
+        <Literal name="EXTREMEEVOBOOST"/>
+        <Literal name="EXTREMESPEED"/>
+        <Literal name="FACADE"/>
+        <Literal name="FEINTATTACK"/>
+        <Literal name="FAIRYLOCK"/>
+        <Literal name="FAIRYWIND"/>
+        <Literal name="FAKEOUT"/>
+        <Literal name="FAKETEARS"/>
+        <Literal name="FALSESWIPE"/>
+        <Literal name="FEATHERDANCE"/>
+        <Literal name="FEINT"/>
+        <Literal name="FELLSTINGER"/>
+        <Literal name="FIERYDANCE"/>
+        <Literal name="FINALGAMBIT"/>
+        <Literal name="FIREBLAST"/>
+        <Literal name="FIREFANG"/>
+        <Literal name="FIRELASH"/>
+        <Literal name="FIREPLEDGE"/>
+        <Literal name="FIREPUNCH"/>
+        <Literal name="FIRESPIN"/>
+        <Literal name="FIRSTIMPRESSION"/>
+        <Literal name="FISSURE"/>
+        <Literal name="FLAIL"/>
+        <Literal name="FLAMEBURST"/>
+        <Literal name="FLAMECHARGE"/>
+        <Literal name="FLAMEWHEEL"/>
+        <Literal name="FLAMETHROWER"/>
+        <Literal name="FLAREBLITZ"/>
+        <Literal name="FLASH"/>
+        <Literal name="FLASHCANNON"/>
+        <Literal name="FLATTER"/>
+        <Literal name="FLEURCANNON"/>
+        <Literal name="FLING"/>
+        <Literal name="FLOATYFALL"/>
+        <Literal name="FLORALHEALING"/>
+        <Literal name="FLOWERSHIELD"/>
+        <Literal name="FLY"/>
+        <Literal name="FLYINGPRESS"/>
+        <Literal name="FOCUSBLAST"/>
+        <Literal name="FOCUSENERGY"/>
+        <Literal name="FOCUSPUNCH"/>
+        <Literal name="FOLLOWME"/>
+        <Literal name="FORCEPALM"/>
+        <Literal name="FORESIGHT"/>
+        <Literal name="FORESTSCURSE"/>
+        <Literal name="FOULPLAY"/>
+        <Literal name="FREEZEDRY"/>
+        <Literal name="FREEZESHOCK"/>
+        <Literal name="FREEZYFROST"/>
+        <Literal name="FRENZYPLANT"/>
+        <Literal name="FROSTBREATH"/>
+        <Literal name="FRUSTRATION"/>
+        <Literal name="FURYATTACK"/>
+        <Literal name="FURYCUTTER"/>
+        <Literal name="FURYSWIPES"/>
+        <Literal name="FUSIONBOLT"/>
+        <Literal name="FUSIONFLARE"/>
+        <Literal name="FUTURESIGHT"/>
+        <Literal name="GASTROACID"/>
+        <Literal name="GEARGRIND"/>
+        <Literal name="GEARUP"/>
+        <Literal name="GENESISSUPERNOVA"/>
+        <Literal name="GEOMANCY"/>
+        <Literal name="GIGADRAIN"/>
+        <Literal name="GIGAIMPACT"/>
+        <Literal name="GIGAVOLTHAVOC"/>
+        <Literal name="GLACIATE"/>
+        <Literal name="GLARE"/>
+        <Literal name="GLITZYGLOW"/>
+        <Literal name="GRASSKNOT"/>
+        <Literal name="GRASSPLEDGE"/>
+        <Literal name="GRASSWHISTLE"/>
+        <Literal name="GRASSYTERRAIN"/>
+        <Literal name="GRAVITY"/>
+        <Literal name="GROWL"/>
+        <Literal name="GROWTH"/>
+        <Literal name="GRUDGE"/>
+        <Literal name="GUARDSPLIT"/>
+        <Literal name="GUARDSWAP"/>
+        <Literal name="GUARDIANOFALOLA"/>
+        <Literal name="GUILLOTINE"/>
+        <Literal name="GUNKSHOT"/>
+        <Literal name="GUST"/>
+        <Literal name="GYROBALL"/>
+        <Literal name="HAIL"/>
+        <Literal name="HAMMERARM"/>
+        <Literal name="HAPPYHOUR"/>
+        <Literal name="HARDEN"/>
+        <Literal name="HAZE"/>
+        <Literal name="HEADCHARGE"/>
+        <Literal name="HEADSMASH"/>
+        <Literal name="HEADBUTT"/>
+        <Literal name="HEALBELL"/>
+        <Literal name="HEALBLOCK"/>
+        <Literal name="HEALORDER"/>
+        <Literal name="HEALPULSE"/>
+        <Literal name="HEALINGWISH"/>
+        <Literal name="HEARTSTAMP"/>
+        <Literal name="HEARTSWAP"/>
+        <Literal name="HEATCRASH"/>
+        <Literal name="HEATWAVE"/>
+        <Literal name="HEAVYSLAM"/>
+        <Literal name="HELPINGHAND"/>
+        <Literal name="HEX"/>
+        <Literal name="HIDDENPOWER"/>
+        <Literal name="HIDDENPOWERBUG"/>
+        <Literal name="HIDDENPOWERDARK"/>
+        <Literal name="HIDDENPOWERDRAGON"/>
+        <Literal name="HIDDENPOWERELECTRIC"/>
+        <Literal name="HIDDENPOWERFIGHTING"/>
+        <Literal name="HIDDENPOWERFIRE"/>
+        <Literal name="HIDDENPOWERFLYING"/>
+        <Literal name="HIDDENPOWERGHOST"/>
+        <Literal name="HIDDENPOWERGRASS"/>
+        <Literal name="HIDDENPOWERGROUND"/>
+        <Literal name="HIDDENPOWERICE"/>
+        <Literal name="HIDDENPOWERPOISON"/>
+        <Literal name="HIDDENPOWERPSYCHIC"/>
+        <Literal name="HIDDENPOWERROCK"/>
+        <Literal name="HIDDENPOWERSTEEL"/>
+        <Literal name="HIDDENPOWERWATER"/>
+        <Literal name="HIGHHORSEPOWER"/>
+        <Literal name="HIGHJUMPKICK"/>
+        <Literal name="HOLDBACK"/>
+        <Literal name="HOLDHANDS"/>
+        <Literal name="HONECLAWS"/>
+        <Literal name="HORNATTACK"/>
+        <Literal name="HORNDRILL"/>
+        <Literal name="HORNLEECH"/>
+        <Literal name="HOWL"/>
+        <Literal name="HURRICANE"/>
+        <Literal name="HYDROCANNON"/>
+        <Literal name="HYDROPUMP"/>
+        <Literal name="HYDROVORTEX"/>
+        <Literal name="HYPERBEAM"/>
+        <Literal name="HYPERFANG"/>
+        <Literal name="HYPERSPACEFURY"/>
+        <Literal name="HYPERSPACEHOLE"/>
+        <Literal name="HYPERVOICE"/>
+        <Literal name="HYPNOSIS"/>
+        <Literal name="ICEBALL"/>
+        <Literal name="ICEBEAM"/>
+        <Literal name="ICEBURN"/>
+        <Literal name="ICEFANG"/>
+        <Literal name="ICEHAMMER"/>
+        <Literal name="ICEPUNCH"/>
+        <Literal name="ICESHARD"/>
+        <Literal name="ICICLECRASH"/>
+        <Literal name="ICICLESPEAR"/>
+        <Literal name="ICYWIND"/>
+        <Literal name="IMPRISON"/>
+        <Literal name="INCINERATE"/>
+        <Literal name="INFERNO"/>
+        <Literal name="INFERNOOVERDRIVE"/>
+        <Literal name="INFESTATION"/>
+        <Literal name="INGRAIN"/>
+        <Literal name="INSTRUCT"/>
+        <Literal name="IONDELUGE"/>
+        <Literal name="IRONDEFENSE"/>
+        <Literal name="IRONHEAD"/>
+        <Literal name="IRONTAIL"/>
+        <Literal name="JUDGMENT"/>
+        <Literal name="JUMPKICK"/>
+        <Literal name="KARATECHOP"/>
+        <Literal name="KINESIS"/>
+        <Literal name="KINGSSHIELD"/>
+        <Literal name="KNOCKOFF"/>
+        <Literal name="LANDSWRATH"/>
+        <Literal name="LASERFOCUS"/>
+        <Literal name="LASTRESORT"/>
+        <Literal name="LAVAPLUME"/>
+        <Literal name="LEAFBLADE"/>
+        <Literal name="LEAFSTORM"/>
+        <Literal name="LEAFTORNADO"/>
+        <Literal name="LEAFAGE"/>
+        <Literal name="LEECHLIFE"/>
+        <Literal name="LEECHSEED"/>
+        <Literal name="LEER"/>
+        <Literal name="LETSSNUGGLEFOREVER"/>
+        <Literal name="LICK"/>
+        <Literal name="LIGHTOFRUIN"/>
+        <Literal name="LIGHTSCREEN"/>
+        <Literal name="LIGHTTHATBURNSTHESKY"/>
+        <Literal name="LIQUIDATION"/>
+        <Literal name="LOCKON"/>
+        <Literal name="LOVELYKISS"/>
+        <Literal name="LOWKICK"/>
+        <Literal name="LOWSWEEP"/>
+        <Literal name="LUCKYCHANT"/>
+        <Literal name="LUNARDANCE"/>
+        <Literal name="LUNGE"/>
+        <Literal name="LUSTERPURGE"/>
+        <Literal name="MACHPUNCH"/>
+        <Literal name="MAGICCOAT"/>
+        <Literal name="MAGICROOM"/>
+        <Literal name="MAGICALLEAF"/>
+        <Literal name="MAGMASTORM"/>
+        <Literal name="MAGNETBOMB"/>
+        <Literal name="MAGNETICFLUX"/>
+        <Literal name="MAGNETRISE"/>
+        <Literal name="MAGNITUDE"/>
+        <Literal name="MALICIOUSMOONSAULT"/>
+        <Literal name="MATBLOCK"/>
+        <Literal name="MEFIRST"/>
+        <Literal name="MEANLOOK"/>
+        <Literal name="MEDITATE"/>
+        <Literal name="MEGADRAIN"/>
+        <Literal name="MEGAKICK"/>
+        <Literal name="MEGAPUNCH"/>
+        <Literal name="MEGAHORN"/>
+        <Literal name="MEMENTO"/>
+        <Literal name="MENACINGMOONRAZEMAELSTROM"/>
+        <Literal name="METALBURST"/>
+        <Literal name="METALCLAW"/>
+        <Literal name="METALSOUND"/>
+        <Literal name="METEORMASH"/>
+        <Literal name="METRONOME"/>
+        <Literal name="MILKDRINK"/>
+        <Literal name="MIMIC"/>
+        <Literal name="MINDBLOWN"/>
+        <Literal name="MINDREADER"/>
+        <Literal name="MINIMIZE"/>
+        <Literal name="MIRACLEEYE"/>
+        <Literal name="MIRRORCOAT"/>
+        <Literal name="MIRRORMOVE"/>
+        <Literal name="MIRRORSHOT"/>
+        <Literal name="MIST"/>
+        <Literal name="MISTBALL"/>
+        <Literal name="MISTYTERRAIN"/>
+        <Literal name="MOONBLAST"/>
+        <Literal name="MOONGEISTBEAM"/>
+        <Literal name="MOONLIGHT"/>
+        <Literal name="MORNINGSUN"/>
+        <Literal name="MUDSLAP"/>
+        <Literal name="MUDBOMB"/>
+        <Literal name="MUDSHOT"/>
+        <Literal name="MUDSPORT"/>
+        <Literal name="MUDDYWATER"/>
+        <Literal name="MULTIATTACK"/>
+        <Literal name="MYSTICALFIRE"/>
+        <Literal name="NASTYPLOT"/>
+        <Literal name="NATURALGIFT"/>
+        <Literal name="NATUREPOWER"/>
+        <Literal name="NATURESMADNESS"/>
+        <Literal name="NEEDLEARM"/>
+        <Literal name="NEVERENDINGNIGHTMARE"/>
+        <Literal name="NIGHTDAZE"/>
+        <Literal name="NIGHTSHADE"/>
+        <Literal name="NIGHTSLASH"/>
+        <Literal name="NIGHTMARE"/>
+        <Literal name="NOBLEROAR"/>
+        <Literal name="NUZZLE"/>
+        <Literal name="OBLIVIONWING"/>
+        <Literal name="OCEANICOPERETTA"/>
+        <Literal name="OCTAZOOKA"/>
+        <Literal name="ODORSLEUTH"/>
+        <Literal name="OMINOUSWIND"/>
+        <Literal name="ORIGINPULSE"/>
+        <Literal name="OUTRAGE"/>
+        <Literal name="OVERHEAT"/>
+        <Literal name="PAINSPLIT"/>
+        <Literal name="PARABOLICCHARGE"/>
+        <Literal name="PARTINGSHOT"/>
+        <Literal name="PAYDAY"/>
+        <Literal name="PAYBACK"/>
+        <Literal name="PECK"/>
+        <Literal name="PERISHSONG"/>
+        <Literal name="PETALBLIZZARD"/>
+        <Literal name="PETALDANCE"/>
+        <Literal name="PHANTOMFORCE"/>
+        <Literal name="PHOTONGEYSER"/>
+        <Literal name="PIKAPAPOW"/>
+        <Literal name="PINMISSILE"/>
+        <Literal name="PLASMAFISTS"/>
+        <Literal name="PLAYNICE"/>
+        <Literal name="PLAYROUGH"/>
+        <Literal name="PLUCK"/>
+        <Literal name="POISONFANG"/>
+        <Literal name="POISONGAS"/>
+        <Literal name="POISONJAB"/>
+        <Literal name="POISONPOWDER"/>
+        <Literal name="POISONSTING"/>
+        <Literal name="POISONTAIL"/>
+        <Literal name="POLLENPUFF"/>
+        <Literal name="POUND"/>
+        <Literal name="POWDER"/>
+        <Literal name="POWDERSNOW"/>
+        <Literal name="POWERGEM"/>
+        <Literal name="POWERSPLIT"/>
+        <Literal name="POWERSWAP"/>
+        <Literal name="POWERTRICK"/>
+        <Literal name="POWERTRIP"/>
+        <Literal name="POWERUPPUNCH"/>
+        <Literal name="POWERWHIP"/>
+        <Literal name="PRECIPICEBLADES"/>
+        <Literal name="PRESENT"/>
+        <Literal name="PRISMATICLASER"/>
+        <Literal name="PROTECT"/>
+        <Literal name="PSYBEAM"/>
+        <Literal name="PSYCHUP"/>
+        <Literal name="PSYCHIC"/>
+        <Literal name="PSYCHICFANGS"/>
+        <Literal name="PSYCHICTERRAIN"/>
+        <Literal name="PSYCHOBOOST"/>
+        <Literal name="PSYCHOCUT"/>
+        <Literal name="PSYCHOSHIFT"/>
+        <Literal name="PSYSHOCK"/>
+        <Literal name="PSYSTRIKE"/>
+        <Literal name="PSYWAVE"/>
+        <Literal name="PULVERIZINGPANCAKE"/>
+        <Literal name="PUNISHMENT"/>
+        <Literal name="PURIFY"/>
+        <Literal name="PURSUIT"/>
+        <Literal name="QUASH"/>
+        <Literal name="QUICKATTACK"/>
+        <Literal name="QUICKGUARD"/>
+        <Literal name="QUIVERDANCE"/>
+        <Literal name="RAGE"/>
+        <Literal name="RAGEPOWDER"/>
+        <Literal name="RAINDANCE"/>
+        <Literal name="RAPIDSPIN"/>
+        <Literal name="RAZORLEAF"/>
+        <Literal name="RAZORSHELL"/>
+        <Literal name="RAZORWIND"/>
+        <Literal name="RECOVER"/>
+        <Literal name="RECYCLE"/>
+        <Literal name="REFLECT"/>
+        <Literal name="REFLECTTYPE"/>
+        <Literal name="REFRESH"/>
+        <Literal name="RELICSONG"/>
+        <Literal name="REST"/>
+        <Literal name="RETALIATE"/>
+        <Literal name="RETURN"/>
+        <Literal name="REVELATIONDANCE"/>
+        <Literal name="REVENGE"/>
+        <Literal name="REVERSAL"/>
+        <Literal name="ROAR"/>
+        <Literal name="ROAROFTIME"/>
+        <Literal name="ROCKBLAST"/>
+        <Literal name="ROCKCLIMB"/>
+        <Literal name="ROCKPOLISH"/>
+        <Literal name="ROCKSLIDE"/>
+        <Literal name="ROCKSMASH"/>
+        <Literal name="ROCKTHROW"/>
+        <Literal name="ROCKTOMB"/>
+        <Literal name="ROCKWRECKER"/>
+        <Literal name="ROLEPLAY"/>
+        <Literal name="ROLLINGKICK"/>
+        <Literal name="ROLLOUT"/>
+        <Literal name="ROOST"/>
+        <Literal name="ROTOTILLER"/>
+        <Literal name="ROUND"/>
+        <Literal name="SACREDFIRE"/>
+        <Literal name="SACREDSWORD"/>
+        <Literal name="SAFEGUARD"/>
+        <Literal name="SANDATTACK"/>
+        <Literal name="SANDTOMB"/>
+        <Literal name="SANDSTORM"/>
+        <Literal name="SAPPYSEED"/>
+        <Literal name="SAVAGESPINOUT"/>
+        <Literal name="SCALD"/>
+        <Literal name="SCARYFACE"/>
+        <Literal name="SCRATCH"/>
+        <Literal name="SCREECH"/>
+        <Literal name="SEARINGSHOT"/>
+        <Literal name="SEARINGSUNRAZESMASH"/>
+        <Literal name="SECRETPOWER"/>
+        <Literal name="SECRETSWORD"/>
+        <Literal name="SEEDBOMB"/>
+        <Literal name="SEEDFLARE"/>
+        <Literal name="SEISMICTOSS"/>
+        <Literal name="SELFDESTRUCT"/>
+        <Literal name="SHADOWBALL"/>
+        <Literal name="SHADOWBONE"/>
+        <Literal name="SHADOWCLAW"/>
+        <Literal name="SHADOWFORCE"/>
+        <Literal name="SHADOWPUNCH"/>
+        <Literal name="SHADOWSNEAK"/>
+        <Literal name="SHARPEN"/>
+        <Literal name="SHATTEREDPSYCHE"/>
+        <Literal name="SHEERCOLD"/>
+        <Literal name="SHELLSMASH"/>
+        <Literal name="SHELLTRAP"/>
+        <Literal name="SHIFTGEAR"/>
+        <Literal name="SHOCKWAVE"/>
+        <Literal name="SHOREUP"/>
+        <Literal name="SIGNALBEAM"/>
+        <Literal name="SILVERWIND"/>
+        <Literal name="SIMPLEBEAM"/>
+        <Literal name="SING"/>
+        <Literal name="SINISTERARROWRAID"/>
+        <Literal name="SIZZLYSLIDE"/>
+        <Literal name="SKETCH"/>
+        <Literal name="SKILLSWAP"/>
+        <Literal name="SKULLBASH"/>
+        <Literal name="SKYATTACK"/>
+        <Literal name="SKYDROP"/>
+        <Literal name="SKYUPPERCUT"/>
+        <Literal name="SLACKOFF"/>
+        <Literal name="SLAM"/>
+        <Literal name="SLASH"/>
+        <Literal name="SLEEPPOWDER"/>
+        <Literal name="SLEEPTALK"/>
+        <Literal name="SLUDGE"/>
+        <Literal name="SLUDGEBOMB"/>
+        <Literal name="SLUDGEWAVE"/>
+        <Literal name="SMACKDOWN"/>
+        <Literal name="SMARTSTRIKE"/>
+        <Literal name="SMELLINGSALTS"/>
+        <Literal name="SMOG"/>
+        <Literal name="SMOKESCREEN"/>
+        <Literal name="SNARL"/>
+        <Literal name="SNATCH"/>
+        <Literal name="SNORE"/>
+        <Literal name="SPECTRALTHIEF"/>
+        <Literal name="SPEEDSWAP"/>
+        <Literal name="SPIKYSHIELD"/>
+        <Literal name="SPIRITSHACKLE"/>
+        <Literal name="SOAK"/>
+        <Literal name="SOFTBOILED"/>
+        <Literal name="SOLARBEAM"/>
+        <Literal name="SOLARBLADE"/>
+        <Literal name="SONICBOOM"/>
+        <Literal name="SOULSTEALING7STARSTRIKE"/>
+        <Literal name="SPACIALREND"/>
+        <Literal name="SPARK"/>
+        <Literal name="SPARKLINGARIA"/>
+        <Literal name="SPARKLYSWIRL"/>
+        <Literal name="SPIDERWEB"/>
+        <Literal name="SPIKECANNON"/>
+        <Literal name="SPIKES"/>
+        <Literal name="SPITUP"/>
+        <Literal name="SPITE"/>
+        <Literal name="SPLASH"/>
+        <Literal name="SPLINTEREDSTORMSHARDS"/>
+        <Literal name="SPLISHYSPLASH"/>
+        <Literal name="SPORE"/>
+        <Literal name="SPOTLIGHT"/>
+        <Literal name="STEALTHROCK"/>
+        <Literal name="STEAMERUPTION"/>
+        <Literal name="STEELWING"/>
+        <Literal name="STICKYWEB"/>
+        <Literal name="STOCKPILE"/>
+        <Literal name="STOKEDSPARKSURFER"/>
+        <Literal name="STOMP"/>
+        <Literal name="STOMPINGTANTRUM"/>
+        <Literal name="STONEEDGE"/>
+        <Literal name="STOREDPOWER"/>
+        <Literal name="STORMTHROW"/>
+        <Literal name="STEAMROLLER"/>
+        <Literal name="STRENGTH"/>
+        <Literal name="STRENGTHSAP"/>
+        <Literal name="STRINGSHOT"/>
+        <Literal name="STRUGGLE"/>
+        <Literal name="STRUGGLEBUG"/>
+        <Literal name="STUNSPORE"/>
+        <Literal name="SUBMISSION"/>
+        <Literal name="SUBSTITUTE"/>
+        <Literal name="SUBZEROSLAMMER"/>
+        <Literal name="SUCKERPUNCH"/>
+        <Literal name="SUNNYDAY"/>
+        <Literal name="SUNSTEELSTRIKE"/>
+        <Literal name="SUPERFANG"/>
+        <Literal name="SUPERPOWER"/>
+        <Literal name="SUPERSONIC"/>
+        <Literal name="SUPERSONICSKYSTRIKE"/>
+        <Literal name="SURF"/>
+        <Literal name="SWAGGER"/>
+        <Literal name="SWALLOW"/>
+        <Literal name="SWEETKISS"/>
+        <Literal name="SWEETSCENT"/>
+        <Literal name="SWIFT"/>
+        <Literal name="SWITCHEROO"/>
+        <Literal name="SWORDSDANCE"/>
+        <Literal name="SYNCHRONOISE"/>
+        <Literal name="SYNTHESIS"/>
+        <Literal name="TACKLE"/>
+        <Literal name="TAILGLOW"/>
+        <Literal name="TAILSLAP"/>
+        <Literal name="TAILWHIP"/>
+        <Literal name="TAILWIND"/>
+        <Literal name="TAKEDOWN"/>
+        <Literal name="TAUNT"/>
+        <Literal name="TEARFULLOOK"/>
+        <Literal name="TECHNOBLAST"/>
+        <Literal name="TECTONICRAGE"/>
+        <Literal name="TEETERDANCE"/>
+        <Literal name="TELEKINESIS"/>
+        <Literal name="TELEPORT"/>
+        <Literal name="THIEF"/>
+        <Literal name="THOUSANDARROWS"/>
+        <Literal name="THOUSANDWAVES"/>
+        <Literal name="THRASH"/>
+        <Literal name="THROATCHOP"/>
+        <Literal name="THUNDER"/>
+        <Literal name="THUNDERFANG"/>
+        <Literal name="THUNDERPUNCH"/>
+        <Literal name="THUNDERSHOCK"/>
+        <Literal name="THUNDERWAVE"/>
+        <Literal name="THUNDERBOLT"/>
+        <Literal name="TICKLE"/>
+        <Literal name="TOPSYTURVY"/>
+        <Literal name="TORMENT"/>
+        <Literal name="TOXIC"/>
+        <Literal name="TOXICSPIKES"/>
+        <Literal name="TOXICTHREAD"/>
+        <Literal name="TRANSFORM"/>
+        <Literal name="TRIATTACK"/>
+        <Literal name="TRICK"/>
+        <Literal name="TRICKORTREAT"/>
+        <Literal name="TRICKROOM"/>
+        <Literal name="TRIPLEKICK"/>
+        <Literal name="TROPKICK"/>
+        <Literal name="TRUMPCARD"/>
+        <Literal name="TWINEEDLE"/>
+        <Literal name="TWINKLETACKLE"/>
+        <Literal name="TWISTER"/>
+        <Literal name="UTURN"/>
+        <Literal name="UPROAR"/>
+        <Literal name="VCREATE"/>
+        <Literal name="VACUUMWAVE"/>
+        <Literal name="VEEVEEVOLLEY"/>
+        <Literal name="VENOMDRENCH"/>
+        <Literal name="VENOSHOCK"/>
+        <Literal name="VICEGRIP"/>
+        <Literal name="VINEWHIP"/>
+        <Literal name="VITALTHROW"/>
+        <Literal name="VOLTSWITCH"/>
+        <Literal name="VOLTTACKLE"/>
+        <Literal name="WAKEUPSLAP"/>
+        <Literal name="WATERGUN"/>
+        <Literal name="WATERPLEDGE"/>
+        <Literal name="WATERPULSE"/>
+        <Literal name="WATERSPORT"/>
+        <Literal name="WATERSPOUT"/>
+        <Literal name="WATERFALL"/>
+        <Literal name="WATERSHURIKEN"/>
+        <Literal name="WEATHERBALL"/>
+        <Literal name="WHIRLPOOL"/>
+        <Literal name="WHIRLWIND"/>
+        <Literal name="WIDEGUARD"/>
+        <Literal name="WILDCHARGE"/>
+        <Literal name="WILLOWISP"/>
+        <Literal name="WINGATTACK"/>
+        <Literal name="WISH"/>
+        <Literal name="WITHDRAW"/>
+        <Literal name="WONDERROOM"/>
+        <Literal name="WOODHAMMER"/>
+        <Literal name="WORKUP"/>
+        <Literal name="WORRYSEED"/>
+        <Literal name="WRAP"/>
+        <Literal name="WRINGOUT"/>
+        <Literal name="XSCISSOR"/>
+        <Literal name="YAWN"/>
+        <Literal name="ZAPCANNON"/>
+        <Literal name="ZENHEADBUTT"/>
+        <Literal name="ZINGZAP"/>
+        <Literal name="ZIPPYZAP"/>
+        <Literal name="PALEOWAVE"/>
+        <Literal name="SHADOWSTRIKE"/>
+        <Literal name="MAGIKARPSREVENGE"/>
+      </Literals>
+    </Enum>
+    <Class name="Absorb" package="pokemon.moves.parts" visibility="public" xPosition="920.0" yPosition="1220.0">
+      <Fields>
+        <Field name="value" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="double" name="getBack"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValue" returnType="double" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Accurance" package="pokemon.moves.parts" visibility="public" xPosition="1220.0" yPosition="1220.0">
+      <Fields>
+        <Field name="accurance" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="accurance"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAccurance" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AdditionalEffect" package="pokemon.moves.parts" visibility="public" xPosition="1520.0" yPosition="1220.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Critratio" package="pokemon.moves.parts" visibility="public" xPosition="1820.0" yPosition="1220.0">
+      <Fields>
+        <Field name="critRatio" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="double" name="critRatio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCritRatio" returnType="double" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Description" package="pokemon.moves.parts" visibility="public" xPosition="2120.0" yPosition="1220.0">
+      <Fields>
+        <Field name="description" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="description"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getDescription" returnType="String" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Flags" package="pokemon.moves.parts" visibility="public" xPosition="20.0" yPosition="1620.0">
+      <Fields>
+        <Field name="flags" type="FlagList" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="FlagList" name="flags"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFlags" returnType="FlagList[]" visibility="public"/>
+        <Method name="isAuthenticFlag" returnType="boolean" visibility="public"/>
+        <Method name="isBiteFlag" returnType="boolean" visibility="public"/>
+        <Method name="isBulletFlag" returnType="boolean" visibility="public"/>
+        <Method name="isChargeFlag" returnType="boolean" visibility="public"/>
+        <Method name="isContactFlag" returnType="boolean" visibility="public"/>
+        <Method name="isDanceFlag" returnType="boolean" visibility="public"/>
+        <Method name="isDefrostFlag" returnType="boolean" visibility="public"/>
+        <Method name="isDistanceFlag" returnType="boolean" visibility="public"/>
+        <Method name="isGravityFlag" returnType="boolean" visibility="public"/>
+        <Method name="isHealFlag" returnType="boolean" visibility="public"/>
+        <Method name="isMirrorFlag" returnType="boolean" visibility="public"/>
+        <Method name="isMysteryFlag" returnType="boolean" visibility="public"/>
+        <Method name="isNonSkyFlag" returnType="boolean" visibility="public"/>
+        <Method name="isPowderFlag" returnType="boolean" visibility="public"/>
+        <Method name="isPulseFlag" returnType="boolean" visibility="public"/>
+        <Method name="isPunchFlag" returnType="boolean" visibility="public"/>
+        <Method name="isProtectFlag" returnType="boolean" visibility="public"/>
+        <Method name="isRechargeFlag" returnType="boolean" visibility="public"/>
+        <Method name="isReflectAbleFlag" returnType="boolean" visibility="public"/>
+        <Method name="isSnatchFlag" returnType="boolean" visibility="public"/>
+        <Method name="isSoundFlag" returnType="boolean" visibility="public"/>
+        <Method name="isThisFlag" returnType="boolean" visibility="public">
+          <Argument type="FlagList" name="flag"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="MovePart" package="pokemon.moves.parts" visibility="public" xPosition="320.0" yPosition="1620.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Power" package="pokemon.moves.parts" visibility="public" xPosition="620.0" yPosition="1620.0">
+      <Fields>
+        <Field name="power" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="power"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPower" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Prio" package="pokemon.moves.parts" visibility="public" xPosition="920.0" yPosition="1620.0">
+      <Fields>
+        <Field name="prio" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="prio"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPrio" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Recoil" package="pokemon.moves.parts" visibility="public" xPosition="1220.0" yPosition="1620.0">
+      <Fields>
+        <Field name="value" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="double" name="value"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValue" returnType="double" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StatChanges" package="pokemon.moves.parts" visibility="public" xPosition="1520.0" yPosition="1620.0">
+      <Fields>
+        <Field name="statChanges" type="StatEffect" visibility="private"/>
+        <Field name="own" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="boolean" name="own"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="boolean" name="own"/>
+          <Argument type="StatEffect" name="statChanges"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getStatChanges" returnType="StatEffect[]" visibility="public"/>
+        <Method name="isOwn" returnType="boolean" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StatEffect" package="pokemon.moves.parts" visibility="public" xPosition="1820.0" yPosition="1620.0">
+      <Fields>
+        <Field name="stat" type="Stat" visibility="private"/>
+        <Field name="chance" type="int" visibility="private"/>
+        <Field name="statChange" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stat" name="stat"/>
+          <Argument type="int" name="chance"/>
+          <Argument type="int" name="statChange"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getStat" returnType="Stat" visibility="public"/>
+        <Method name="getChance" returnType="int" visibility="public"/>
+        <Method name="getStatChange" returnType="int" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StatusChanges" package="pokemon.moves.parts" visibility="public" xPosition="2120.0" yPosition="1620.0">
+      <Fields>
+        <Field name="statusChanges" type="StatusEffect" visibility="private"/>
+        <Field name="own" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="boolean" name="own"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="boolean" name="own"/>
+          <Argument type="StatusEffect" name="statusChanges"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getStatusChanges" returnType="StatusEffect[]" visibility="public"/>
+        <Method name="isOwn" returnType="boolean" visibility="public"/>
+        <Method name="isBurn" returnType="boolean" visibility="public"/>
+        <Method name="isFreeze" returnType="boolean" visibility="public"/>
+        <Method name="isPoison" returnType="boolean" visibility="public"/>
+        <Method name="isBadlyPoison" returnType="boolean" visibility="public"/>
+        <Method name="isSleep" returnType="boolean" visibility="public"/>
+        <Method name="isParalyse" returnType="boolean" visibility="public"/>
+        <Method name="isConfusion" returnType="boolean" visibility="public"/>
+        <Method name="isFlinch" returnType="boolean" visibility="public"/>
+        <Method name="isForeswitch" returnType="boolean" visibility="public"/>
+        <Method name="isPreventswitch" returnType="boolean" visibility="public"/>
+        <Method name="isOH" returnType="boolean" visibility="public"/>
+        <Method name="isThis" returnType="boolean" visibility="public">
+          <Argument type="Status" name="status"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="StatusEffect" package="pokemon.moves.parts" visibility="public" xPosition="20.0" yPosition="2020.0">
+      <Fields>
+        <Field name="chance" type="int" visibility="private"/>
+        <Field name="status" type="Status" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="chance"/>
+          <Argument type="Status" name="status"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getChance" returnType="int" visibility="public"/>
+        <Method name="getStatus" returnType="Status" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="Ability" package="pokemon.other" visibility="public" xPosition="320.0" yPosition="2020.0">
+      <Literals>
+        <Literal name="PLACEHOLDER"/>
+        <Literal name="COMING_SOON"/>
+        <Literal name="ABILITY1"/>
+        <Literal name="ABILITY2"/>
+        <Literal name="ABILITY3"/>
+        <Literal name="HIDDENABILITY1"/>
+        <Literal name="HIDDENABILTY2"/>
+        <Literal name="NONE"/>
+      </Literals>
+    </Enum>
+    <Enum name="Gender" package="pokemon.other" visibility="public" xPosition="620.0" yPosition="2020.0">
+      <Literals>
+        <Literal name="MALE"/>
+        <Literal name="FEMALE"/>
+        <Literal name="NONE"/>
+        <Literal name="UNSET"/>
+      </Literals>
+    </Enum>
+    <Enum name="Nature" package="pokemon.other" visibility="public" xPosition="920.0" yPosition="2020.0">
+      <Literals>
+        <Literal name="ERROR"/>
+        <Literal name="HARDY"/>
+        <Literal name="LONELY"/>
+        <Literal name="ADAMANT"/>
+        <Literal name="NAUGHTY"/>
+        <Literal name="BRAVE"/>
+        <Literal name="BOLD"/>
+        <Literal name="DOCILE"/>
+        <Literal name="IMPISH"/>
+        <Literal name="LAX"/>
+        <Literal name="RELAXED"/>
+        <Literal name="MODEST"/>
+        <Literal name="MILD"/>
+        <Literal name="BASHFUL"/>
+        <Literal name="RASH"/>
+        <Literal name="QUIET"/>
+        <Literal name="CALM"/>
+        <Literal name="GENTLE"/>
+        <Literal name="CAREFUL"/>
+        <Literal name="QUIRKY"/>
+        <Literal name="SASSY"/>
+        <Literal name="TIMID"/>
+        <Literal name="HASTY"/>
+        <Literal name="JOLLY"/>
+        <Literal name="NAIVE"/>
+        <Literal name="SERIOUS"/>
+      </Literals>
+    </Enum>
+    <Enum name="Status" package="pokemon.other" visibility="public" xPosition="1220.0" yPosition="2020.0">
+      <Literals>
+        <Literal name="BURN"/>
+        <Literal name="FREEZE"/>
+        <Literal name="POISON"/>
+        <Literal name="BADLYPOISON"/>
+        <Literal name="SLEEP"/>
+        <Literal name="PARALYSE"/>
+        <Literal name="CONFUSION"/>
+        <Literal name="FLINCH"/>
+        <Literal name="DEFEATED"/>
+        <Literal name="OKAY"/>
+        <Literal name="FORCESWITCH"/>
+        <Literal name="PREVENTSWITCH"/>
+      </Literals>
+    </Enum>
+    <Enum name="Type" package="pokemon.other" visibility="public" xPosition="1520.0" yPosition="2020.0">
+      <Literals>
+        <Literal name="BUG"/>
+        <Literal name="DARK"/>
+        <Literal name="DRAGON"/>
+        <Literal name="ELECTRIC"/>
+        <Literal name="FAIRY"/>
+        <Literal name="FIGHTING"/>
+        <Literal name="FIRE"/>
+        <Literal name="FLYING"/>
+        <Literal name="GHOST"/>
+        <Literal name="GRASS"/>
+        <Literal name="GROUND"/>
+        <Literal name="ICE"/>
+        <Literal name="NORMAL"/>
+        <Literal name="POISON"/>
+        <Literal name="PSYCHIC"/>
+        <Literal name="ROCK"/>
+        <Literal name="STEEL"/>
+        <Literal name="WATER"/>
+        <Literal name="CODE"/>
+        <Literal name="NONE"/>
+      </Literals>
+    </Enum>
+    <Class name="Ability" package="pokemon.parts" visibility="public" xPosition="1820.0" yPosition="2020.0">
+      <Fields>
+        <Field name="ability" type="pokemon.other.Ability[]" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="pokemon.other.Ability" name="ability"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAbility" returnType="pokemon.other.Ability[]" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Evolution" package="pokemon.parts" visibility="public" xPosition="2120.0" yPosition="2020.0">
+      <Fields>
+        <Field name="evoID" type="int" visibility="private"/>
+        <Field name="evoLvl" type="int" visibility="private"/>
+        <Field name="hasEvolution" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="int" name="lvl"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getEvoID" returnType="int" visibility="public"/>
+        <Method name="getEvoLvl" returnType="int" visibility="public"/>
+        <Method name="hasEvolution" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Gender" package="pokemon.parts" visibility="public" xPosition="20.0" yPosition="2420.0">
+      <Fields>
+        <Field name="hasGender" type="boolean" visibility="private"/>
+        <Field name="maleChance" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="double" name="maleChance"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMaleChance" returnType="double" visibility="public"/>
+        <Method name="getFemaleChance" returnType="double" visibility="public"/>
+        <Method name="hasGender" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="GivesEV" package="pokemon.parts" visibility="public" xPosition="320.0" yPosition="2420.0">
+      <Fields>
+        <Field name="ev" type="pokemon.stats.EV" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="EV" name="ev"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getEv" returnType="EV" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Hiddenability" package="pokemon.parts" visibility="public" xPosition="620.0" yPosition="2420.0">
+      <Fields>
+        <Field name="ability" type="pokemon.other.Ability" visibility="private"/>
+        <Field name="hasHiddenability" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="pokemon.other.Ability" name="ability"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="hasHiddenability" returnType="boolean" visibility="public"/>
+        <Method name="getAbility" returnType="Ability" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="PokePart" package="pokemon.parts" visibility="public" xPosition="920.0" yPosition="2420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Types" package="pokemon.parts" visibility="public" xPosition="1220.0" yPosition="2420.0">
+      <Fields>
+        <Field name="primaryType" type="pokemon.other.Type" visibility="private"/>
+        <Field name="secondaryType" type="pokemon.other.Type" visibility="private"/>
+        <Field name="hasSecondaryType" type="boolean" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="pokemon.other.Type" name="primaryType"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="pokemon.other.Type" name="primaryType"/>
+          <Argument type="pokemon.other.Type" name="secondaryType"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getPrimaryType" returnType="pokemon.other.Type" visibility="public"/>
+        <Method name="getSecondaryType" returnType="pokemon.other.Type" visibility="public"/>
+        <Method name="hasSecondaryType" returnType="boolean" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="PokeInfo" package="pokemon" visibility="public" xPosition="1520.0" yPosition="2420.0">
+      <Literals>
+        <Literal name="ERROR"/>
+        <Literal name="BULBASAUR"/>
+        <Literal name="IVYSAUR"/>
+        <Literal name="VENUSAUR"/>
+        <Literal name="CHARMANDER"/>
+        <Literal name="CHARMELEON"/>
+        <Literal name="CHARIZARD"/>
+      </Literals>
+    </Enum>
+    <Class name="Pokemon" package="pokemon" visibility="public" xPosition="1820.0" yPosition="2420.0">
+      <Fields>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="nickname" type="String" visibility="private"/>
+        <Field name="currentHP" type="int" visibility="private"/>
+        <Field name="currentStatus" type="pokemon.other.Status" visibility="private"/>
+        <Field name="type1" type="pokemon.other.Type" visibility="private"/>
+        <Field name="ability" type="pokemon.other.Ability" visibility="private"/>
+        <Field name="nature" type="pokemon.other.Nature" visibility="private"/>
+        <Field name="gender" type="pokemon.other.Gender" visibility="private"/>
+        <Field name="basicValues" type="pokemon.stats.Stats" visibility="private"/>
+        <Field name="realStats" type="pokemon.stats.Stats" visibility="private"/>
+        <Field name="iv" type="pokemon.stats.IV" visibility="private"/>
+        <Field name="ev" type="pokemon.stats.EV" visibility="private"/>
+        <Field name="shiny" type="boolean" visibility="private"/>
+        <Field name="level" type="int" visibility="private"/>
+        <Field name="exp" type="int" visibility="private"/>
+        <Field name="neededExp" type="int" visibility="private"/>
+        <Field name="move" type="MoveList" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="int" name="lvl"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="int" name="lvl"/>
+          <Argument type="String" name="nickname"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="init" returnType="void" visibility="private"/>
+        <Method name="reInit" returnType="void" visibility="private">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="lvlUp" returnType="void" visibility="public"/>
+        <Method name="learnMove" returnType="void" visibility="public">
+          <Argument type="MoveList" name="m"/>
+          <Argument type="int" name="slot"/>
+        </Method>
+        <Method name="updateStats" returnType="void" visibility="private"/>
+        <Method name="heal" returnType="void" visibility="public"/>
+        <Method name="addEV" returnType="void" visibility="public">
+          <Argument type="EV" name="addEv"/>
+        </Method>
+        <Method name="minusHP" returnType="void" visibility="public">
+          <Argument type="int" name="amount"/>
+        </Method>
+        <Method name="changeStatus" returnType="void" visibility="public">
+          <Argument type="Status" name="st"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="setCostumIV" returnType="void" visibility="public">
+          <Argument type="int" name="min"/>
+        </Method>
+        <Method name="setCostumIV" returnType="void" visibility="public">
+          <Argument type="IV" name="iv"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="getNickname" returnType="String" visibility="public"/>
+        <Method name="getCurrentHP" returnType="int" visibility="public"/>
+        <Method name="getCurrentStatus" returnType="Status" visibility="public"/>
+        <Method name="getType1" returnType="Type" visibility="public"/>
+        <Method name="getType2" returnType="Type" visibility="public"/>
+        <Method name="getAbility" returnType="Ability" visibility="public"/>
+        <Method name="getNature" returnType="Nature" visibility="public"/>
+        <Method name="getGender" returnType="Gender" visibility="public"/>
+        <Method name="getRealStats" returnType="Stats" visibility="public"/>
+        <Method name="isShiny" returnType="boolean" visibility="public"/>
+        <Method name="getLevel" returnType="int" visibility="public"/>
+        <Method name="getNeededExp" returnType="int" visibility="public"/>
+        <Method name="getMove" returnType="MoveList[]" visibility="public"/>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="getBasicValues" returnType="Stats" visibility="public"/>
+        <Method name="getIv" returnType="IV" visibility="public"/>
+        <Method name="getEv" returnType="EV" visibility="public"/>
+        <Method name="getExp" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="Route" package="pokemon.spawning" visibility="public" xPosition="2120.0" yPosition="2420.0">
+      <Literals>
+        <Literal name="ROUTE0"/>
+        <Literal name="BISA"/>
+        <Literal name="SQUIR"/>
+        <Literal name="CHAR"/>
+      </Literals>
+    </Enum>
+    <Class name="EV" package="pokemon.stats" visibility="public" xPosition="20.0" yPosition="2820.0">
+      <Fields>
+        <Field name="ev" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="hp"/>
+          <Argument type="int" name="atk"/>
+          <Argument type="int" name="def"/>
+          <Argument type="int" name="spAtk"/>
+          <Argument type="int" name="spDef"/>
+          <Argument type="int" name="spd"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAtk" returnType="int" visibility="public"/>
+        <Method name="getSpAtk" returnType="int" visibility="public"/>
+        <Method name="getDef" returnType="int" visibility="public"/>
+        <Method name="getSpDef" returnType="int" visibility="public"/>
+        <Method name="getSpd" returnType="int" visibility="public"/>
+        <Method name="getIni" returnType="int" visibility="public"/>
+        <Method name="getHp" returnType="int" visibility="public"/>
+        <Method name="addAtk" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="addSpAtk" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="addDef" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="addSpDef" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="addIni" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="addSpd" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+        <Method name="addHp" returnType="void" visibility="public">
+          <Argument type="int" name="num"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IV" package="pokemon.stats" visibility="public" xPosition="320.0" yPosition="2820.0">
+      <Fields>
+        <Field name="iv" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="atk"/>
+          <Argument type="int" name="spAtk"/>
+          <Argument type="int" name="def"/>
+          <Argument type="int" name="spDef"/>
+          <Argument type="int" name="spd"/>
+          <Argument type="int" name="hp"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="genIv" returnType="void" visibility="public">
+          <Argument type="int" name="min"/>
+        </Method>
+        <Method name="getAtk" returnType="int" visibility="public"/>
+        <Method name="getSpAtk" returnType="int" visibility="public"/>
+        <Method name="getDef" returnType="int" visibility="public"/>
+        <Method name="getSpDef" returnType="int" visibility="public"/>
+        <Method name="getSpd" returnType="int" visibility="public"/>
+        <Method name="getIni" returnType="int" visibility="public"/>
+        <Method name="getHp" returnType="int" visibility="public"/>
+        <Method name="getIvPrecent" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Enum name="Stat" package="pokemon.stats" visibility="public" xPosition="620.0" yPosition="2820.0">
+      <Literals>
+        <Literal name="HP"/>
+        <Literal name="ATK"/>
+        <Literal name="DEF"/>
+        <Literal name="SPATK"/>
+        <Literal name="SPDEF"/>
+        <Literal name="SPD"/>
+        <Literal name="EVASION"/>
+        <Literal name="ACCURACY"/>
+      </Literals>
+    </Enum>
+    <Class name="StatChange" package="pokemon.stats" visibility="public" xPosition="920.0" yPosition="2820.0">
+      <Fields>
+        <Field name="stat" type="Stat" visibility="private"/>
+        <Field name="change" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stat" name="stat"/>
+          <Argument type="int" name="change"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getStat" returnType="Stat" visibility="public"/>
+        <Method name="getChangeAmount" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Stats" package="pokemon.stats" visibility="public" xPosition="1220.0" yPosition="2820.0">
+      <Fields>
+        <Field name="stat" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="double" name="hp"/>
+          <Argument type="double" name="atk"/>
+          <Argument type="double" name="def"/>
+          <Argument type="double" name="spAtk"/>
+          <Argument type="double" name="spDef"/>
+          <Argument type="double" name="spd"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAtk" returnType="double" visibility="public"/>
+        <Method name="getSpAtk" returnType="double" visibility="public"/>
+        <Method name="getDef" returnType="double" visibility="public"/>
+        <Method name="getSpDef" returnType="double" visibility="public"/>
+        <Method name="getSpd" returnType="double" visibility="public"/>
+        <Method name="getIni" returnType="double" visibility="public"/>
+        <Method name="getHp" returnType="double" visibility="public"/>
+        <Method name="setAtk" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="setSpAtk" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="setDef" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="setSpDef" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="setIni" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="setSpd" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="setHp" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="addAtk" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="addSpAtk" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="addDef" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="addSpDef" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="addIni" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="addSpd" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="addHp" returnType="void" visibility="public">
+          <Argument type="double" name="value"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="createNewEnums" package="tools" visibility="public" xPosition="1520.0" yPosition="2820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="work" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="className"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="inputMovesToMoveList" package="tools" visibility="public" xPosition="1820.0" yPosition="2820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="work" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="movesToEnum" package="tools" visibility="public" xPosition="2120.0" yPosition="2820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="work" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="outdated.pokemon.PokemonOLD" target="pokemon.stats.EV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokemonOLD" target="pokemon.moves.MoveList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.parts.MovePart" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.stats.StatChange" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderOLD" target="outdated.pokemon.PokeBuilderOLD" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.parts.Accurance" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.parts.Gender" target="pokemon.parts.PokePart"/>
+    <IsRelation name="is" source="pokemon.moves.parts.StatChanges" target="pokemon.moves.parts.MovePart"/>
+    <IsRelation name="is" source="pokemon.moves.parts.Accurance" target="pokemon.moves.parts.MovePart"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderOLD" target="pokemon.parts.Ability" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bag" source="player.Player" target="player.Bag" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.parts.Types" target="pokemon.other.Type" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.moves.parts.Power" target="pokemon.moves.parts.MovePart"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderInterfaceOLD" target="outdated.pokemon.PokeBuilderInterfaceOLD" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderOLD" target="pokemon.moves.MoveList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokemonOLD" target="pokemon.other.Type" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.moves.MoveList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="type" source="pokemon.moves.Move" target="pokemon.other.Type" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.parts.Types" target="pokemon.parts.PokePart"/>
+    <HasRelation name="statChanges" source="pokemon.moves.parts.StatChanges" target="pokemon.moves.parts.StatEffect" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="outdated.pokemon.PokeBuilderOLD" target="outdated.pokemon.PokeBuilderInterfaceOLD"/>
+    <IsRelation name="is" source="pokemon.moves.parts.Recoil" target="pokemon.moves.parts.MovePart"/>
+    <UseRelation source="outdated.pokemon.PokemonOLD" target="pokemon.parts.Ability" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="category" source="pokemon.moves.Move" target="pokemon.moves.enums.Category" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="stat" source="pokemon.stats.StatChange" target="pokemon.stats.Stat" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.parts.AdditionalEffect" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.other.Type" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.parts.Hiddenability" target="pokemon.parts.PokePart"/>
+    <UseRelation source="outdated.pokemon.PokemonOLD" target="pokemon.stats.IV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderInterfaceOLD" target="pokemon.Pokemon" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="player.Player" target="pokemon.Pokemon" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.parts.Power" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="description" source="pokemon.moves.Move" target="pokemon.moves.parts.Description" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.stats.EV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.moves.parts.Critratio" target="pokemon.moves.parts.MovePart"/>
+    <HasRelation name="critratio" source="pokemon.moves.Move" target="pokemon.moves.parts.Critratio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="moves" source="outdated.pokemon.PokemonOLD" target="pokemon.moves.MoveList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="MoveList"/>
+    <UseRelation source="pokemon.moves.parts.StatusEffect" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokemonOLD" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ownStatusChanges" source="pokemon.moves.Move" target="pokemon.moves.parts.StatusChanges" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderOLD" target="outdated.pokemon.PokeBuilderInterfaceOLD" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokemonOLD" target="pokemon.stats.Stats" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="additionalEffect" source="pokemon.moves.Move" target="pokemon.moves.parts.AdditionalEffect" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.parts.Description" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="enemyStatusChanges" source="pokemon.moves.Move" target="pokemon.moves.parts.StatusChanges" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.moves.parts.Description" target="pokemon.moves.parts.MovePart"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderInterfaceOLD" target="pokemon.moves.MoveList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="enemyStatChangens" source="pokemon.moves.Move" target="pokemon.moves.parts.StatChanges" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ownStatChanges" source="pokemon.moves.Move" target="pokemon.moves.parts.StatChanges" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="temp" source="outdated.pokemon.PokeBuilderOLD" target="outdated.pokemon.PokemonOLD" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.parts.StatChanges" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.parts.StatEffect" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokemonOLD" target="pokemon.parts.Gender" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.parts.GivesEV" target="pokemon.stats.EV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.stats.StatChange" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="move" source="pokemon.moves.data.LearnPacket" target="pokemon.moves.MoveList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="MoveList"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderOLD" target="pokemon.Pokemon" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.enums.Category" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.parts.Flags" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="statusChanges" source="pokemon.moves.parts.StatusChanges" target="pokemon.moves.parts.StatusEffect" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.moves.parts.Prio" target="pokemon.moves.parts.MovePart"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderOLD" target="pokemon.parts.Gender" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="effect" source="outdated.move.MoveStatusChangeOLD" target="pokemon.other.Status" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.parts.Prio" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.parts.Evolution" target="pokemon.parts.PokePart"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderInterfaceOLD" target="pokemon.stats.IV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.parts.Ability" target="pokemon.parts.PokePart"/>
+    <UseRelation source="pokemon.parts.Ability" target="pokemon.parts.Ability" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.moves.parts.StatusChanges" target="pokemon.moves.parts.MovePart"/>
+    <HasRelation name="ownStats" source="outdated.move.StatManipulationOLD" target="pokemon.stats.Stats" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.parts.Gender" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="enemyStats" source="outdated.move.StatManipulationOLD" target="pokemon.stats.Stats" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderInterfaceOLD" target="pokemon.stats.EV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.other.Type" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.other.Nature" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.moves.parts.Absorb" target="pokemon.moves.parts.MovePart"/>
+    <UseRelation source="pokemon.parts.Hiddenability" target="pokemon.parts.Ability" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.stats.Stats" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderInterfaceOLD" target="pokemon.parts.Ability" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.parts.Flags" target="pokemon.moves.enums.FlagList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderInterfaceOLD" target="pokemon.parts.Gender" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="status" source="pokemon.moves.parts.StatusEffect" target="pokemon.other.Status" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="accurance" source="pokemon.moves.Move" target="pokemon.moves.parts.Accurance" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderOLD" target="pokemon.stats.IV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.move.StatManipulationOLD" target="pokemon.stats.Stats" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="main" target="pokemon.spawning.Route" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.parts.Ability" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="flags" source="pokemon.moves.parts.Flags" target="pokemon.moves.enums.FlagList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="FlagList"/>
+    <HasRelation name="power" source="pokemon.moves.Move" target="pokemon.moves.parts.Power" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="prio" source="pokemon.moves.Move" target="pokemon.moves.parts.Prio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.parts.GivesEV" target="pokemon.parts.PokePart"/>
+    <HasRelation name="move" source="pokemon.Pokemon" target="pokemon.moves.MoveList" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="MoveList"/>
+    <UseRelation source="pokemon.Pokemon" target="pokemon.stats.IV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.move.MoveStatusChangeOLD" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.data.LearnPacket" target="pokemon.moves.MoveList" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.parts.StatusChanges" target="pokemon.stats.Stat" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pokemon.moves.Move" target="pokemon.moves.parts.Critratio" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.moves.parts.Flags" target="pokemon.moves.parts.MovePart"/>
+    <HasRelation name="stat" source="pokemon.moves.parts.StatEffect" target="pokemon.stats.Stat" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="outdated.pokemon.PokeBuilderOLD" target="pokemon.stats.EV" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="pokemon.moves.parts.AdditionalEffect" target="pokemon.moves.parts.MovePart"/>
+    <HasRelation name="flags" source="pokemon.moves.Move" target="pokemon.moves.parts.Flags" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

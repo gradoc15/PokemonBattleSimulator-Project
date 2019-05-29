@@ -36,9 +36,11 @@ public class Pokemon
         this.ability = ability;
     }
     
-    private final int id;
-    private final String name;
-    private final Values basicValues;
+  
+    
+    private  int id;
+    private  String name;
+    private  Values basicValues;
     
     private Ability ability;
     private Nature nature;

@@ -45,11 +45,23 @@ public enum Nature
     private Nature(String bez, Stat plus, Stat minus)
     {
         this.bez = bez;
-        this.minus = minus;
-        this.plus = plus;
+        this.negativ = minus;
+        this.positiv = plus;
     }
     
     private String bez;
-    private Stat plus, minus;
+    private Stat positiv, negativ;
+
+    public Stat getPositiv()
+    {
+        return positiv;
+    }
+
+    public Stat getNegativ()
+    {
+        return negativ;
+    }
+    
+    
     
 }
