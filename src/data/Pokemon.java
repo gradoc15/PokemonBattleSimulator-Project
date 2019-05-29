@@ -20,7 +20,7 @@ public class Pokemon
     private Type type1, type2;
     private Ability[] possibleAbilities;
      */
-    public Pokemon(int id, String name, Values basicValues, String type1, String type2, LinkedList<Ability> ability)
+    public Pokemon(int id, String name, Values basicValues, String type1, String type2, Ability ability)
     {
         this.id = id;
         this.name = name;
@@ -33,7 +33,7 @@ public class Pokemon
         this.type1 = type1;
         this.type2 = type2;
         
-        this.ability = ability.getFirst();
+        this.ability = ability;
     }
     
     private final int id;

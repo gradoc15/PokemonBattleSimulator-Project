@@ -264,7 +264,7 @@ public class DB
             }
 
             
-            data.Pokemon p = new data.Pokemon(rs.getInt("PID"), rs.getString("name"), new data.Values(rs.getInt("BasicHP"), rs.getInt("BasicATK"), rs.getInt("BasicDEF"), rs.getInt("BasicSPATK"), rs.getInt("BasicSPDEF"), rs.getInt("BasicINIT")), type1, type2, abilities);
+            data.Pokemon p = new data.Pokemon(rs.getInt("PID"), rs.getString("name"), new data.Values(rs.getInt("BasicHP"), rs.getInt("BasicATK"), rs.getInt("BasicDEF"), rs.getInt("BasicSPATK"), rs.getInt("BasicSPDEF"), rs.getInt("BasicINIT")), type1, type2, abilities.getFirst());
             pkm.add(p);
         }
 

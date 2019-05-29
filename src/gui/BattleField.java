@@ -22,7 +22,7 @@ public class BattleField extends javax.swing.JFrame
      */
     
     private data.Pokemon ownTeam[];
-    private battle.battleBl bl;
+    private battle.battleBl battleBl;
     
     private JLabel teamSlots[] = new JLabel[6];
     
@@ -36,7 +36,7 @@ public class BattleField extends javax.swing.JFrame
         initComponents();
         
         this.ownTeam = ownTeam;
-        bl = new battle.battleBl(ownTeam);
+        battleBl = new battle.battleBl(ownTeam);
         
         
         init();
@@ -51,14 +51,22 @@ public class BattleField extends javax.swing.JFrame
         teamSlots[4] = lbSlot5;
         teamSlots[5] = lbSlot6;
         
-        
-        
         for(int i = 0; i < teamSlots.length; i++)
         {
             if(ownTeam[i] != null)
                 teamSlots[i].setText(ownTeam[i].getName());
             teamSlots[i].setOpaque(true);
             teamSlots[i].setBackground(java.awt.Color.green);
+        }
+        
+        //Setting acutal Pokemon slot
+        for(int i = 0; i < ownTeam.length; i++)
+        {
+            if(ownTeam[i] != null)
+            {
+              
+                break;
+            }
         }
     }
     
@@ -106,67 +114,95 @@ public class BattleField extends javax.swing.JFrame
         plTeamPriview.setMinimumSize(new java.awt.Dimension(215, 600));
         plTeamPriview.setLayout(new java.awt.GridLayout(6, 0));
 
-        lbSlot1.setText("jLabel1");
+        lbSlot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot1.setText("empty");
+        lbSlot1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                onClickedSlot1(evt);
+            }
+        });
         plTeamPriview.add(lbSlot1);
 
-        lbSlot2.setText("jLabel1");
+        lbSlot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot2.setText("empty");
         plTeamPriview.add(lbSlot2);
 
-        lbSlot3.setText("jLabel1");
+        lbSlot3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot3.setText("empty");
         plTeamPriview.add(lbSlot3);
 
-        lbSlot4.setText("jLabel1");
+        lbSlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot4.setText("empty");
         plTeamPriview.add(lbSlot4);
 
-        lbSlot5.setText("jLabel1");
+        lbSlot5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot5.setText("empty");
         plTeamPriview.add(lbSlot5);
 
-        lbSlot6.setText("jLabel1");
+        lbSlot6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbSlot6.setText("empty");
         plTeamPriview.add(lbSlot6);
 
         lbMyPokemon.setBackground(new java.awt.Color(153, 255, 204));
-        lbMyPokemon.setText("jLabel7");
+        lbMyPokemon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMyPokemon.setText("empty");
         lbMyPokemon.setOpaque(true);
 
         lbEnemyPokemon.setBackground(new java.awt.Color(153, 255, 204));
-        lbEnemyPokemon.setText("jLabel7");
+        lbEnemyPokemon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbEnemyPokemon.setText("empty");
         lbEnemyPokemon.setOpaque(true);
 
         jPanel1.setBackground(new java.awt.Color(102, 204, 0));
         jPanel1.setMinimumSize(new java.awt.Dimension(485, 115));
         jPanel1.setLayout(new java.awt.GridLayout(2, 2));
 
-        lbMove1.setText("jLabel9");
+        lbMove1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMove1.setText("/");
         jPanel1.add(lbMove1);
 
-        lbMove2.setText("jLabel9");
+        lbMove2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMove2.setText("/");
         jPanel1.add(lbMove2);
 
-        lbMove3.setText("jLabel9");
+        lbMove3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMove3.setText("/");
         jPanel1.add(lbMove3);
 
-        lbMove4.setText("jLabel9");
+        lbMove4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMove4.setText("/");
         jPanel1.add(lbMove4);
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 6));
 
-        lbESlot1.setText("jLabel13");
+        lbESlot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbESlot1.setText("O");
         jPanel2.add(lbESlot1);
 
-        lbESlot2.setText("jLabel13");
+        lbESlot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbESlot2.setText("O");
         jPanel2.add(lbESlot2);
 
-        lbESlot3.setText("jLabel13");
+        lbESlot3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbESlot3.setText("O");
         jPanel2.add(lbESlot3);
 
-        lbESlot4.setText("jLabel13");
+        lbESlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbESlot4.setText("O");
         jPanel2.add(lbESlot4);
 
-        lbESlot5.setText("jLabel13");
+        lbESlot5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbESlot5.setText("O");
         jPanel2.add(lbESlot5);
 
-        lbESlot6.setText("jLabel13");
+        lbESlot6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbESlot6.setText("O");
         jPanel2.add(lbESlot6);
+
+        pbMyHP.setToolTipText("");
+        pbMyHP.setAutoscrolls(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,15 +210,14 @@ public class BattleField extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(plTeamPriview, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbMyPokemon, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pbMyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 285, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 289, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(pbEnemyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -214,6 +249,11 @@ public class BattleField extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void onClickedSlot1(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClickedSlot1
+    {//GEN-HEADEREND:event_onClickedSlot1
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onClickedSlot1
 
     /**
      * @param args the command line arguments
