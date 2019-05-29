@@ -14,8 +14,10 @@ import java.util.LinkedList;
 public class PokemonExtended extends Pokemon
 {
     private Values realStats;
-    private boolean battleRdy = true;
+    
     private int currentHP;
+    private boolean alive = true;
+    
     private int movePP[] = new int[4];
 
     
@@ -28,342 +30,94 @@ public class PokemonExtended extends Pokemon
     
     public PokemonExtended(data.Pokemon pkm)
     {
-        
         super(pkm.getId(), pkm.getName(), pkm.getBasicValues(), pkm.getType1(), pkm.getType2(), pkm.getAbility());
         
         super.setNature(pkm.getNature());
         super.setMove(pkm.getMove());
         
+        init();
+    }
+    
+    /**
+     * Calculates and sets the realstats, also sets the maximum pp of the moves and sets the current hp to the maximum
+     */
+    public void init()
+    {
+        //Calculates the realstats
+        realStats = new Values((int) (((basicValues.getHp()*2.0+iv.getHp()+(ev.getHp()/4))*lvl)/100.0)+lvl+10,
+                ((int)((((basicValues.getAtk()*2.0+iv.getAtk()+(ev.getAtk()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.atk) ? 1.1 : 1)*(nature.getNegativ().equals(stats.atk) ? 0.9 : 1)),
+                ((int)((((basicValues.getDef()*2.0+iv.getDef()+(ev.getDef()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.def) ? 1.1 : 1)*(nature.getNegativ().equals(stats.def) ? 0.9 : 1)),
+                ((int)((((basicValues.getSpAtk()*2.0+iv.getSpAtk()+(ev.getSpAtk()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.spAtk) ? 1.1 : 1)*(nature.getNegativ().equals(stats.spAtk) ? 0.9 : 1)),
+                ((int)((((basicValues.getSpDef()*2.0+iv.getSpDef()+(ev.getSpDef()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.spDef) ? 1.1 : 1)*(nature.getNegativ().equals(stats.spDef) ? 0.9 : 1)),
+                ((int)((((basicValues.getIni()*2.0+iv.getIni()+(ev.getIni()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.ini) ? 1.1 : 1)*(nature.getNegativ().equals(stats.ini) ? 0.9 : 1)));
+        
+        //Init movePP
         for(int i = 0; i < movePP.length; i++)
         {
-            movePP[i] = 10;
+            movePP[i] = 15;
         }
-
-        realStats = new Values((((2*super.getBasicValues().getHp()+super.getIv().getHp()+super.getEv().getHp()/4)*super.getLvl())/100)+5, 
-                (int) ((int) ((((2*super.getBasicValues().getAtk()+super.getIv().getAtk()+super.getEv().getAtk()/4)*super.getLvl())/100)+5) 
-                    * (super.getNature().getPositiv().equals(super.getNature().getNegativ()) ? 1 : super.getNature().getPositiv().equals(Stat.ATK) ? 1.1 : (super.getNature().getNegativ().equals(Stat.ATK) ? 0.9 : 1))), 
-                (int) ((int) ((((2*super.getBasicValues().getDef()+super.getIv().getDef()+super.getEv().getDef()/4)*super.getLvl())/100)+5) 
-                    * (super.getNature().getPositiv().equals(super.getNature().getNegativ()) ? 1 : super.getNature().getPositiv().equals(Stat.DEF) ? 1.1 : (super.getNature().getNegativ().equals(Stat.DEF) ? 0.9 : 1))), 
-                (int) ((int) ((((2*super.getBasicValues().getSpAtk()+super.getIv().getSpAtk()+super.getEv().getSpAtk()/4)*super.getLvl())/100)+5) 
-                    * (super.getNature().getPositiv().equals(super.getNature().getNegativ()) ? 1 : super.getNature().getPositiv().equals(Stat.SPATK) ? 1.1 : (super.getNature().getNegativ().equals(Stat.SPATK) ? 0.9 : 1))), 
-                (int) ((int) ((((2*super.getBasicValues().getSpDef()+super.getIv().getSpDef()+super.getEv().getSpDef()/4)*super.getLvl())/100)+5) 
-                    * (super.getNature().getPositiv().equals(super.getNature().getNegativ()) ? 1 : super.getNature().getPositiv().equals(Stat.SPDEF) ? 1.1 : (super.getNature().getNegativ().equals(Stat.SPDEF) ? 0.9 : 1))),
-                (int) ((int) ((((2*super.getBasicValues().getIni()+super.getIv().getIni()+super.getEv().getIni()/4)*super.getLvl())/100)+5) 
-                    * (super.getNature().getPositiv().equals(super.getNature().getNegativ()) ? 1 : super.getNature().getPositiv().equals(Stat.INIT) ? 1.1 : (super.getNature().getNegativ().equals(Stat.INIT) ? 0.9 : 1))));
         
+        //Sets current HP to max HP
         currentHP = realStats.getHp();
-        
-        for(int i = 0; i < movePP.length; i++)
-            movePP[i] = 10;
     }
     
-    public void minusHP(int amount)
+    /**
+     * Substracts an amount of HP of the current HP and checks if the pokemon is still alive or not
+     * @param amount 
+     */
+    public void subHP(int amount)
     {
-        currentHP-= amount;
-        
-        if(currentHP <= 0)
-            battleRdy = false;
+        currentHP -= amount;
+        if(currentHP < 0)
+            currentHP = 0;
+        if(currentHP == 0)
+            alive = false;
     }
     
-    public int getHP()
+    /**
+     * Return the move which is on the given slot
+     * @param slot
+     * @return 
+     */
+    public data.Move getMoveAt(int slot)
     {
-        return currentHP;
+        return move[slot];
     }
     
-    public void moveMake(int moveSlot, PokemonExtended enemy) throws Exception
+    public int getMovePPOf(int slot)
     {
-        if(movePP[moveSlot] <= 0)
-            throw new Exception("There not enought pp");
-        enemy.minusHP(calcDmg(moveSlot, enemy));
-        movePP[moveSlot]--;
-    }
-
-    
-    public int calcDmg(int moveSlot, PokemonExtended enemy)
-    {
-        int help = getLvl()*2/5+2;
-        System.out.println("adasd:   "+help);
-        return (int) ((int) ((int) 
-                ((help
-                    * (super.getMove()[moveSlot].getCat().equals("physic") ? realStats.getAtk()/enemy.getRealStats().getDef() : realStats.getSpAtk()/enemy.getRealStats().getSpDef()) +2) 
-                    * (super.getMove()[moveSlot].getType().equals(super.getType1()) || super.getMove()[moveSlot].getType().equals(super.getType2()) ? 1.5 : 1))
-                    * getTypeEffi(super.getMove()[moveSlot].getType(), enemy.getType1()))
-                    * (!enemy.getType2().equals("none") ? getTypeEffi(super.getMove()[moveSlot].getType(), enemy.getType2()) : 1));
+        return movePP[slot];
     }
     
-    public int calcStruggle(PokemonExtended enemy)
+    /**
+     * Substracts the move pp by 1
+     * @param slot 
+     */
+    public void useMove(int slot)
     {
-        System.out.println("STRUGGLE");
-        int help = getLvl()*2/5+2;
-        System.out.println("adasd:   "+help);
-        minusHP(realStats.getHp()/4);
-        
-        return (int) ((int) ((int) 
-                ((help
-                    * realStats.getAtk()/enemy.getRealStats().getDef()) 
-                    * ("normal".equals(super.getType1()) || "normal".equals(super.getType2()) ? 1.5 : 1))
-                    * getTypeEffi("normal", enemy.getType1()))
-                    * (!enemy.getType2().equals("none") ? getTypeEffi("normal", enemy.getType2()) : 1));
+        movePP[slot] = movePP[slot]-1;
     }
     
-    public double getTypeEffi(String atkType, String defType)
-    {
-        switch(atkType)
-        {
-            case "bug":
-                switch(defType)
-                {
-                    case "grass":
-                    case "psychic":
-                    case "dark": return 2;
-                    case "fire":
-                    case "fighting":
-                    case "flying":
-                    case "poison":
-                    case "ghost":
-                    case "steel":
-                    case "fairy": return 0.5;
-                    default: return 1;
-                }
-            case "dark":
-                switch(defType)
-                {
-                    case "psychic":
-                    case "ghost": return 2;
-                    case "fighting":
-                    case "dark":
-                    case "fairy": return 0.5;
-                    default: return 1;
-                }
-            case "dragon":
-                switch(defType)
-                {
-                    case "dragon": return 2;
-                    case "steel": return 0.5;
-                    case "fairy": return 0;
-                    default: return 1;
-                }
-            case "electric":
-                switch(defType)
-                {
-                    case "water":
-                    case "flying": return 2;
-                    case "grass":
-                    case "electric":
-                    case "dragon": return 0.5;
-                    case "ground": return 0;
-                    default: return 1;
-                }
-            case "fairy":
-                switch(defType)
-                {
-                    case "fighting":
-                    case "dragon":
-                    case "dark": return 2;
-                    case "fire":
-                    case "poison":
-                    case "steel": return 0.5;
-                    default: return 1;
-                }
-            case "fighting":
-                switch(defType)
-                {
-                    case "normal":
-                    case "rock":
-                    case "ice":
-                    case "dark":
-                    case "steel": return 2;
-                    case "flying":
-                    case "poison":
-                    case "psychic":
-                    case "bug":
-                    case "fairy": return 0.5;
-                    case "ghost": return 0;
-                    default: return 1;
-                }
-            case "fire":
-                switch(defType)
-                {
-                    case "grass":
-                    case "ice":
-                    case "bug":
-                    case "steel": return 2;
-                    case "fire":
-                    case "water":
-                    case "rock":
-                    case "dragon": return 0.5;
-                    default: return 1;
-                }
-            case "flying":
-                switch(defType)
-                {
-                    case "fighting":
-                    case "grass":
-                    case "bug": return 2;
-                    case "electric":
-                    case "rock":
-                    case "steel": return 0.5;
-                    default: return 1;
-                }
-            case "ghost":
-                switch(defType)
-                {
-                    case "ghost":
-                    case "psychic": return 2;
-                    case "dark": return 0.5;
-                    case "normal": return 0;
-                    default: return 1;
-                }
-            case "grass":
-                switch(defType)
-                {
-                    case "water":
-                    case "ground":
-                    case "rock": return 2;
-                    case "fire":
-                    case "flying":
-                    case "grass":
-                    case "poison":
-                    case "bug":
-                    case "dragon":
-                    case "steel": return 0.5;
-                    default: return 1;
-                }
-            case "ground":
-                switch(defType)
-                {
-                    case "fire":
-                    case "poison":
-                    case "electric":
-                    case "rock":
-                    case "steel": return 2;
-                    case "grass":
-                    case "bug": return 0.5;
-                    case "flying": return 0;
-                    default: return 1;
-                }
-            case "ice":
-                switch(defType)
-                {
-                    case "flying":
-                    case "grass":
-                    case "ground":
-                    case "dragon": return 2;
-                    case "fire":
-                    case "water":
-                    case "ice":
-                    case "steel": return 0.5;
-                    default: return 1;
-                }
-            case "normal":
-                switch(defType)
-                {
-                    case "rock":
-                    case "steel": return 0.5;
-                    case "ghost": return 0;
-                    default: return 1;
-                }
-            case "poison":
-                switch(defType)
-                {
-                    case "grass":
-                    case "fairy": return 2;
-                    case "poison":
-                    case "ground":
-                    case "rock":
-                    case "ghost": return 0.5;
-                    case "steel": return 0;
-                    default: return 0;
-                }
-            case "psychic":
-                switch(defType)
-                {
-                    case "fighting":
-                    case "poison": return 2;
-                    case "psychic":
-                    case "steel": return 0.5;
-                    case "dark": return 0;
-                    default: return 1;
-                }
-            case "rock":
-                switch(defType)
-                {
-                    case "fire":
-                    case "flying":
-                    case "ice":
-                    case "bug": return 2;
-                    case "fighting":
-                    case "ground":
-                    case "steel": return 0.5;
-                    default: return 1;
-                }
-            case "steel":
-                switch(defType)
-                {
-                    case "rock":
-                    case "ice":
-                    case "fairy": return 2;
-                    case "fire":
-                    case "water":
-                    case "electric":
-                    case "steel": return 0.5;
-                    default: return 1;
-                }
-            case "water":
-                switch(defType)
-                {
-                    case "fire":
-                    case "ground":
-                    case "rock": return 2;
-                    case "water":
-                    case "grass":
-                    case "dragon": return 0.5;
-                    default: return 1;
-                }
-            default: return 1;
-        }
-    }
-    
-    public double getTypeEffi(String atkType, String defType1, String defType2)
-    {
-        return getTypeEffi(atkType, defType1)* getTypeEffi(atkType, defType2);
-    }
-
+    /**
+     * Returns the realstats
+     * @return 
+     */
     public Values getRealStats()
     {
         return realStats;
     }
 
-    public boolean isBattleRdy()
-    {
-        return battleRdy;
+    /**
+     * Returns a boolean, if true the pokemon is still alive
+     * @return 
+     */
+    public boolean isAlive() {
+        return alive;
     }
+    
+    
+    
 
-    public int getCurrentHP()
-    {
-        return currentHP;
-    }
-
-    public int[] getMovePP()
-    {
-        return movePP;
-    }
-
-    public void setRealStats(Values realStats) {
-        this.realStats = realStats;
-    }
-
-    public void setBattleRdy(boolean battleRdy) {
-        this.battleRdy = battleRdy;
-    }
-
-    public void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
-    }
-
-    public void setMovePPAt (int slot, int pp) {
-        movePP[slot] = pp;
-    }
     
     
     

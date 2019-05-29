@@ -38,23 +38,23 @@ public class Pokemon
     
   
     
-    private  int id;
-    private  String name;
-    private  Values basicValues;
+    protected int id;
+    protected  String name;
+    protected  Values basicValues;
     
-    private Ability ability;
-    private Nature nature;
-    private Gender gender;
-    private int lvl;
-    private Move[] move = new Move[4];
-    private boolean shiny;
-    private String type1, type2;
+    protected Ability ability;
+    protected Nature nature;
+    protected Gender gender;
+    protected int lvl;
+    protected Move[] move = new Move[4];
+    protected boolean shiny;
+    protected String type1, type2;
     
-    private Values iv;
-    private Values ev;
+    protected Values iv;
+    protected Values ev;
     
-    private Values stats;
-    private int currentHP;
+    protected Values stats;
+    protected int currentHP;
     
     public void updateStats()
     {
