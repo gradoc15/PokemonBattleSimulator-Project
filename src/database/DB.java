@@ -117,20 +117,35 @@ public class DB
                 + " PRIMARY KEY(PID, Bez));");
         
         
-//        st.executeUpdate("ALTER TABLE pokemontype ADD CONSTRAINT fk_pokemontype_pokemon"
-//                    + " FOREIGN KEY (PID) REFERENCES pet(PID);");
+        st.executeUpdate("ALTER TABLE pokemontype ADD CONSTRAINT fk_pokemontype_pokemon"
+                    + " FOREIGN KEY (PID) REFERENCES pokemon (PID);");
+        st.executeUpdate("ALTER TABLE pokemontype ADD CONSTRAINT fk_pokemontype_type"
+                    + " FOREIGN KEY (Bez) REFERENCES type (Bez);");
         
         st.executeUpdate("CREATE TABLE pokemonability"
                 + " ("
                 + " PID INTEGER,"
                 + " AID INTEGER,"
                 + " PRIMARY KEY(PID, AID));");
-        System.out.println("##################");
+        
+        st.executeUpdate("ALTER TABLE pokemonability ADD CONSTRAINT fk_pokemonability_pokemon"
+                    + " FOREIGN KEY (PID) REFERENCES pokemon (PID);");
+        
+        st.executeUpdate("ALTER TABLE pokemonability ADD CONSTRAINT fk_pokemonability_ability"
+                    + " FOREIGN KEY (AID) REFERENCES ability (AID);");
+        
         st.executeUpdate("CREATE TABLE pokemonmove"
                 + " ("
                 + " PID INTEGER,"
                 + " MID INTEGER,"
                 + " PRIMARY KEY(PID, MID));");
+        
+        st.executeUpdate("ALTER TABLE pokemonmove ADD CONSTRAINT fk_pokemonmove_pokemon"
+                    + " FOREIGN KEY (PID) REFERENCES pokemon (PID);");
+        
+        st.executeUpdate("ALTER TABLE pokemonmove ADD CONSTRAINT fk_pokemonmove_move"
+                    + " FOREIGN KEY (MID) REFERENCES move (MID);");
+        
     }
     
     private void fillType() throws SQLException
@@ -153,6 +168,7 @@ public class DB
         st.execute("INSERT INTO type VALUES('dragon');");
         st.execute("INSERT INTO type VALUES('steel');");
         st.execute("INSERT INTO type VALUES('fairy');");
+        st.execute("INSERT INTO type VALUES('none');");
         System.out.println("filled types");
     }
     
@@ -163,6 +179,12 @@ public class DB
         st.execute("INSERT INTO pokemon VALUES(1, 'Bulbasaur', 45, 49, 49, 65, 65, 45);");
         st.execute("INSERT INTO pokemon VALUES(2, 'Ivysaur', 60, 62, 63, 80, 80, 60);");
         st.execute("INSERT INTO pokemon VALUES(3, 'Venusaur', 80, 82, 83, 100, 100, 80);");
+        st.execute("INSERT INTO pokemon VALUES(4, 'Charmander', 39, 52, 43, 60, 50, 65);");
+        st.execute("INSERT INTO pokemon VALUES(5, 'Charmeleon', 58, 64, 58, 80, 65, 80);");
+        st.execute("INSERT INTO pokemon VALUES(6, 'Charizard', 78, 84, 78, 109, 85, 100);");
+        st.execute("INSERT INTO pokemon VALUES(7, 'Squirtle', 44, 48, 65, 50, 64, 43);");
+        st.execute("INSERT INTO pokemon VALUES(8, 'Wartortle', 59, 63, 80, 65, 80, 58);");
+        st.execute("INSERT INTO pokemon VALUES(9, 'Blastoise', 79, 83, 100, 85, 105, 78);");
         System.out.println("filled pokemon");
     }
     
@@ -177,6 +199,22 @@ public class DB
     {
         Statement st = con.createStatement();
         st.execute("INSERT INTO move VALUES(1, 'Tackle','normal','physic',40,100);");
+        st.execute("INSERT INTO move VALUES(2, 'Vine Whip','grass','physic',45,100);");
+        st.execute("INSERT INTO move VALUES(3, 'Take Down','normal','physic',90,100);");
+        st.execute("INSERT INTO move VALUES(4, 'Razor Leaf','grass','physic',55,100);");
+        st.execute("INSERT INTO move VALUES(5, 'Petal Blizzard','grass','physic',90,100);");
+        st.execute("INSERT INTO move VALUES(6, 'Ember','fire','spez',40,100);");
+        st.execute("INSERT INTO move VALUES(7, 'Dragon Rage','dragon','spez',45,100);");
+        st.execute("INSERT INTO move VALUES(8, 'Fire Fang','fire','physic',65,100);");
+        st.execute("INSERT INTO move VALUES(9, 'Flame Burst','fire','spez',70,100);");
+        st.execute("INSERT INTO move VALUES(10, 'Slash','normal','physic',70,100);");
+        st.execute("INSERT INTO move VALUES(11, 'Flamethrower','fire','spez',90,100);");
+        st.execute("INSERT INTO move VALUES(12, 'Water Gun','water','spez',40,100);");
+        st.execute("INSERT INTO move VALUES(13, 'Bubble','water','spez',40,100);");
+        st.execute("INSERT INTO move VALUES(14, 'Bite','dark','physic',60,100);");
+        st.execute("INSERT INTO move VALUES(15, 'Water Pulse','water','spez',60,100);");
+        st.execute("INSERT INTO move VALUES(16, 'Aqua Tail','water','physic',90,100);");
+        st.execute("INSERT INTO move VALUES(17, 'Skull Bash','normal','physic',130,100);");
         System.out.println("moves filled");
     }
     
@@ -190,6 +228,13 @@ public class DB
         st.execute("INSERT INTO pokemontype VALUES(2,'poison');");
         st.execute("INSERT INTO pokemontype VALUES(3,'grass');");
         st.execute("INSERT INTO pokemontype VALUES(3,'poison');");
+        st.execute("INSERT INTO pokemontype VALUES(4,'fire');");
+        st.execute("INSERT INTO pokemontype VALUES(5,'fire');");
+        st.execute("INSERT INTO pokemontype VALUES(6,'fire');");
+        st.execute("INSERT INTO pokemontype VALUES(6,'flying');");
+        st.execute("INSERT INTO pokemontype VALUES(7,'water');");
+        st.execute("INSERT INTO pokemontype VALUES(8,'water');");
+        st.execute("INSERT INTO pokemontype VALUES(9,'water');");
     }
     private void fillPokeMoves() throws SQLException
     {
@@ -198,6 +243,54 @@ public class DB
         st.execute("INSERT INTO pokemonmove VALUES(1, 1);");
         st.execute("INSERT INTO pokemonmove VALUES(2, 1);");
         st.execute("INSERT INTO pokemonmove VALUES(3, 1);");
+        st.execute("INSERT INTO pokemonmove VALUES(1, 2);");
+        st.execute("INSERT INTO pokemonmove VALUES(2, 2);");
+        st.execute("INSERT INTO pokemonmove VALUES(3, 2);");
+        st.execute("INSERT INTO pokemonmove VALUES(1, 3);");
+        st.execute("INSERT INTO pokemonmove VALUES(2, 3);");
+        st.execute("INSERT INTO pokemonmove VALUES(3, 3);");
+        st.execute("INSERT INTO pokemonmove VALUES(1, 4);");
+        st.execute("INSERT INTO pokemonmove VALUES(2, 4);");
+        st.execute("INSERT INTO pokemonmove VALUES(3, 4);");
+        st.execute("INSERT INTO pokemonmove VALUES(1, 5);");
+        st.execute("INSERT INTO pokemonmove VALUES(2, 5);");
+        st.execute("INSERT INTO pokemonmove VALUES(3, 5);");
+        st.execute("INSERT INTO pokemonmove VALUES(4, 6);");
+        st.execute("INSERT INTO pokemonmove VALUES(4, 7);");
+        st.execute("INSERT INTO pokemonmove VALUES(4, 8);");
+        st.execute("INSERT INTO pokemonmove VALUES(4, 9);");
+        st.execute("INSERT INTO pokemonmove VALUES(4, 10);");
+        st.execute("INSERT INTO pokemonmove VALUES(4, 11);");
+        st.execute("INSERT INTO pokemonmove VALUES(5, 6);");
+        st.execute("INSERT INTO pokemonmove VALUES(5, 7);");
+        st.execute("INSERT INTO pokemonmove VALUES(5, 8);");
+        st.execute("INSERT INTO pokemonmove VALUES(5, 9);");
+        st.execute("INSERT INTO pokemonmove VALUES(5, 10);");
+        st.execute("INSERT INTO pokemonmove VALUES(5, 11);");
+        st.execute("INSERT INTO pokemonmove VALUES(6, 6);");
+        st.execute("INSERT INTO pokemonmove VALUES(6, 7);");
+        st.execute("INSERT INTO pokemonmove VALUES(6, 8);");
+        st.execute("INSERT INTO pokemonmove VALUES(6, 9);");
+        st.execute("INSERT INTO pokemonmove VALUES(6, 10);");
+        st.execute("INSERT INTO pokemonmove VALUES(6, 11);");
+        st.execute("INSERT INTO pokemonmove VALUES(7, 12);");
+        st.execute("INSERT INTO pokemonmove VALUES(7, 13);");
+        st.execute("INSERT INTO pokemonmove VALUES(7, 14);");
+        st.execute("INSERT INTO pokemonmove VALUES(7, 15);");
+        st.execute("INSERT INTO pokemonmove VALUES(7, 16);");
+        st.execute("INSERT INTO pokemonmove VALUES(7, 17);");
+        st.execute("INSERT INTO pokemonmove VALUES(8, 12);");
+        st.execute("INSERT INTO pokemonmove VALUES(8, 13);");
+        st.execute("INSERT INTO pokemonmove VALUES(8, 14);");
+        st.execute("INSERT INTO pokemonmove VALUES(8, 15);");
+        st.execute("INSERT INTO pokemonmove VALUES(8, 16);");
+        st.execute("INSERT INTO pokemonmove VALUES(8, 17);");
+        st.execute("INSERT INTO pokemonmove VALUES(9, 12);");
+        st.execute("INSERT INTO pokemonmove VALUES(9, 13);");
+        st.execute("INSERT INTO pokemonmove VALUES(9, 14);");
+        st.execute("INSERT INTO pokemonmove VALUES(9, 15);");
+        st.execute("INSERT INTO pokemonmove VALUES(9, 16);");
+        st.execute("INSERT INTO pokemonmove VALUES(9, 17);");
     }
     
     private void fillPokeAbilities() throws SQLException
@@ -207,6 +300,12 @@ public class DB
         st.execute("INSERT INTO pokemonability VALUES(1,0);");
         st.execute("INSERT INTO pokemonability VALUES(2,0);");
         st.execute("INSERT INTO pokemonability VALUES(3,0);");
+        st.execute("INSERT INTO pokemonability VALUES(4,0);");
+        st.execute("INSERT INTO pokemonability VALUES(5,0);");
+        st.execute("INSERT INTO pokemonability VALUES(6,0);");
+        st.execute("INSERT INTO pokemonability VALUES(7,0);");
+        st.execute("INSERT INTO pokemonability VALUES(8,0);");
+        st.execute("INSERT INTO pokemonability VALUES(9,0);");
     }
     
     public static DB getInstance() throws SQLException
