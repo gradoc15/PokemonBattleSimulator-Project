@@ -64,6 +64,16 @@ public class DB
         System.out.println("done");
     }
     
+    public void deleteAll() throws SQLException
+    {
+        con.close();
+        con = DriverManager.getConnection("jdbc:postgresql://localhost/", "postgres", "postgres");
+        Statement st = con.createStatement();
+        
+        st.executeUpdate("DROP DATABASE pokemon_battle_simulator");
+        con.close();
+    }
+    
     private void createTables() throws SQLException
     {
         System.out.println("Create Tables");

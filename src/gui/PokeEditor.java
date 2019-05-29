@@ -735,6 +735,7 @@ public class PokeEditor extends javax.swing.JDialog
         m[1] = (data.Move) cbMove2.getSelectedItem();
         m[2] = (data.Move) cbMove3.getSelectedItem();
         m[3] = (data.Move) cbMove4.getSelectedItem();
+        pokemon.setMove(m);
         
         System.out.println("Nature: "+ pokemon.getNature());
         

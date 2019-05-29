@@ -32,6 +32,12 @@ public class PokemonExtended extends Pokemon
         super(pkm.getId(), pkm.getName(), pkm.getBasicValues(), pkm.getType1(), pkm.getType2(), pkm.getAbility());
         
         super.setNature(pkm.getNature());
+        super.setMove(pkm.getMove());
+        
+        for(int i = 0; i < movePP.length; i++)
+        {
+            movePP[i] = 10;
+        }
 
         realStats = new Values((((2*super.getBasicValues().getHp()+super.getIv().getHp()+super.getEv().getHp()/4)*super.getLvl())/100)+5, 
                 (int) ((int) ((((2*super.getBasicValues().getAtk()+super.getIv().getAtk()+super.getEv().getAtk()/4)*super.getLvl())/100)+5) 
@@ -75,9 +81,10 @@ public class PokemonExtended extends Pokemon
     
     public int calcDmg(int moveSlot, PokemonExtended enemy)
     {
-        
+        int help = getLvl()*2/5+2;
+        System.out.println("adasd:   "+help);
         return (int) ((int) ((int) 
-                ((super.getMove()[moveSlot].getPower()*(super.getLvl()*2/5+2)
+                ((help
                     * (super.getMove()[moveSlot].getCat().equals("physic") ? realStats.getAtk()/enemy.getRealStats().getDef() : realStats.getSpAtk()/enemy.getRealStats().getSpDef()) +2) 
                     * (super.getMove()[moveSlot].getType().equals(super.getType1()) || super.getMove()[moveSlot].getType().equals(super.getType2()) ? 1.5 : 1))
                     * getTypeEffi(super.getMove()[moveSlot].getType(), enemy.getType1()))
@@ -326,6 +333,24 @@ public class PokemonExtended extends Pokemon
     {
         return movePP;
     }
+
+    public void setRealStats(Values realStats) {
+        this.realStats = realStats;
+    }
+
+    public void setBattleRdy(boolean battleRdy) {
+        this.battleRdy = battleRdy;
+    }
+
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
+    }
+
+    public void setMovePPAt (int slot, int pp) {
+        movePP[slot] = pp;
+    }
+    
+    
     
     
     

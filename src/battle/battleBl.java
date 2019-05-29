@@ -16,7 +16,7 @@ public class battleBl
 {
     private data.PokemonExtended ownTeam[];
     private data.PokemonExtended enemyTeam[];
-    private boolean myTurn;
+    private boolean myTurn = true;
     private data.PokemonExtended actualPkmOwn;
     private data.PokemonExtended actualPkmEnemy;
 
@@ -35,6 +35,8 @@ public class battleBl
         {
             this.enemyTeam[i] = new data.PokemonExtended(enemyTeam[i]);
         }
+        
+        
         
         
         System.out.println("++++");
@@ -64,6 +66,22 @@ public class battleBl
             if(enemyTeam.length <= slot && slot >= 0)
                 if(enemyTeam[slot].isBattleRdy())
                     actualPkmEnemy = enemyTeam[slot];
+        }
+    }
+    
+    public void makeMove(int slot) throws Exception
+    {
+        if(myTurn)
+        {
+            if(actualPkmOwn.getMovePP()[slot] >= 0)
+            {
+                actualPkmOwn.setMovePPAt(slot, actualPkmOwn.getMovePP()[slot]-1);
+                actualPkmEnemy.minusHP(actualPkmOwn.calcDmg(slot, actualPkmEnemy));
+                
+                System.out.println("new % enemy: "+actualPkmOwn.calcDmg(slot, actualPkmEnemy));
+            }
+            else
+                throw new Exception("Not Enought pp");
         }
     }
 
