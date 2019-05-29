@@ -1,5 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this l"ice"nse header, choose L"ice"nse Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -45,6 +45,248 @@ public class PokemonExtended extends Pokemon
             movePP[i] = 10;
     }
     
+    public void minusHP(int amount)
+    {
+        currentHP-= amount;
+    }
     
+    public int getHP()
+    {
+        return currentHP;
+    }
+    
+    public void makeMove(int moveSlot)
+    {
+        
+    }
+    
+    public int getDmgCalculation()
+    {
+        
+        return 0;
+    }
+    
+    public double getTypeEffi(String atkType, String defType)
+    {
+        switch(atkType)
+        {
+            case "bug":
+                switch(defType)
+                {
+                    case "grass":
+                    case "psychic":
+                    case "dark": return 2;
+                    case "fire":
+                    case "fighting":
+                    case "flying":
+                    case "poison":
+                    case "ghost":
+                    case "steel":
+                    case "fairy": return 0.5;
+                    default: return 1;
+                }
+            case "dark":
+                switch(defType)
+                {
+                    case "psychic":
+                    case "ghost": return 2;
+                    case "fighting":
+                    case "dark":
+                    case "fairy": return 0.5;
+                    default: return 1;
+                }
+            case "dragon":
+                switch(defType)
+                {
+                    case "dragon": return 2;
+                    case "steel": return 0.5;
+                    case "fairy": return 0;
+                    default: return 1;
+                }
+            case "electric":
+                switch(defType)
+                {
+                    case "water":
+                    case "flying": return 2;
+                    case "grass":
+                    case "electric":
+                    case "dragon": return 0.5;
+                    case "ground": return 0;
+                    default: return 1;
+                }
+            case "fairy":
+                switch(defType)
+                {
+                    case "fighting":
+                    case "dragon":
+                    case "dark": return 2;
+                    case "fire":
+                    case "poison":
+                    case "steel": return 0.5;
+                    default: return 1;
+                }
+            case "fighting":
+                switch(defType)
+                {
+                    case "normal":
+                    case "rock":
+                    case "ice":
+                    case "dark":
+                    case "steel": return 2;
+                    case "flying":
+                    case "poison":
+                    case "psychic":
+                    case "bug":
+                    case "fairy": return 0.5;
+                    case "ghost": return 0;
+                    default: return 1;
+                }
+            case "fire":
+                switch(defType)
+                {
+                    case "grass":
+                    case "ice":
+                    case "bug":
+                    case "steel": return 2;
+                    case "fire":
+                    case "water":
+                    case "rock":
+                    case "dragon": return 0.5;
+                    default: return 1;
+                }
+            case "flying":
+                switch(defType)
+                {
+                    case "fighting":
+                    case "grass":
+                    case "bug": return 2;
+                    case "electric":
+                    case "rock":
+                    case "steel": return 0.5;
+                    default: return 1;
+                }
+            case "ghost":
+                switch(defType)
+                {
+                    case "ghost":
+                    case "psychic": return 2;
+                    case "dark": return 0.5;
+                    case "normal": return 0;
+                    default: return 1;
+                }
+            case "grass":
+                switch(defType)
+                {
+                    case "water":
+                    case "ground":
+                    case "rock": return 2;
+                    case "fire":
+                    case "flying":
+                    case "grass":
+                    case "poison":
+                    case "bug":
+                    case "dragon":
+                    case "steel": return 0.5;
+                    default: return 1;
+                }
+            case "ground":
+                switch(defType)
+                {
+                    case "fire":
+                    case "poison":
+                    case "electric":
+                    case "rock":
+                    case "steel": return 2;
+                    case "grass":
+                    case "bug": return 0.5;
+                    case "flying": return 0;
+                    default: return 1;
+                }
+            case "ice":
+                switch(defType)
+                {
+                    case "flying":
+                    case "grass":
+                    case "ground":
+                    case "dragon": return 2;
+                    case "fire":
+                    case "water":
+                    case "ice":
+                    case "steel": return 0.5;
+                    default: return 1;
+                }
+            case "normal":
+                switch(defType)
+                {
+                    case "rock":
+                    case "steel": return 0.5;
+                    case "ghost": return 0;
+                    default: return 1;
+                }
+            case "poison":
+                switch(defType)
+                {
+                    case "grass":
+                    case "fairy": return 2;
+                    case "poison":
+                    case "ground":
+                    case "rock":
+                    case "ghost": return 0.5;
+                    case "steel": return 0;
+                    default: return 0;
+                }
+            case "psychic":
+                switch(defType)
+                {
+                    case "fighting":
+                    case "poison": return 2;
+                    case "psychic":
+                    case "steel": return 0.5;
+                    case "dark": return 0;
+                    default: return 1;
+                }
+            case "rock":
+                switch(defType)
+                {
+                    case "fire":
+                    case "flying":
+                    case "ice":
+                    case "bug": return 2;
+                    case "fighting":
+                    case "ground":
+                    case "steel": return 0.5;
+                    default: return 1;
+                }
+            case "steel":
+                switch(defType)
+                {
+                    case "rock":
+                    case "ice":
+                    case "fairy": return 2;
+                    case "fire":
+                    case "water":
+                    case "electric":
+                    case "steel": return 0.5;
+                    default: return 1;
+                }
+            case "water":
+                switch(defType)
+                {
+                    case "fire":
+                    case "ground":
+                    case "rock": return 2;
+                    case "water":
+                    case "grass":
+                    case "dragon": return 0.5;
+                    default: return 1;
+                }
+            default: return 1;
+        }
+    }
+    
+    public double getTypeEffi(String atkType, String defType1, String defType2)
+    {
+        return getTypeEffi(atkType, defType1)* getTypeEffi(atkType, defType2);
+    }
     
 }
