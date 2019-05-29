@@ -5,11 +5,10 @@
  */
 package gui;
 
-import battle.BattleBl;
 import data.Pokemon;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.paint.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -24,24 +23,136 @@ public class BattleField extends javax.swing.JFrame
      * Creates new form BattleField
      */
     
-    private data.Pokemon ownTeam[];
     private battle.BattleBl battleBl;
     
-    private JLabel teamSlots[] = new JLabel[6];
-    private JLabel moveSlots[] = new JLabel[4];
-    
-    private boolean forceSwitch = false;
-    
+    private JLabel pkmSlotsPlayer1[] = new JLabel[6];
+    private JLabel pkmSlotsPlayer2[] = new JLabel[6];
+    private JLabel moves[] = new JLabel[4];
     public BattleField()
     {
         initComponents();
     }
 
-    public BattleField(Pokemon[] ownTeam, int amount)
+    public BattleField(Pokemon[] team)
     {
+        initComponents();
+        battleBl = new battle.BattleBl(team);
+        
+        pkmSlotsPlayer1[0] = lbSlot1;
+        pkmSlotsPlayer1[1] = lbSlot2;
+        pkmSlotsPlayer1[2] = lbSlot3;
+        pkmSlotsPlayer1[3] = lbSlot4;
+        pkmSlotsPlayer1[4] = lbSlot5;
+        pkmSlotsPlayer1[5] = lbSlot6;
+        
+        pkmSlotsPlayer2[0] = lbESlot1;
+        pkmSlotsPlayer2[1] = lbESlot2;
+        pkmSlotsPlayer2[2] = lbESlot3;
+        pkmSlotsPlayer2[3] = lbESlot4;
+        pkmSlotsPlayer2[4] = lbESlot5;
+        pkmSlotsPlayer2[5] = lbESlot6;
+        
+        moves[0] = lbMove1;
+        moves[1] = lbMove2;
+        moves[2] = lbMove3;
+        moves[3] = lbMove4;
+        
+        ini();
+        update();
     }
     
+    private void ini()
+    {
+        for(int i = 0; i < pkmSlotsPlayer1.length; i++)
+        {
+           pkmSlotsPlayer1[i].setOpaque(true);
+           pkmSlotsPlayer2[i].setOpaque(true);
+           pkmSlotsPlayer1[i].setBackground(java.awt.Color.gray);
+           pkmSlotsPlayer2[i].setBackground(java.awt.Color.gray);
+           pkmSlotsPlayer2[i].setText("/");
+           
+           
+        }
+        
+        for(int i = 0; i < moves.length; i++)
+        {
+            moves[i].setOpaque(true);
+        }
+        
+        
+        
+    }
+    
+    /**
+     * Updates UI
+     */
+    private void update()
+    {
+        lbMyPokemon.setText(battleBl.getPlayer1().getActivePokemon().getName());
+        lbEnemyPokemon.setText(battleBl.getPlayer2().getActivePokemon().getName());
+        
+        for(int i = 0; i < battleBl.getPlayer1().getTeam().length; i++)
+        {
+           pkmSlotsPlayer1[i].setText(battleBl.getPlayer1().getTeam()[i].getName());
+           pkmSlotsPlayer1[i].setBackground((battleBl.getPlayer1().getTeam()[i].isAlive() ? java.awt.Color.green : java.awt.Color.RED));
+          
+        }
+        
+        for(int i = 0; i < battleBl.getPlayer2().getTeam().length; i++)
+        {
+            pkmSlotsPlayer2[i].setText((battleBl.getPlayer2().getTeam()[i].isAlive() ? "O":"X"));
+            pkmSlotsPlayer2[i].setBackground((battleBl.getPlayer2().getTeam()[i].isAlive() ? java.awt.Color.green : java.awt.Color.RED));
+        }
+        
+        for(int i = 0; i < moves.length; i++)
+        {
+            moves[i].setText("<html><body>"+battleBl.getPlayer1().getActivePokemon().getMove()[i].getBez()+"<br>"+battleBl.getPlayer1().getActivePokemon().getMovePP()[i]+"/15</body></html>");
+            moves[i].setBackground((battleBl.getPlayer1().getActivePokemon().getMovePP()[i] > 7 ? java.awt.Color.green : (battleBl.getPlayer1().getActivePokemon().getMovePP()[i] > 0) ? java.awt.Color.orange : java.awt.Color.red));
+        }
+        
+        pbMyHP.setValue((int)(100.0/battleBl.getPlayer1().getActivePokemon().getRealStats().getHp()*battleBl.getPlayer1().getActivePokemon().getCurrentHP()));
+        pbEnemyHP.setValue((int)(100.0/battleBl.getPlayer2().getActivePokemon().getRealStats().getHp()*battleBl.getPlayer2().getActivePokemon().getCurrentHP()));
+        
+        if(!battleBl.isTurnPlayer1() && !battleBl.isGameover()) 
+        {
+            Random rand = new Random();
+            try 
+            {
+                battleBl.attack(rand.nextInt(4));
+            } catch (Exception ex) 
+            {
+                ex.printStackTrace();
+            }
+        }
+        
+        //checkwinner
+        if(battleBl.isGameover())
+        {
+            for(int i = 0; i < battleBl.getPlayer1().getTeam().length; i++)
+            {
+               pkmSlotsPlayer1[i].setText(battleBl.getPlayer1().getTeam()[i].getName());
+               pkmSlotsPlayer1[i].setBackground((battleBl.getPlayer1().getTeam()[i].isAlive() ? java.awt.Color.green : java.awt.Color.RED));
 
+            }
+
+            for(int i = 0; i < battleBl.getPlayer2().getTeam().length; i++)
+            {
+                pkmSlotsPlayer2[i].setText((battleBl.getPlayer2().getTeam()[i].isAlive() ? "O":"X"));
+                pkmSlotsPlayer2[i].setBackground((battleBl.getPlayer2().getTeam()[i].isAlive() ? java.awt.Color.green : java.awt.Color.RED));
+            }
+
+            for(int i = 0; i < moves.length; i++)
+            {
+                moves[i].setText("<html><body>"+battleBl.getPlayer1().getActivePokemon().getMove()[i].getBez()+"<br>"+battleBl.getPlayer1().getActivePokemon().getMovePP()[i]+"/15</body></html>");
+                moves[i].setBackground((battleBl.getPlayer1().getActivePokemon().getMovePP()[i] > 7 ? java.awt.Color.green : (battleBl.getPlayer1().getActivePokemon().getMovePP()[i] > 0) ? java.awt.Color.orange : java.awt.Color.red));
+            }
+
+            pbMyHP.setValue((int)(100.0/battleBl.getPlayer1().getActivePokemon().getRealStats().getHp()*battleBl.getPlayer1().getActivePokemon().getCurrentHP()));
+            pbEnemyHP.setValue((int)(100.0/battleBl.getPlayer2().getActivePokemon().getRealStats().getHp()*battleBl.getPlayer2().getActivePokemon().getCurrentHP()));
+            
+            JOptionPane.showMessageDialog(null, "GameOver - "+(battleBl.isWinnerPlayer1()? "Du hast gewonnen!": "Du hast verloren!"));
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -104,6 +215,11 @@ public class BattleField extends javax.swing.JFrame
 
         lbSlot3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot3.setText("empty");
+        lbSlot3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onClickSlot3(evt);
+            }
+        });
         plTeamPriview.add(lbSlot3);
 
         lbSlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -222,10 +338,10 @@ public class BattleField extends javax.swing.JFrame
                         .addGap(0, 232, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(pbEnemyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
                         .addComponent(lbHPPercentEnemy, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pbEnemyHP, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lbEnemyPokemon, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
@@ -260,29 +376,59 @@ public class BattleField extends javax.swing.JFrame
 
     private void onClickedSlot1(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClickedSlot1
     {//GEN-HEADEREND:event_onClickedSlot1
-      
+        changePokemon(0);
     }//GEN-LAST:event_onClickedSlot1
 
     private void onClickedMove1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickedMove1
-       
+        attack(0);
     }//GEN-LAST:event_onClickedMove1
 
     private void onClickMove2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove2
-       
+        attack(1);
     }//GEN-LAST:event_onClickMove2
 
     private void onClickMove4(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove4
-    
+        attack(3);
     }//GEN-LAST:event_onClickMove4
 
     private void onClickMove3(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove3
-     
+        attack(2);
     }//GEN-LAST:event_onClickMove3
 
     private void onClickSlot2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickSlot2
-      
+        changePokemon(1);
     }//GEN-LAST:event_onClickSlot2
 
+    private void onClickSlot3(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickSlot3
+        changePokemon(2);
+    }//GEN-LAST:event_onClickSlot3
+
+    private void attack(int slot)
+    {
+        if(battleBl.isTurnPlayer1())
+        {
+            try
+            {
+                battleBl.attack(slot);
+                update();
+            }
+            catch(Exception e)
+            {
+              JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+    }
+    
+    private void changePokemon(int slot)
+    {
+        try {
+            battleBl.changePokemon(slot);
+            update();
+        } catch (Exception ex) 
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
     public static void main(String args[])
     {
         /* Set the Nimbus look and feel */

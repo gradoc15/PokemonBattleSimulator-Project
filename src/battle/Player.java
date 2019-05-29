@@ -45,6 +45,25 @@ public class Player
     }
     
     /**
+     * Calcultes the damage of the move Strugge, which is used when no other moves are valid anymore
+     * @param enemy
+     * @return 
+     */
+    public int calculateStruggle(data.PokemonExtended enemy)
+    {
+        Random rand = new Random();
+        
+        double lvl = actPkm.getLvl()*(2.0/5);
+        int basicDmg = 50;
+        double statFactor =   actPkm.getRealStats().getAtk()/(enemy.getRealStats().getDef()*50.0);
+        double stabMultiplicator = ((actPkm.getType1().equals("normal")) || actPkm.getType2().equals("normal")? 1.5 : 1);
+        double randomValue = rand.nextInt(16)/100.0;
+        double typeMultiplicator = calculteTypeInteraction("normal", enemy.getType1()) * (!enemy.getType2().equals("none") ? calculteTypeInteraction("normal", enemy.getType2()) : 1);
+        
+        return (int)((lvl*basicDmg*statFactor)*randomValue*stabMultiplicator*typeMultiplicator);
+    }
+    
+    /**
      * This method substracts one fromt the current pp of a move
      * @param moveSlot 
      */
@@ -253,9 +272,13 @@ public class Player
      * This method changes the current activ pokemon of this player
      * @param teamSlot 
      */
-    public void changePokemon(int teamSlot)
+    public void changePokemon(int teamSlot) throws Exception
     {
-        actPkm = team[teamSlot];
+        if(teamSlot < team.length)
+            if(team[teamSlot].isAlive())
+                actPkm = team[teamSlot];
+            else
+                throw new Exception("Das ausgewählte Pokemon ist bereits kampfunfähig");
     }
     
     /**
@@ -267,6 +290,11 @@ public class Player
     {
         return team[slot]; 
     }
+    
+    /**
+     * Counts the remaining pokemon
+     * @return 
+     */
     public int countRemainingPokemon()
     {
         int sum = 0;
@@ -277,5 +305,47 @@ public class Player
         }
         
         return sum;
+    }
+    
+    /**
+     * Returns true if any pokemon of the team is alive
+     * @return 
+     */
+    public boolean haveRemainingPokemon()
+    {
+        return (countRemainingPokemon() > 0 ? true: false);
+    }
+    
+    /**
+     * Switches the actPokemon to the next Pokemon which is alive
+     */
+    public void forceSwitch()
+    {
+        for(int i = 0; i < team.length; i++)
+        {
+            if(team[i].isAlive())
+            {
+                actPkm = team[i];
+                break;
+            }
+        }
+    }
+    
+    /**
+     * returns pokemon which is in battle at the moment
+     * @return 
+     */
+    public data.PokemonExtended getActivePokemon()
+    {
+        return actPkm;
+    }
+    
+    /**
+     * Returns the full team of a player
+     * @return 
+     */
+    public data.PokemonExtended[] getTeam()
+    {
+        return team;
     }
 }

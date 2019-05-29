@@ -44,12 +44,12 @@ public class PokemonExtended extends Pokemon
     public void init()
     {
         //Calculates the realstats
-        realStats = new Values((int) (((basicValues.getHp()*2.0+iv.getHp()+(ev.getHp()/4))*lvl)/100.0)+lvl+10,
-                ((int)((((basicValues.getAtk()*2.0+iv.getAtk()+(ev.getAtk()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.atk) ? 1.1 : 1)*(nature.getNegativ().equals(stats.atk) ? 0.9 : 1)),
-                ((int)((((basicValues.getDef()*2.0+iv.getDef()+(ev.getDef()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.def) ? 1.1 : 1)*(nature.getNegativ().equals(stats.def) ? 0.9 : 1)),
-                ((int)((((basicValues.getSpAtk()*2.0+iv.getSpAtk()+(ev.getSpAtk()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.spAtk) ? 1.1 : 1)*(nature.getNegativ().equals(stats.spAtk) ? 0.9 : 1)),
-                ((int)((((basicValues.getSpDef()*2.0+iv.getSpDef()+(ev.getSpDef()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.spDef) ? 1.1 : 1)*(nature.getNegativ().equals(stats.spDef) ? 0.9 : 1)),
-                ((int)((((basicValues.getIni()*2.0+iv.getIni()+(ev.getIni()/4))+lvl)/100)+5)*(nature.getPositiv().equals(stats.ini) ? 1.1 : 1)*(nature.getNegativ().equals(stats.ini) ? 0.9 : 1)));
+        realStats = new Values(((int)((((basicValues.getHp()*2.0+iv.getHp()+(ev.getHp()/4))*lvl)/100.0)+lvl+10)),
+                (int) ((((2.0*basicValues.getAtk()+iv.getAtk()+ev.getAtk()/4)*lvl/100)+lvl+10)*(nature.getPositiv().equals(data.Stat.ATK) ? 1.1 : 1)*(nature.getNegativ().equals(data.Stat.ATK) ? 0.9 : 1)),
+                (int) ((((2.0*basicValues.getDef()+iv.getDef()+ev.getDef()/4)*lvl/100)+lvl+10)*(nature.getPositiv().equals(data.Stat.DEF) ? 1.1 : 1)*(nature.getNegativ().equals(data.Stat.DEF) ? 0.9 : 1)),
+                (int) ((((2.0*basicValues.getSpAtk()+iv.getSpAtk()+ev.getSpAtk()/4)*lvl/100)+lvl+10)*(nature.getPositiv().equals(data.Stat.SPATK) ? 1.1 : 1)*(nature.getNegativ().equals(data.Stat.SPATK) ? 0.9 : 1)),
+                (int) ((((2.0*basicValues.getSpDef()+iv.getSpDef()+ev.getSpDef()/4)*lvl/100)+lvl+10)*(nature.getPositiv().equals(data.Stat.SPDEF) ? 1.1 : 1)*(nature.getNegativ().equals(data.Stat.SPDEF) ? 0.9 : 1)),
+                (int) ((((2.0*basicValues.getIni()+iv.getIni()+ev.getIni()/4)*lvl/100)+lvl+10)*(nature.getPositiv().equals(data.Stat.INIT) ? 1.1 : 1)*(nature.getNegativ().equals(data.Stat.INIT) ? 0.9 : 1)));
         
         //Init movePP
         for(int i = 0; i < movePP.length; i++)
@@ -115,14 +115,17 @@ public class PokemonExtended extends Pokemon
         return alive;
     }
     
+    /**
+     * retuns movePPs of all movess
+     * @return 
+     */
+    public int[] getMovePP()
+    {
+        return movePP;
+    }
     
-    
-
-    
-    
-    
-    
-    
-    
-    
+    public int getCurrentHP()
+    {
+        return currentHP;
+    }
 }

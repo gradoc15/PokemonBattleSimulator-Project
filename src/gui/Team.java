@@ -41,8 +41,7 @@ public class Team extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         btStartBattle = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -58,10 +57,8 @@ public class Team extends javax.swing.JFrame
         setPreferredSize(new java.awt.Dimension(350, 750));
 
         btStartBattle.setText("Start Battle");
-        btStartBattle.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        btStartBattle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btStartBattleActionPerformed(evt);
             }
         });
@@ -72,10 +69,8 @@ public class Team extends javax.swing.JFrame
         lbSlot1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot1.setText("empty");
         lbSlot1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot1.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        lbSlot1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onClick1(evt);
             }
         });
@@ -84,10 +79,8 @@ public class Team extends javax.swing.JFrame
         lbSlot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot2.setText("empty");
         lbSlot2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot2.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        lbSlot2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onClick2(evt);
             }
         });
@@ -96,10 +89,8 @@ public class Team extends javax.swing.JFrame
         lbSlot3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot3.setText("empty");
         lbSlot3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot3.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        lbSlot3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onClick3(evt);
             }
         });
@@ -108,10 +99,8 @@ public class Team extends javax.swing.JFrame
         lbSlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot4.setText("empty");
         lbSlot4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot4.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        lbSlot4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onClick4(evt);
             }
         });
@@ -120,10 +109,8 @@ public class Team extends javax.swing.JFrame
         lbSlot5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot5.setText("empty");
         lbSlot5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot5.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        lbSlot5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onClick5(evt);
             }
         });
@@ -132,10 +119,8 @@ public class Team extends javax.swing.JFrame
         lbSlot6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot6.setText("empty");
         lbSlot6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        lbSlot6.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        lbSlot6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onClick6(evt);
             }
         });
@@ -185,14 +170,7 @@ public class Team extends javax.swing.JFrame
         
         sortTeam();
         
-        for(int i = 0; i < team.length; i++)
-        {
-            if(team[i] != null)
-                anz++;
-        }
-        System.out.println(anz);
-        
-        BattleField bf = new BattleField(team, anz);
+        BattleField bf = new BattleField(team);
         bf.setVisible(true);
     }//GEN-LAST:event_btStartBattleActionPerformed
 
