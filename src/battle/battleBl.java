@@ -6,6 +6,7 @@
 package battle;
 
 import data.Pokemon;
+import data.PokemonExtended;
 
 /**
  *
@@ -84,6 +85,33 @@ public class battleBl
     {
         this.myTurn = myTurn;
     }
+
+    public PokemonExtended[] getOwnTeam()
+    {
+        return ownTeam;
+    }
+
+    public PokemonExtended[] getEnemyTeam()
+    {
+        return enemyTeam;
+    }
+
+    public boolean isMyTurn()
+    {
+        return myTurn;
+    }
+
+    public PokemonExtended getActualPkmOwn()
+    {
+        return actualPkmOwn;
+    }
+
+    public PokemonExtended getActualPkmEnemy()
+    {
+        return actualPkmEnemy;
+    }
+    
+    
     
     
 

@@ -70,11 +70,16 @@ public class BattleField extends javax.swing.JFrame
                     teamSlots[i].setText(ownTeam[i].getName());
                 teamSlots[i].setOpaque(true);
                 teamSlots[i].setBackground(java.awt.Color.green);
+                
+                
+                
             }
             else
             {
                 teamSlots[i].setOpaque(true);
                 teamSlots[i].setBackground(java.awt.Color.gray);
+                
+                
             }
         }
         
@@ -97,12 +102,28 @@ public class BattleField extends javax.swing.JFrame
             lbMyPokemon.setText(battleBl.getActPokemon().getName());
             pbMyHP.setValue(battleBl.getHPPercent());
             //pbMyHP.updateUI();
+            
+            lbMove1.setText("");
 
         }
         else
         {
             lbEnemyPokemon.setText(battleBl.getActPokemon().getName());
             pbEnemyHP.setValue(battleBl.getHPPercent());
+
+            
+            for(int i = 0; i < battleBl.getEnemyTeam().length; i++)
+            {
+                switch(i)
+                {
+                    case 0: lbESlot1.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED); break;
+                    case 1: lbESlot2.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED); break;
+                    case 2: lbESlot3.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED); break;
+                    case 3: lbESlot4.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED); break;
+                    case 4: lbESlot5.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED); break;
+                    case 5: lbESlot6.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED); break;
+                }
+            }
         }
     }
     
