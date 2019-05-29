@@ -91,6 +91,21 @@ public class PokemonExtended extends Pokemon
                     * (!enemy.getType2().equals("none") ? getTypeEffi(super.getMove()[moveSlot].getType(), enemy.getType2()) : 1));
     }
     
+    public int calcStruggle(PokemonExtended enemy)
+    {
+        System.out.println("STRUGGLE");
+        int help = getLvl()*2/5+2;
+        System.out.println("adasd:   "+help);
+        minusHP(realStats.getHp()/4);
+        
+        return (int) ((int) ((int) 
+                ((help
+                    * realStats.getAtk()/enemy.getRealStats().getDef()) 
+                    * ("normal".equals(super.getType1()) || "normal".equals(super.getType2()) ? 1.5 : 1))
+                    * getTypeEffi("normal", enemy.getType1()))
+                    * (!enemy.getType2().equals("none") ? getTypeEffi("normal", enemy.getType2()) : 1));
+    }
+    
     public double getTypeEffi(String atkType, String defType)
     {
         switch(atkType)

@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.paint.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,6 +29,8 @@ public class BattleField extends javax.swing.JFrame
     
     private JLabel teamSlots[] = new JLabel[6];
     private JLabel moveSlots[] = new JLabel[4];
+    
+    private boolean forceSwitch = false;
     
     public BattleField()
     {
@@ -48,6 +51,7 @@ public class BattleField extends javax.swing.JFrame
         data.Pokemon p1 = ownTeam[0];
         data.Pokemon enemyTeam[] = new data.Pokemon[1];
         enemyTeam[0] = p1;
+
 
         
         battleBl = new battle.battleBl(this.ownTeam, enemyTeam);
@@ -99,9 +103,14 @@ public class BattleField extends javax.swing.JFrame
             }
         }
         
-        //Setting acutal Pokemon slot
-        battleBl.changeActPokemon(true, 0);
-        battleBl.changeActPokemon(false, 0);
+        try {
+            //Setting acutal Pokemon slot
+            battleBl.changeActPokemon(true, 0);
+            battleBl.changeActPokemon(false, 0);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
         
         updateUI();
     }
@@ -109,23 +118,36 @@ public class BattleField extends javax.swing.JFrame
     
     public void updateUI()
     {
+        
+        
 
         boolean actTurn = battleBl.isMyTurn();
+        
+        battleBl.setTurn(false);
+        lbEnemyPokemon.setText(battleBl.getActPokemon().getName());
+        pbEnemyHP.setValue((battleBl.getHPPercent() >= 0 ? battleBl.getHPPercent(): 0));
+        if(battleBl.getActualPkmEnemy().getCurrentHP() <= 0)
+        {
+           battleBl.getEnemy().addDefeated();
+           battleBl.changeEnemyPkm();
+           lbEnemyPokemon.setText(battleBl.getActPokemon().getName());
+           pbEnemyHP.setValue((battleBl.getHPPercent() >= 0 ? battleBl.getHPPercent(): 0));
+           checkGameStatus();
+           
+        }
 
         battleBl.setTurn(true);
         System.out.println(battleBl.getActPokemon());
         lbMyPokemon.setText(battleBl.getActPokemon().getName());
-        pbMyHP.setValue(battleBl.getHPPercent());
+        pbMyHP.setValue((battleBl.getHPPercent() >= 0 ? battleBl.getHPPercent() : 0));
+        if(battleBl.getActualPkmOwn().getCurrentHP() <= 0)
+            forceSwitch();
+        
         lbHPPercentOwn.setText("" + battleBl.getHPPercent() + "%");
 
         for (int i = 0; i < moveSlots.length; i++) {
             moveSlots[i].setText("<html><body>" + battleBl.getActPokemon().getMove()[i].getBez() + "<br>" + battleBl.getActPokemon().getMovePP()[i] + "/10</body></html>");
         }
-
-        battleBl.setTurn(false);
-        lbEnemyPokemon.setText(battleBl.getActPokemon().getName());
-        pbEnemyHP.setValue(battleBl.getHPPercent());
-        lbHPPercentEnemy.setText("" + battleBl.getHPPercent() + "%");
 
         
             
@@ -165,11 +187,20 @@ public class BattleField extends javax.swing.JFrame
                     }break;
                 }
             battleBl.setTurn(actTurn);     
+            
+            checkGameStatus();
         }
     }
     
     
-    
+    public void checkGameStatus()
+    {
+        if(battleBl.isGameover())
+        {
+            JOptionPane.showMessageDialog(null, (battleBl.isDefeated() ? "Game-Over, du hast verloren" : "Glückwunsch du hast gewonnen"));
+            this.dispose();          
+        }
+    }
     
 
     /**
@@ -224,6 +255,11 @@ public class BattleField extends javax.swing.JFrame
 
         lbSlot2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot2.setText("empty");
+        lbSlot2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onClickSlot2(evt);
+            }
+        });
         plTeamPriview.add(lbSlot2);
 
         lbSlot3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -269,16 +305,31 @@ public class BattleField extends javax.swing.JFrame
         lbMove2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMove2.setText("/");
         lbMove2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbMove2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onClickMove2(evt);
+            }
+        });
         jPanel1.add(lbMove2);
 
         lbMove3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMove3.setText("/");
         lbMove3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbMove3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onClickMove3(evt);
+            }
+        });
         jPanel1.add(lbMove3);
 
         lbMove4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbMove4.setText("/");
         lbMove4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbMove4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onClickMove4(evt);
+            }
+        });
         jPanel1.add(lbMove4);
 
         jPanel2.setLayout(new java.awt.GridLayout(1, 6));
@@ -369,21 +420,92 @@ public class BattleField extends javax.swing.JFrame
 
     private void onClickedSlot1(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClickedSlot1
     {//GEN-HEADEREND:event_onClickedSlot1
-        // TODO add your handling code here:
+        switchPkm(0);
     }//GEN-LAST:event_onClickedSlot1
 
     private void onClickedMove1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickedMove1
-        try {
-            battleBl.makeMove(0);
-            updateUI();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        makeMove(0);
     }//GEN-LAST:event_onClickedMove1
 
-    /**
-     * @param args the command line arguments
-     */
+    private void onClickMove2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove2
+        makeMove(1);
+    }//GEN-LAST:event_onClickMove2
+
+    private void onClickMove4(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove4
+        makeMove(3);
+    }//GEN-LAST:event_onClickMove4
+
+    private void onClickMove3(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove3
+        makeMove(2);
+    }//GEN-LAST:event_onClickMove3
+
+    private void onClickSlot2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickSlot2
+        switchPkm(1);
+    }//GEN-LAST:event_onClickSlot2
+
+    private void makeMove(int slot)
+    {
+        try
+        {
+           battleBl.makeMove(slot);
+           nextTurn();
+           updateUI(); 
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+    
+    private void forceSwitch()
+    {
+        boolean possiblePkm = false;
+        battleBl.setForceSwitch(true);
+        
+        JOptionPane.showMessageDialog(null, "Your Pokemon is defeated, you need to switch your Pokemon");
+        
+        for(int i = 0; i < battleBl.getOwnTeam().length; i++)
+        {
+            if(battleBl.getOwnTeam()[i].isBattleRdy())
+            {
+                possiblePkm = true;
+                break;
+            }
+        }
+        
+        if(!possiblePkm)
+            battleBl.setDefeated(true);
+        JOptionPane.showMessageDialog(null, "Game Over - Du hast verloren");
+    }
+    
+    public void switchPkm(int slot)
+    {
+        try {
+            battleBl.changeActPokemon(true, slot);
+            updateUI();
+            
+            if(!battleBl.isForceSwitch())
+                nextTurn();
+            
+            battleBl.setForceSwitch(false);
+             System.out.println("Switch");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        
+    }
+    
+    public void nextTurn()
+    {
+        try{
+        battleBl.nextTurn();
+        }
+        catch(Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+        updateUI();
+    }
     public static void main(String args[])
     {
         /* Set the Nimbus look and feel */

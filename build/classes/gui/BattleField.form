@@ -116,6 +116,9 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="empty"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClickSlot2"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbSlot3">
           <Properties>
@@ -202,6 +205,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClickMove2"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbMove3">
           <Properties>
@@ -213,6 +219,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClickMove3"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbMove4">
           <Properties>
@@ -224,6 +233,9 @@
               </Border>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="onClickMove4"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
