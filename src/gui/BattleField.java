@@ -5,7 +5,7 @@
  */
 package gui;
 
-import battle.battleBl;
+import battle.BattleBl;
 import data.Pokemon;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +25,7 @@ public class BattleField extends javax.swing.JFrame
      */
     
     private data.Pokemon ownTeam[];
-    private battle.battleBl battleBl;
+    private battle.BattleBl battleBl;
     
     private JLabel teamSlots[] = new JLabel[6];
     private JLabel moveSlots[] = new JLabel[4];
@@ -39,170 +39,10 @@ public class BattleField extends javax.swing.JFrame
 
     public BattleField(Pokemon[] ownTeam, int amount)
     {
-        initComponents();
-        
-        this.ownTeam = new data.Pokemon[amount];
-        for(int i = 0; i < amount; i++)
-        {
-            this.ownTeam[i] = ownTeam[i];
-        }
-        
-        //Enemy Team
-        data.Pokemon p1 = ownTeam[0];
-        data.Pokemon enemyTeam[] = new data.Pokemon[1];
-        enemyTeam[0] = p1;
-
-
-        
-        battleBl = new battle.battleBl(this.ownTeam, enemyTeam);
-        
-        
-        init();
-    }
-    
-    private void init()
-    {
-        teamSlots[0] = lbSlot1;
-        teamSlots[1] = lbSlot2;
-        teamSlots[2] = lbSlot3;
-        teamSlots[3] = lbSlot4;
-        teamSlots[4] = lbSlot5;
-        teamSlots[5] = lbSlot6;
-        
-        moveSlots[0] = lbMove1;
-        moveSlots[1] = lbMove2;
-        moveSlots[2] = lbMove3;
-        moveSlots[3] = lbMove4;
-        
-        
-        lbESlot1.setOpaque(true);
-        lbESlot2.setOpaque(true);
-        lbESlot3.setOpaque(true);
-        lbESlot4.setOpaque(true);
-        lbESlot5.setOpaque(true);
-        lbESlot6.setOpaque(true);
-        
-        
-        for(int i = 0; i < teamSlots.length; i++)
-        {
-            if(ownTeam.length > i)
-            {
-                if(ownTeam[i] != null)
-                    teamSlots[i].setText(ownTeam[i].getName());
-                teamSlots[i].setOpaque(true);
-                teamSlots[i].setBackground(java.awt.Color.green);
-                
-                
-                
-            }
-            else
-            {
-                teamSlots[i].setOpaque(true);
-                teamSlots[i].setBackground(java.awt.Color.gray);
-
-            }
-        }
-        
-        try {
-            //Setting acutal Pokemon slot
-            battleBl.changeActPokemon(true, 0);
-            battleBl.changeActPokemon(false, 0);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        
-        
-        updateUI();
-    }
-    
-    
-    public void updateUI()
-    {
-        
-        
-
-        boolean actTurn = battleBl.isMyTurn();
-        
-        battleBl.setTurn(false);
-        lbEnemyPokemon.setText(battleBl.getActPokemon().getName());
-        pbEnemyHP.setValue((battleBl.getHPPercent() >= 0 ? battleBl.getHPPercent(): 0));
-        if(battleBl.getActualPkmEnemy().getCurrentHP() <= 0)
-        {
-           battleBl.getEnemy().addDefeated();
-           battleBl.changeEnemyPkm();
-           lbEnemyPokemon.setText(battleBl.getActPokemon().getName());
-           pbEnemyHP.setValue((battleBl.getHPPercent() >= 0 ? battleBl.getHPPercent(): 0));
-           checkGameStatus();
-           
-        }
-
-        battleBl.setTurn(true);
-        System.out.println(battleBl.getActPokemon());
-        lbMyPokemon.setText(battleBl.getActPokemon().getName());
-        pbMyHP.setValue((battleBl.getHPPercent() >= 0 ? battleBl.getHPPercent() : 0));
-        if(battleBl.getActualPkmOwn().getCurrentHP() <= 0)
-            forceSwitch();
-        
-        lbHPPercentOwn.setText("" + battleBl.getHPPercent() + "%");
-
-        for (int i = 0; i < moveSlots.length; i++) {
-            moveSlots[i].setText("<html><body>" + battleBl.getActPokemon().getMove()[i].getBez() + "<br>" + battleBl.getActPokemon().getMovePP()[i] + "/10</body></html>");
-        }
-
-        
-            
-            for(int i = 0; i < battleBl.getEnemyTeam().length; i++)
-            { 
-                switch(i)
-                {
-                    case 0: 
-                    {
-                        lbESlot1.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED); 
-                        lbESlot1.setText((battleBl.getEnemyTeam()[i].isBattleRdy() ? "O" : "X"));
-                    }break;
-                    case 1: 
-                    {
-                        lbESlot2.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED);
-                        lbESlot2.setText((battleBl.getEnemyTeam()[i].isBattleRdy() ? "O" : "X"));
-                    }break;
-                    case 2: 
-                    {
-                        lbESlot3.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED); 
-                        lbESlot3.setText((battleBl.getEnemyTeam()[i].isBattleRdy() ? "O" : "X"));
-                    }break;
-                    case 3: 
-                    {
-                        lbESlot4.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED);
-                        lbESlot4.setText((battleBl.getEnemyTeam()[i].isBattleRdy() ? "O" : "X"));
-                    } break;
-                    case 4: 
-                    {
-                        lbESlot5.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED);
-                        lbESlot5.setText((battleBl.getEnemyTeam()[i].isBattleRdy() ? "O" : "X"));
-                    }break;
-                    case 5:
-                    {
-                        lbESlot6.setBackground(battleBl.getEnemyTeam()[i].isBattleRdy() ? java.awt.Color.GREEN : java.awt.Color.RED);
-                        lbESlot6.setText((battleBl.getEnemyTeam()[i].isBattleRdy() ? "O" : "X"));
-                    }break;
-                }
-            battleBl.setTurn(actTurn);     
-            
-            checkGameStatus();
-        }
-    }
-    
-    
-    public void checkGameStatus()
-    {
-        if(battleBl.isGameover())
-        {
-            JOptionPane.showMessageDialog(null, (battleBl.isDefeated() ? "Game-Over, du hast verloren" : "Glückwunsch du hast gewonnen"));
-            this.dispose();          
-        }
     }
     
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -420,92 +260,29 @@ public class BattleField extends javax.swing.JFrame
 
     private void onClickedSlot1(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClickedSlot1
     {//GEN-HEADEREND:event_onClickedSlot1
-        switchPkm(0);
+      
     }//GEN-LAST:event_onClickedSlot1
 
     private void onClickedMove1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickedMove1
-        makeMove(0);
+       
     }//GEN-LAST:event_onClickedMove1
 
     private void onClickMove2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove2
-        makeMove(1);
+       
     }//GEN-LAST:event_onClickMove2
 
     private void onClickMove4(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove4
-        makeMove(3);
+    
     }//GEN-LAST:event_onClickMove4
 
     private void onClickMove3(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove3
-        makeMove(2);
+     
     }//GEN-LAST:event_onClickMove3
 
     private void onClickSlot2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickSlot2
-        switchPkm(1);
+      
     }//GEN-LAST:event_onClickSlot2
 
-    private void makeMove(int slot)
-    {
-        try
-        {
-           battleBl.makeMove(slot);
-           nextTurn();
-           updateUI(); 
-        }
-        catch(Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-    }
-    
-    private void forceSwitch()
-    {
-        boolean possiblePkm = false;
-        battleBl.setForceSwitch(true);
-        
-        JOptionPane.showMessageDialog(null, "Your Pokemon is defeated, you need to switch your Pokemon");
-        
-        for(int i = 0; i < battleBl.getOwnTeam().length; i++)
-        {
-            if(battleBl.getOwnTeam()[i].isBattleRdy())
-            {
-                possiblePkm = true;
-                break;
-            }
-        }
-        
-        if(!possiblePkm)
-            battleBl.setDefeated(true);
-        JOptionPane.showMessageDialog(null, "Game Over - Du hast verloren");
-    }
-    
-    public void switchPkm(int slot)
-    {
-        try {
-            battleBl.changeActPokemon(true, slot);
-            updateUI();
-            
-            if(!battleBl.isForceSwitch())
-                nextTurn();
-            
-            battleBl.setForceSwitch(false);
-             System.out.println("Switch");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        
-    }
-    
-    public void nextTurn()
-    {
-        try{
-        battleBl.nextTurn();
-        }
-        catch(Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
-        }
-        updateUI();
-    }
     public static void main(String args[])
     {
         /* Set the Nimbus look and feel */
