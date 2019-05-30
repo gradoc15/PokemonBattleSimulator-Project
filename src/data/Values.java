@@ -28,65 +28,57 @@ public class Values
         this.ini = ini;
     }
 
+    /**
+     * Returns the HP stat (int)
+     * @return 
+     */
     public int getHp()
     {
         return hp;
     }
 
+    /**
+     * Returns the Atk stat (int)
+     * @return 
+     */
     public int getAtk()
     {
         return atk;
     }
 
+    /**
+     * Returns the Def stat (int)
+     * @return 
+     */
     public int getDef()
     {
         return def;
     }
 
+    /**
+     * Returns the SpAtk stat
+     * @return 
+     */
     public int getSpAtk()
     {
         return spAtk;
     }
 
+    /**
+     * Returns the SpDef stat
+     * @return 
+     */
     public int getSpDef()
     {
         return spDef;
     }
 
+    /**
+     * returns the ini stat
+     * @return 
+     */
     public int getIni()
     {
         return ini;
     }
-
-    public void setHp(int hp)
-    {
-        this.hp = hp;
-    }
-
-    public void setAtk(int atk)
-    {
-        this.atk = atk;
-    }
-
-    public void setDef(int def)
-    {
-        this.def = def;
-    }
-
-    public void setSpAtk(int spAtk)
-    {
-        this.spAtk = spAtk;
-    }
-
-    public void setSpDef(int spDef)
-    {
-        this.spDef = spDef;
-    }
-
-    public void setIni(int ini)
-    {
-        this.ini = ini;
-    }
-    
-    
 }

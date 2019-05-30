@@ -17,10 +17,19 @@ public class Ability
         this.bez = bez;
     }
 
+    /**
+     * Returns the name of the ability
+     * @return 
+     */
     public String getBez()
     {
         return bez;
     }
+    
+    /**
+     * Returns the name of the ability
+     * @return 
+     */
     public String toString()
     {
         return bez;

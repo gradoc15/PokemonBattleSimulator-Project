@@ -11,17 +11,6 @@ package data;
  */
 public class Move
 {
-    /*
-        st.executeUpdate("CREATE TABLE move"
-                + " ("
-                + " MID INTEGER PRIMARY KEY,"
-                + " Bez VARCHAR(30),"
-                + " Type VARCHAR(15),"
-                + " Category VARCHAR(30),"
-                + " Power INTEGER,"
-                + " Accurance INTEGER);");
-    */
-    
     private String bez;
     private String type;
     private String cat;
@@ -37,56 +26,57 @@ public class Move
         this.accurance = accurance;
     }
 
+    /**
+     * Returns name (String)  of the move
+     * @return 
+     */
     public String getBez()
     {
         return bez;
     }
 
-    public void setBez(String bez)
-    {
-        this.bez = bez;
-    }
-
+    /**
+     * Returns the type (String) of the movve
+     * @return 
+     */
     public String getType()
     {
         return type;
     }
 
-    public void setType(String type)
-    {
-        this.type = type;
-    }
 
+    /**
+     * Returns the Category (String) of the move
+     * @return 
+     */
     public String getCat()
     {
         return cat;
     }
 
-    public void setCat(String cat)
-    {
-        this.cat = cat;
-    }
 
+    /**
+     * Returns the power (int) of the move
+     * @return 
+     */
     public int getPower()
     {
         return power;
     }
 
-    public void setPower(int power)
-    {
-        this.power = power;
-    }
-
+    /**
+     * Returns the Accurance (int) of the move
+     * @return 
+     */
     public int getAccurance()
     {
         return accurance;
     }
 
-    public void setAccurance(int accurance)
-    {
-        this.accurance = accurance;
-    }
-    
+    /**
+     * Returns the name (String) of the move
+     * @return 
+     */
     public String toString()
     {
         return bez;

@@ -11,7 +11,6 @@ package data;
  */
 public enum Nature
 {
-        //atk, def, spAtk, spDef, spd
     HARDY("Hardy",Stat.ATK,Stat.ATK),
     LONELY("Lonely",Stat.ATK,Stat.DEF),
     ADAMANT("Adamant", Stat.ATK, Stat.DEF),
@@ -52,11 +51,19 @@ public enum Nature
     private String bez;
     private Stat positiv, negativ;
 
+    /**
+     * Returns the Stat which gets boosted by 10%
+     * @return 
+     */
     public Stat getPositiv()
     {
         return positiv;
     }
 
+    /**
+     * Returns the Stat which gets lowerd by 10%
+     * @return 
+     */
     public Stat getNegativ()
     {
         return negativ;

@@ -14,11 +14,13 @@ import java.util.LinkedList;
 public class Pokemon
 {
     /**
-     * private int id;
-    private String name;
-    private Values basicValues;
-    private Type type1, type2;
-    private Ability[] possibleAbilities;
+     * Constructor
+     * @param id
+     * @param name
+     * @param basicValues
+     * @param type1
+     * @param type2
+     * @param ability 
      */
     public Pokemon(int id, String name, Values basicValues, String type1, String type2, Ability ability)
     {
@@ -35,9 +37,7 @@ public class Pokemon
         
         this.ability = ability;
     }
-    
-  
-    
+
     protected int id;
     protected  String name;
     protected  Values basicValues;
@@ -53,141 +53,198 @@ public class Pokemon
     protected Values iv;
     protected Values ev;
     
-    protected Values stats;
-    protected int currentHP;
     
-    public void updateStats()
-    {
-        stats.setHp((2*basicValues.getHp()+iv.getHp()+ev.getHp()/4)/100+5);
-        stats.setAtk((2*basicValues.getAtk()+iv.getAtk()+ev.getAtk()/4)/100+5);
-        stats.setDef((2*basicValues.getDef()+iv.getDef()+ev.getDef()/4)/100+5);
-        stats.setSpAtk((2*basicValues.getSpAtk()+iv.getSpAtk()+ev.getSpAtk()/4)/100+5);
-        stats.setSpDef((2*basicValues.getSpDef()+iv.getSpDef()+ev.getSpDef()/4)/100+5);
-        stats.setIni((2*basicValues.getIni()+iv.getIni()+ev.getIni()/4)/100+5);
-    }
-
+    /**
+     * Set the ability (String) of the pokemon
+     * @param ability 
+     */
     public void setAbility(Ability ability)
     {
         this.ability = ability;
     }
 
+    /**
+     * Set the nature (Nature) of the pokemon
+     * @param nature 
+     */
     public void setNature(Nature nature)
     {
         this.nature = nature;
     }
 
+    /**
+     * Set the gender (Gender) of the pokemon
+     * @param gender 
+     */
     public void setGender(Gender gender)
     {
         this.gender = gender;
     }
 
+    /**
+     * set the level (int) of the pokemon
+     * @param lvl 
+     */
     public void setLvl(int lvl)
     {
         this.lvl = lvl;
     }
 
+    /**
+     * set the moves (Move[]) of the pokemon
+     * @param move 
+     */
     public void setMove(Move[] move)
     {
         this.move = move;
     }
 
+    /**
+     * Set the shiny boolean of pokemon
+     * @param shiny 
+     */
     public void setShiny(boolean shiny)
     {
         this.shiny = shiny;
     }
 
+    /**
+     * Set the primary type (String) of the pokemon
+     * @return 
+     */
     public String getType1()
     {
         return type1;
     }
 
+    /**
+     * Set the secondary type of the Pokemon
+     * @return 
+     */
     public String getType2()
     {
         return type2;
     }
     
-    
-
+    /**
+     * Set the Iv (Values) of the pokemon
+     * @param iv 
+     */
     public void setIv(Values iv)
     {
         this.iv = iv;
     }
 
+    /**
+     * Set the ev (Value) of the pokemon
+     * @param ev 
+     */
     public void setEv(Values ev)
     {
         this.ev = ev;
     }
 
-    public void setCurrentHP(int currentHP)
-    {
-        this.currentHP = currentHP;
-    }
-
+    //Get the id (int) of the pokemon
     public int getId()
     {
         return id;
     }
 
+    /**
+     * get the name (String) of the pokemon
+     * @return 
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     * Get the basicvalues (Values) of the pokemon
+     * @return 
+     */
     public Values getBasicValues()
     {
         return basicValues;
     }
 
+    /**
+     * Get the ability (Ability) of the pokemon
+     * @return 
+     */
     public Ability getAbility()
     {
         return ability;
     }
 
+    /**
+     * get the nature (Nature) of the pokemon
+     * @return 
+     */
     public Nature getNature()
     {
         return nature;
     }
 
+    /**
+     * Get the gender (Gender) of the pokemon
+     * @return 
+     */
     public Gender getGender()
     {
         return gender;
     }
 
+    /**
+     * Get the lvl (int) of the pokemon
+     * @return 
+     */
     public int getLvl()
     {
         return lvl;
     }
 
+    /**
+     * Get the moves (Move[]) of the pokemon
+     * @return 
+     */
     public Move[] getMove()
     {
         return move;
     }
 
+    /**
+     * Get the shiny status (boolean) of the pokemon
+     * @return 
+     */
     public boolean isShiny()
     {
         return shiny;
     }
 
+    /**
+     * Get the iv (Value) of the pokemon
+     * @return 
+     */
     public Values getIv()
     {
         return iv;
     }
 
+    /**
+     * get the ev (Value) of the pokemon
+     * @return 
+     */
     public Values getEv()
     {
         return ev;
     }
 
-    public Values getStats()
-    {
-        return stats;
-    }
 
-    public int getCurrentHP()
-    {
-        return currentHP;
-    }
-    
+    /**
+     * Returns the name of the pokemon
+     * @return 
+     */
     public String toString()
     {
         return name;

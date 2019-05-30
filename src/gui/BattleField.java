@@ -28,11 +28,19 @@ public class BattleField extends javax.swing.JFrame
     private JLabel pkmSlotsPlayer1[] = new JLabel[6];
     private JLabel pkmSlotsPlayer2[] = new JLabel[6];
     private JLabel moves[] = new JLabel[4];
+    
+    /**
+     * Default Constructor
+     */
     public BattleField()
     {
         initComponents();
     }
 
+    /**
+     * Constructor, creates label arrays for better handling and excecutes init()
+     * @param team 
+     */
     public BattleField(Pokemon[] team)
     {
         initComponents();
@@ -61,6 +69,9 @@ public class BattleField extends javax.swing.JFrame
         update();
     }
     
+    /**
+     * inits all needed labels and set the opaque to true, also sets a default background color
+     */
     private void ini()
     {
         for(int i = 0; i < pkmSlotsPlayer1.length; i++)
@@ -78,13 +89,10 @@ public class BattleField extends javax.swing.JFrame
         {
             moves[i].setOpaque(true);
         }
-        
-        
-        
     }
     
     /**
-     * Updates UI
+     * Updates UI and checks if the game is ended and shows the winner
      */
     private void update()
     {
@@ -224,14 +232,29 @@ public class BattleField extends javax.swing.JFrame
 
         lbSlot4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot4.setText("empty");
+        lbSlot4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onClockMove4(evt);
+            }
+        });
         plTeamPriview.add(lbSlot4);
 
         lbSlot5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot5.setText("empty");
+        lbSlot5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onClickMove5(evt);
+            }
+        });
         plTeamPriview.add(lbSlot5);
 
         lbSlot6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbSlot6.setText("empty");
+        lbSlot6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onClickMove6(evt);
+            }
+        });
         plTeamPriview.add(lbSlot6);
 
         lbMyPokemon.setBackground(new java.awt.Color(153, 255, 204));
@@ -374,35 +397,91 @@ public class BattleField extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * changes actPokemon from player1 to the pokemon of slot 1
+     * @param evt 
+     */
     private void onClickedSlot1(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClickedSlot1
     {//GEN-HEADEREND:event_onClickedSlot1
         changePokemon(0);
     }//GEN-LAST:event_onClickedSlot1
 
+    /**
+     * make an attack with with the pokemon of player1 with the first move
+     * @param evt 
+     */
     private void onClickedMove1(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickedMove1
         attack(0);
     }//GEN-LAST:event_onClickedMove1
 
+    /**
+     * make an attack with with the pokemon of player1 with the second move
+     * @param evt 
+     */
     private void onClickMove2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove2
         attack(1);
     }//GEN-LAST:event_onClickMove2
 
+    /**
+     * make an attack with with the pokemon of player1 with the third move
+     * @param evt 
+     */
     private void onClickMove4(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove4
         attack(3);
     }//GEN-LAST:event_onClickMove4
 
+    /**
+     * make an attack with with the pokemon of player1 with the move fourth
+     * @param evt 
+     */
     private void onClickMove3(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove3
         attack(2);
     }//GEN-LAST:event_onClickMove3
 
+    /**
+     * changes actPokemon from player1 to the pokemon of slot 2
+     * @param evt 
+     */
     private void onClickSlot2(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickSlot2
         changePokemon(1);
     }//GEN-LAST:event_onClickSlot2
 
+    /**
+     * changes actPokemon from player1 to the pokemon of slot 3
+     * @param evt 
+     */
     private void onClickSlot3(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickSlot3
         changePokemon(2);
     }//GEN-LAST:event_onClickSlot3
 
+    /**
+     * changes actPokemon from player1 to the pokemon of slot 4
+     * @param evt 
+     */
+    private void onClockMove4(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClockMove4
+        changePokemon(3);
+    }//GEN-LAST:event_onClockMove4
+
+    /**
+     * changes actPokemon from player1 to the pokemon of slot 5
+     * @param evt 
+     */
+    private void onClickMove5(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove5
+        changePokemon(4);
+    }//GEN-LAST:event_onClickMove5
+
+    /**
+     * changes actPokemon from player1 to the pokemon of slot 6
+     * @param evt 
+     */
+    private void onClickMove6(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_onClickMove6
+       changePokemon(5);
+    }//GEN-LAST:event_onClickMove6
+
+    /**
+     * makes an attack from players 1 activ pokemon to the player2s  active pokemon with the move of the given slot
+     * @param slot 
+     */
     private void attack(int slot)
     {
         if(battleBl.isTurnPlayer1())
@@ -419,6 +498,10 @@ public class BattleField extends javax.swing.JFrame
         }
     }
     
+    /**
+     * changes the activ pokemon of player1 to the pokemon of the given slot
+     * @param slot 
+     */
     private void changePokemon(int slot)
     {
         try {

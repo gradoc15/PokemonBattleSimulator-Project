@@ -27,6 +27,10 @@ public class DB
     
     private ArrayList<data.Pokemon> pkm = new ArrayList();
     
+    /**
+     * Constructor, creates the database structure
+     * @throws SQLException 
+     */
     private DB() throws SQLException
     {
      
@@ -54,6 +58,10 @@ public class DB
         instance = this;
     }
     
+    /**
+     * Creates the Datebase
+     * @throws SQLException 
+     */
     private void  createDB() throws SQLException
     {
         con = DriverManager.getConnection("jdbc:postgresql://localhost/", "postgres", "postgres");
@@ -64,6 +72,10 @@ public class DB
         System.out.println("done");
     }
     
+    /**
+     * Deletes the full database structure
+     * @throws SQLException 
+     */
     public void deleteAll() throws SQLException
     {
         con.close();
@@ -74,6 +86,10 @@ public class DB
         con.close();
     }
     
+    /**
+     * Creates all needed tables
+     * @throws SQLException 
+     */
     private void createTables() throws SQLException
     {
         System.out.println("Create Tables");
@@ -148,6 +164,10 @@ public class DB
         
     }
     
+    /**
+     * Fills the Type table
+     * @throws SQLException 
+     */
     private void fillType() throws SQLException
     {
         Statement st = con.createStatement();
@@ -172,6 +192,10 @@ public class DB
         System.out.println("filled types");
     }
     
+    /**
+     * Fills the Pokemon table
+     * @throws SQLException 
+     */
     private void fillPokemon() throws SQLException
     {
         
@@ -188,6 +212,10 @@ public class DB
         System.out.println("filled pokemon");
     }
     
+    /**
+     * Fills the Ability Table
+     * @throws SQLException 
+     */
     private void fillAbility() throws SQLException
     {
         Statement st = con.createStatement();
@@ -195,6 +223,10 @@ public class DB
         System.out.println("filled ability");
     }
     
+    /**
+     * fills the move Table
+     * @throws SQLException 
+     */
     private void fillMove() throws SQLException
     {
         Statement st = con.createStatement();
@@ -218,6 +250,10 @@ public class DB
         System.out.println("moves filled");
     }
     
+    /**
+     * Fills the PokeType Helper-Table (Pokemon and Type)
+     * @throws SQLException 
+     */
     private void fillPokeTypes() throws SQLException
     {
         Statement st = con.createStatement();
@@ -241,6 +277,11 @@ public class DB
         st.execute("INSERT INTO pokemontype VALUES(9,'water');");
         st.execute("INSERT INTO pokemontype VALUES(9,'none');");
     }
+    
+    /**
+     * Fills the PokeMove Helper-Table (Pokemon and Move)
+     * @throws SQLException 
+     */
     private void fillPokeMoves() throws SQLException
     {
         Statement st = con.createStatement();
@@ -298,6 +339,10 @@ public class DB
         st.execute("INSERT INTO pokemonmove VALUES(9, 17);");
     }
     
+    /**
+     * Fills the PokeAbilties Helper-Table (Pokemon and Ability)
+     * @throws SQLException 
+     */
     private void fillPokeAbilities() throws SQLException
     {
         Statement st = con.createStatement();
@@ -313,6 +358,11 @@ public class DB
         st.execute("INSERT INTO pokemonability VALUES(9,0);");
     }
     
+    /**
+     * Returns the Database instance
+     * @return
+     * @throws SQLException 
+     */
     public static DB getInstance() throws SQLException
     {
         if(instance == null)
@@ -320,16 +370,12 @@ public class DB
         return instance;
     }
     
+    /**
+     * Loads all pokemon from the database in a arrylist
+     * @throws SQLException 
+     */
     private void loadPokemon() throws SQLException
-    {
-        /*
-        private int id;
-        private String name;
-        private Values basicValues;
-        private Type type1, type2;
-        private Ability[] possibleAbilities;
-        */
-        
+    {        
         PreparedStatement actorInsertStmt;
         String actorInsert = "SELECT * FROM pokemon";
         actorInsertStmt = con.prepareStatement(actorInsert);
@@ -384,11 +430,21 @@ public class DB
 
     }
     
+    /**
+     * Returns all loaded pokemon from the arraylist as arraylist (ArrayList<data.Pokemon>)
+     * @return 
+     */
     public ArrayList<data.Pokemon> getPokemonFromDB()
     {
         return pkm;
     }
     
+    /**
+     * Returns the Movelist from a pokemon, which is saved in the databank
+     * @param pkm
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<data.Move> getMoveListFrom(data.Pokemon pkm) throws SQLException
     {
         ArrayList<data.Move> moveList = new ArrayList();
@@ -413,6 +469,13 @@ public class DB
         return moveList;
     }
     
+    
+    /**
+     * Returns all possible abilites of given pokemon which is saved in the db
+     * @param pkm
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<data.Ability> getAbilitiesFrom(data.Pokemon pkm) throws SQLException
     {
         ArrayList<data.Ability> abilities = new ArrayList();

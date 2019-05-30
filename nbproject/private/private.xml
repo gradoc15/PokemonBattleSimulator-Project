@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/battle/battleBl.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>16</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group name="Übungen">
             <file>file:/C:/Users/User/Documents/Schule/3BHIF/POS/PokemonBattleSimulator-Project/src/main.java</file>
@@ -17,6 +26,21 @@
             <file>file:/C:/Users/User/Documents/Schule/3BHIF/POS/PokemonBattleSimulator-Project/src/data/Values.java</file>
             <file>file:/C:/Users/User/Documents/Schule/3BHIF/POS/PokemonBattleSimulator-Project/src/data/Gender.java</file>
             <file>file:/C:/Users/User/Documents/Schule/3BHIF/POS/PokemonBattleSimulator-Project/src/battle/battleBl.java</file>
+        </group>
+        <group>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Values.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Pokemon.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Stat.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Move.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/battle/Player.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/gui/PokeEditor.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/main.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/battle/BattleBl.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/database/DB.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/PokemonExtended.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/gui/BattleField.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/delDB.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/gui/Team.java</file>
         </group>
     </open-files>
 </project-private>

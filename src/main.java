@@ -13,7 +13,7 @@ import sun.security.pkcs11.Secmod;
  */
 
 /**
- *
+ * main class which stats the programm
  * @author User
  */
 public class main

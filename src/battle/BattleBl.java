@@ -27,7 +27,7 @@ public class BattleBl
     
     /**
      * Construcor, creates players and creates teams out of PokemonExtended Objects from Pokemon objects
-     * @param team 
+     * @param team team of player1
      */
     public BattleBl(Pokemon[] team)
     {
@@ -65,7 +65,8 @@ public class BattleBl
     
     /**
      * Changes to currenct pokemon of a player
-     * @param slot 
+     * @param slot of the wanted pokemon
+     * @throws Exception if slot is invalid (out of bounce)
      */
     public void changePokemon(int slot) throws Exception
     {
@@ -79,8 +80,8 @@ public class BattleBl
     
     /**
      * Uses move and deals damage to the enemy, and checks move pp
-     * @param moveSlot
-     * @throws Exception 
+     * @param moveSlot slot of the move which is choosen to attack
+     * @throws Exception if the move has no pp
      */
     public void attack(int moveSlot) throws Exception
     {
@@ -167,7 +168,7 @@ public class BattleBl
     
     /**
      * Returns the turn state
-     * @return 
+     * @return turnPlayer1
      */
     public boolean isTurnPlayer1() {
         return turnPlayer1;
@@ -181,6 +182,10 @@ public class BattleBl
         return player1;
     }
     
+    /**
+     * Checks if there is a winner, if yes the gameover boolean will be set true and the winner will be investigated
+     * 
+    */
     public void checkWinner()
     {
         if(!player1.haveRemainingPokemon() || !player2.haveRemainingPokemon())
@@ -209,7 +214,6 @@ public class BattleBl
     public boolean isGameover() {
         return gameover;
     }
-
     
     /**
      * returns the winner, only valid if gameover is true

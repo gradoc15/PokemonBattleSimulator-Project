@@ -20,7 +20,15 @@ public class PokemonExtended extends Pokemon
     
     private int movePP[] = new int[4];
 
-    
+    /**
+     * Constructor
+     * @param id
+     * @param name
+     * @param basicValues
+     * @param type1
+     * @param type2
+     * @param ability 
+     */
     public PokemonExtended(int id, String name, Values basicValues, String type1, String type2, Ability ability)
     {
         super(id, name, basicValues, type1, type2, ability);
@@ -28,6 +36,10 @@ public class PokemonExtended extends Pokemon
         
     }
     
+    /**
+     * Constructor
+     * @param pkm 
+     */
     public PokemonExtended(data.Pokemon pkm)
     {
         super(pkm.getId(), pkm.getName(), pkm.getBasicValues(), pkm.getType1(), pkm.getType2(), pkm.getAbility());
@@ -84,6 +96,8 @@ public class PokemonExtended extends Pokemon
         return move[slot];
     }
     
+    /**
+     * Returns the current MovePP (int) of a given slot
     public int getMovePPOf(int slot)
     {
         return movePP[slot];
@@ -99,7 +113,7 @@ public class PokemonExtended extends Pokemon
     }
     
     /**
-     * Returns the realstats
+     * Returns the realstats (Value)
      * @return 
      */
     public Values getRealStats()
@@ -116,7 +130,7 @@ public class PokemonExtended extends Pokemon
     }
     
     /**
-     * retuns movePPs of all movess
+     * retuns movePPs (int[]) of all movess
      * @return 
      */
     public int[] getMovePP()
@@ -124,8 +138,22 @@ public class PokemonExtended extends Pokemon
         return movePP;
     }
     
+    /**
+     * Gets the current HP (int) of the pokemon
+     * @return 
+     */
     public int getCurrentHP()
     {
         return currentHP;
+    }
+    
+    /**
+     * Returns the pp amount (int) of a given slot
+     * @param slot
+     * @return 
+     */
+    public int getMovePPOf(int slot)
+    {
+        return movePP[slot];
     }
 }

@@ -25,6 +25,12 @@ public class PokeEditor extends javax.swing.JDialog
      */
     
     database.DB database = null;
+    
+    /**
+     * Constructor, gets the DB instance
+     * @param parent
+     * @param modal 
+     */
     public PokeEditor(java.awt.Frame parent, boolean modal)
     {
         super(parent, modal);
@@ -42,6 +48,12 @@ public class PokeEditor extends javax.swing.JDialog
 
     }
     
+    /**
+     * Constructor for editing a pokemon which is already in the team
+     * @param parent
+     * @param modal
+     * @param pkm 
+     */
     public PokeEditor(java.awt.Frame parent, boolean modal, data.Pokemon pkm)
     {
         super(parent, modal);
@@ -92,6 +104,9 @@ public class PokeEditor extends javax.swing.JDialog
         
     }
     
+    /**
+     * Inits the comboboxes 
+     */
     public void ini()
     {
         for(data.Pokemon pkm: database.getPokemonFromDB())
@@ -593,41 +608,80 @@ public class PokeEditor extends javax.swing.JDialog
 
     private data.Pokemon pokemon;
     private boolean okay = false;
+    
+    /**
+     * Changes the text of the level Label to the value of the level slider
+     * @param evt 
+     */
     private void updateLvlField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_updateLvlField
     {//GEN-HEADEREND:event_updateLvlField
         tfLvl.setText(""+slLvl.getValue());
     }//GEN-LAST:event_updateLvlField
 
+    /**
+     * Changes the text of the IV-HP Label to the value of the IV-HP slider
+     * @param evt 
+     */
     private void onUpdateIvHPField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateIvHPField
     {//GEN-HEADEREND:event_onUpdateIvHPField
         tfIvHp.setText(""+slIvHP.getValue());
     }//GEN-LAST:event_onUpdateIvHPField
 
+    
+    /**
+     * Changes the text of the IV-Atk Label to the value of the IV-Atk slider
+     * @param evt 
+     */
     private void onUpdateIvAtkField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateIvAtkField
     {//GEN-HEADEREND:event_onUpdateIvAtkField
         tfIvAtk.setText(""+slIvAtk.getValue());
     }//GEN-LAST:event_onUpdateIvAtkField
 
+    
+    /**
+     * Changes the text of the IV-Def Label to the value of the IV-Def slider
+     * @param evt 
+     */
     private void onUpdateIvDefField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateIvDefField
     {//GEN-HEADEREND:event_onUpdateIvDefField
         tfIvDef.setText(""+slIvDef.getValue());
     }//GEN-LAST:event_onUpdateIvDefField
 
+    
+    /**
+     * Changes the text of the IV-SpAtk Label to the value of the IV-SpAtk slider
+     * @param evt 
+     */
     private void onUpdateIvSpAtkField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateIvSpAtkField
     {//GEN-HEADEREND:event_onUpdateIvSpAtkField
         tfIvSpAtk.setText(""+slIvSpAtk.getValue());
     }//GEN-LAST:event_onUpdateIvSpAtkField
 
+    
+    /**
+     * Changes the text of the IV-SpDef Label to the value of the IV-SpDef slider
+     * @param evt 
+     */
     private void onUpdateIvSpDefField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateIvSpDefField
     {//GEN-HEADEREND:event_onUpdateIvSpDefField
         tfIvSpDef.setText(""+slIvDef.getValue());
     }//GEN-LAST:event_onUpdateIvSpDefField
 
+    
+    /**
+     * Changes the text of the IV-init Label to the value of the IV-init slider
+     * @param evt 
+     */
     private void onUpdateIvIniField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateIvIniField
     {//GEN-HEADEREND:event_onUpdateIvIniField
         tfIvInit.setText(""+slIvInit.getValue());
     }//GEN-LAST:event_onUpdateIvIniField
 
+    
+    /**
+     * Changes the text of the EV-HP Label to the value of the EV-HP slider and checks if the ev sum is valid, if the sum is the high the value will be adjusted 
+     * @param evt 
+     */
     private void onUpdateEvHPField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateEvHPField
     {//GEN-HEADEREND:event_onUpdateEvHPField
         if(calcEvSum() <= 510)
@@ -639,6 +693,10 @@ public class PokeEditor extends javax.swing.JDialog
         }
     }//GEN-LAST:event_onUpdateEvHPField
 
+    /**
+     * Changes the text of the EV-Atk Label to the value of the EV-Atk slider and checks if the ev sum is valid, if the sum is the high the value will be adjusted
+     * @param evt 
+     */
     private void onUpdateEvAtkField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateEvAtkField
     {//GEN-HEADEREND:event_onUpdateEvAtkField
         if(calcEvSum() <= 510)
@@ -650,6 +708,10 @@ public class PokeEditor extends javax.swing.JDialog
         }
     }//GEN-LAST:event_onUpdateEvAtkField
 
+    /**
+     * Changes the text of the EV-Def Label to the value of the EV-Def slider and checks if the ev sum is valid, if the sum is the high the value will be adjusted
+     * @param evt 
+     */
     private void onUpdateEvDefField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateEvDefField
     {//GEN-HEADEREND:event_onUpdateEvDefField
         if(calcEvSum() <= 510)
@@ -661,6 +723,11 @@ public class PokeEditor extends javax.swing.JDialog
         }
     }//GEN-LAST:event_onUpdateEvDefField
 
+    
+    /**
+     * Changes the text of the EV-SpAtk Label to the value of the EV-SpAtk slider and checks if the ev sum is valid, if the sum is the high the value will be adjusted
+     * @param evt 
+     */
     private void onUpdateEvSpAtkField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateEvSpAtkField
     {//GEN-HEADEREND:event_onUpdateEvSpAtkField
         if(calcEvSum() <= 510)
@@ -672,6 +739,12 @@ public class PokeEditor extends javax.swing.JDialog
         }
     }//GEN-LAST:event_onUpdateEvSpAtkField
 
+    
+    
+    /**
+     * Changes the text of the EV-SpDef Label to the value of the EV-SpDef slider and checks if the ev sum is valid, if the sum is the high the value will be adjusted
+     * @param evt 
+     */
     private void onUpdateEvSpDefField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateEvSpDefField
     {//GEN-HEADEREND:event_onUpdateEvSpDefField
         if(calcEvSum() <= 510)
@@ -683,6 +756,11 @@ public class PokeEditor extends javax.swing.JDialog
         }
     }//GEN-LAST:event_onUpdateEvSpDefField
 
+    
+    /**
+     * Changes the text of the EV-Init Label to the value of the EV-Init slider and checks if the ev sum is valid, if the sum is the high the value will be adjusted
+     * @param evt 
+     */
     private void onUpdateEvInitField(javax.swing.event.ChangeEvent evt)//GEN-FIRST:event_onUpdateEvInitField
     {//GEN-HEADEREND:event_onUpdateEvInitField
         if(calcEvSum() <= 510)
@@ -714,11 +792,19 @@ public class PokeEditor extends javax.swing.JDialog
         // TODO add your handling code here:
     }//GEN-LAST:event_onTypedInIvSpDef
 
+    /**
+     * Closes the editor, without saving any changes
+     * @param evt 
+     */
     private void btCancle(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btCancle
     {//GEN-HEADEREND:event_btCancle
         this.dispose();
     }//GEN-LAST:event_btCancle
 
+    /**
+     * Saves all changes and closing the editor after that
+     * @param evt 
+     */
     private void btSave(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btSave
     {//GEN-HEADEREND:event_btSave
         
@@ -744,6 +830,11 @@ public class PokeEditor extends javax.swing.JDialog
         this.dispose();
     }//GEN-LAST:event_btSave
 
+    
+    /**
+     * If the Pokemon is changed in the combobox (top) all values like the moves will get updated
+     * @param evt 
+     */
     private void onPokemonChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_onPokemonChanged
     {//GEN-HEADEREND:event_onPokemonChanged
         try
@@ -773,7 +864,10 @@ public class PokeEditor extends javax.swing.JDialog
         }
     }//GEN-LAST:event_onPokemonChanged
 
-    
+    /**
+     * Calculates the sum of all EVs together
+     * @return 
+     */
     private int calcEvSum()
     {
         int sum = 0;
@@ -785,11 +879,21 @@ public class PokeEditor extends javax.swing.JDialog
         return sum;
     }
     
+    
+    /**
+     * Returns the pokemon (Pokemon) object where changes are saved
+     * @return 
+     */
     public data.Pokemon getPokemon()
     {
         return pokemon;
     }
     
+    
+    /**
+     * returns a boolean which says if the changes are saved (true = yes)
+     * @return 
+     */
     public boolean isOkay()
     {
         return okay;

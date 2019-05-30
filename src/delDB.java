@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  */
 
 /**
- *
+ *Class is only for testing in IDE
  * @author User
  */
 public class delDB {

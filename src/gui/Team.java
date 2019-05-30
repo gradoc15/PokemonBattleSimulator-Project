@@ -20,6 +20,9 @@ public class Team extends javax.swing.JFrame
     private data.Pokemon team[] = new data.Pokemon[6];
     private JLabel slots[] = new JLabel[6];
     
+    /**
+     * Construcotr, adds the slot labels to an array for better handling
+     */
     public Team()
     {
         initComponents();
@@ -133,37 +136,70 @@ public class Team extends javax.swing.JFrame
 
     
     
-    
+    /**
+     * onClick event for Slot1, opens the Pokeeditor
+     * @param evt 
+     */
     private void onClick1(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick1
     {//GEN-HEADEREND:event_onClick1
         changePokemon(0);
     }//GEN-LAST:event_onClick1
 
+    
+    /**
+     * onClick event for Slot2, opens the Pokeeditor
+     * @param evt 
+     */
     private void onClick2(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick2
     {//GEN-HEADEREND:event_onClick2
         changePokemon(1);
     }//GEN-LAST:event_onClick2
 
+    
+    /**
+     * onClick event for Slot3, opens the Pokeeditor
+     * @param evt 
+     */
     private void onClick3(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick3
     {//GEN-HEADEREND:event_onClick3
         changePokemon(2);
     }//GEN-LAST:event_onClick3
 
+    
+    /**
+     * onClick event for Slot4, opens the Pokeeditor
+     * @param evt 
+     */
     private void onClick4(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick4
     {//GEN-HEADEREND:event_onClick4
         changePokemon(3);
     }//GEN-LAST:event_onClick4
 
+    
+    /**
+     * onClick event for Slot5, opens the Pokeeditor
+     * @param evt 
+     */
     private void onClick5(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick5
     {//GEN-HEADEREND:event_onClick5
         changePokemon(4);
     }//GEN-LAST:event_onClick5
 
+    
+    /**
+     * onClick event for Slot6, opens the Pokeeditor
+     * @param evt 
+     */
     private void onClick6(java.awt.event.MouseEvent evt)//GEN-FIRST:event_onClick6
     {//GEN-HEADEREND:event_onClick6
         changePokemon(5);
     }//GEN-LAST:event_onClick6
 
+    
+    /**
+     * Starts a battle with the curreet team
+     * @param evt 
+     */
     private void btStartBattleActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btStartBattleActionPerformed
     {//GEN-HEADEREND:event_btStartBattleActionPerformed
         int anz = 0;
@@ -174,6 +210,9 @@ public class Team extends javax.swing.JFrame
         bf.setVisible(true);
     }//GEN-LAST:event_btStartBattleActionPerformed
 
+    /**
+     * Sorts the team, so that unused slots are not int he middl or on the beginning
+     */
     public void sortTeam()
     {
         for(int i = 0; i < team.length; i++)
@@ -193,6 +232,11 @@ public class Team extends javax.swing.JFrame
         
         
     }
+    
+    /**
+     * Opens the Pokeeditor with the data of the given slot
+     * @param slot 
+     */
     public void changePokemon(int slot)
     {
         gui.PokeEditor pEdit = null;
