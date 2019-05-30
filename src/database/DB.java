@@ -74,7 +74,7 @@ public class DB
     
     /**
      * Deletes the full database structure
-     * @throws SQLException 
+     * @throws SQLException if database deletions failed
      */
     public void deleteAll() throws SQLException
     {
@@ -360,8 +360,8 @@ public class DB
     
     /**
      * Returns the Database instance
-     * @return
-     * @throws SQLException 
+     * @return the instance of the databse
+     * @throws SQLException  if the db access failed
      */
     public static DB getInstance() throws SQLException
     {
@@ -431,8 +431,8 @@ public class DB
     }
     
     /**
-     * Returns all loaded pokemon from the arraylist as arraylist (ArrayList<data.Pokemon>)
-     * @return 
+     * Returns all loaded pokemon from the arraylist as arraylist (ArrayList(data.Pokemon))
+     * @return a list of all aviable pokemon from the db
      */
     public ArrayList<data.Pokemon> getPokemonFromDB()
     {
@@ -441,9 +441,9 @@ public class DB
     
     /**
      * Returns the Movelist from a pokemon, which is saved in the databank
-     * @param pkm
-     * @return
-     * @throws SQLException 
+     * @param pkm the pokemon from which the movelist is asked
+     * @return returns the movelist
+     * @throws SQLException if the db access failed
      */
     public ArrayList<data.Move> getMoveListFrom(data.Pokemon pkm) throws SQLException
     {
@@ -472,9 +472,9 @@ public class DB
     
     /**
      * Returns all possible abilites of given pokemon which is saved in the db
-     * @param pkm
-     * @return
-     * @throws SQLException 
+     * @param pkm from which the abilites are wanted
+     * @return a list of all possible abilties
+     * @throws SQLException if the db access fails
      */
     public ArrayList<data.Ability> getAbilitiesFrom(data.Pokemon pkm) throws SQLException
     {

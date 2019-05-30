@@ -26,9 +26,9 @@ public class Player
     
     /**
      * This method calculates to damage which is dealt to the enemy pokemon
-     * @param moveSlot
-     * @param enemy
-     * @return 
+     * @param moveSlot slot of the choosen move to attack (int)
+     * @param enemy enemys activ pokemon (data.PokemonExtended)
+     * @return amount of damage which sould be dealed to the enemys pokemon
      */
     public int calculateDmg(int moveSlot, data.PokemonExtended enemy)
     {
@@ -46,8 +46,8 @@ public class Player
     
     /**
      * Calcultes the damage of the move Strugge, which is used when no other moves are valid anymore
-     * @param enemy
-     * @return 
+     * @param enemy activ pokemon of the enemy (data.PokemonExtended)
+     * @return damage which is dealed by struggle
      */
     public int calculateStruggle(data.PokemonExtended enemy)
     {
@@ -65,7 +65,7 @@ public class Player
     
     /**
      * This method substracts one fromt the current pp of a move
-     * @param moveSlot 
+     * @param moveSlot slot of the wanted move
      */
     public void useMove(int moveSlot)
     {
@@ -74,9 +74,9 @@ public class Player
     
     /**
      * This method calculates the type interaction from a attacking type and a defensive type, and return the calculated value
-     * @param typeAtk
-     * @param typeDef
-     * @return 
+     * @param typeAtk type of the move
+     * @param typeDef type of the defending pokemon
+     * @return type interactions value
      */
     public double calculteTypeInteraction(String typeAtk, String typeDef)
     {   
@@ -270,7 +270,8 @@ public class Player
     
     /**
      * This method changes the current activ pokemon of this player
-     * @param teamSlot 
+     * @param teamSlot slot of the pokemon which sould be the new activ pokemon
+     * @throws Exception throws exception if the choosen pokemon is not alive (currentHP smaller than 0)
      */
     public void changePokemon(int teamSlot) throws Exception
     {
@@ -283,8 +284,8 @@ public class Player
     
     /**
      * Returns the Pokemon which is on the given slot
-     * @param slot
-     * @return 
+     * @param slot slot (int) of the wanted pokemon
+     * @return the pokemon (data.PokemonExtended) of the slot in the team
      */
     public data.PokemonExtended getPokemonAtSlot(int slot)
     {
@@ -293,7 +294,7 @@ public class Player
     
     /**
      * Counts the remaining pokemon
-     * @return 
+     * @return the amount of remaining pokemon 
      */
     public int countRemainingPokemon()
     {
@@ -309,7 +310,7 @@ public class Player
     
     /**
      * Returns true if any pokemon of the team is alive
-     * @return 
+     * @return returns true if there is at least 1 pokemon alive
      */
     public boolean haveRemainingPokemon()
     {
@@ -333,7 +334,7 @@ public class Player
     
     /**
      * returns pokemon which is in battle at the moment
-     * @return 
+     * @return returns the currecnt active pokemon
      */
     public data.PokemonExtended getActivePokemon()
     {
@@ -342,7 +343,7 @@ public class Player
     
     /**
      * Returns the full team of a player
-     * @return 
+     * @return returns the full team 
      */
     public data.PokemonExtended[] getTeam()
     {

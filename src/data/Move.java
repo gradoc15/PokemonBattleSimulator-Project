@@ -28,7 +28,7 @@ public class Move
 
     /**
      * Returns name (String)  of the move
-     * @return 
+     * @return name (String)  of the move
      */
     public String getBez()
     {
@@ -37,7 +37,7 @@ public class Move
 
     /**
      * Returns the type (String) of the movve
-     * @return 
+     * @return type (String) of the move
      */
     public String getType()
     {
@@ -47,7 +47,7 @@ public class Move
 
     /**
      * Returns the Category (String) of the move
-     * @return 
+     * @return Category (String) of the move
      */
     public String getCat()
     {
@@ -57,7 +57,7 @@ public class Move
 
     /**
      * Returns the power (int) of the move
-     * @return 
+     * @return power (int) of the move
      */
     public int getPower()
     {
@@ -66,7 +66,7 @@ public class Move
 
     /**
      * Returns the Accurance (int) of the move
-     * @return 
+     * @return Accurance (int) of the move
      */
     public int getAccurance()
     {
@@ -75,7 +75,7 @@ public class Move
 
     /**
      * Returns the name (String) of the move
-     * @return 
+     * @return name (String) of the move
      */
     public String toString()
     {

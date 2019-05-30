@@ -19,7 +19,7 @@ public class Ability
 
     /**
      * Returns the name of the ability
-     * @return 
+     * @return the name of the ability (string)
      */
     public String getBez()
     {
@@ -28,7 +28,7 @@ public class Ability
     
     /**
      * Returns the name of the ability
-     * @return 
+     * @return @return the name of the ability (string)
      */
     public String toString()
     {

@@ -31,8 +31,11 @@
             <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Values.java</file>
             <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Pokemon.java</file>
             <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Stat.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Ability.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Gender.java</file>
             <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Move.java</file>
             <file>file:/P:/Java/PokemonBattleSimulator-Project/src/battle/Player.java</file>
+            <file>file:/P:/Java/PokemonBattleSimulator-Project/src/data/Nature.java</file>
             <file>file:/P:/Java/PokemonBattleSimulator-Project/src/gui/PokeEditor.java</file>
             <file>file:/P:/Java/PokemonBattleSimulator-Project/src/main.java</file>
             <file>file:/P:/Java/PokemonBattleSimulator-Project/src/battle/BattleBl.java</file>

@@ -176,7 +176,7 @@ public class BattleBl
 
     /**
      * Returns player1 object
-     * @return 
+     * @return Player1 (Player object)
      */
     public Player getPlayer1() {
         return player1;
@@ -201,7 +201,7 @@ public class BattleBl
 
     /**
      * Return player2 object
-     * @return 
+     * @return player2 (Player object)
      */
     public Player getPlayer2() {
         return player2;
@@ -209,7 +209,7 @@ public class BattleBl
 
     /**
      * returns the gamestate
-     * @return 
+     * @return true if the game is over
      */
     public boolean isGameover() {
         return gameover;
@@ -217,7 +217,7 @@ public class BattleBl
     
     /**
      * returns the winner, only valid if gameover is true
-     * @return 
+     * @return the winner of the game
      */
     public boolean isWinnerPlayer1() {
         return winnerPlayer1;

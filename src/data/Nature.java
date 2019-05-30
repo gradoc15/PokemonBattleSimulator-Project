@@ -53,7 +53,7 @@ public enum Nature
 
     /**
      * Returns the Stat which gets boosted by 10%
-     * @return 
+     * @return boosted stat
      */
     public Stat getPositiv()
     {
@@ -62,7 +62,7 @@ public enum Nature
 
     /**
      * Returns the Stat which gets lowerd by 10%
-     * @return 
+     * @return lowered stat
      */
     public Stat getNegativ()
     {

@@ -75,7 +75,7 @@ public class PokemonExtended extends Pokemon
     
     /**
      * Substracts an amount of HP of the current HP and checks if the pokemon is still alive or not
-     * @param amount 
+     * @param amount amount which sould be subtracted
      */
     public void subHP(int amount)
     {
@@ -88,7 +88,7 @@ public class PokemonExtended extends Pokemon
     
     /**
      * Return the move which is on the given slot
-     * @param slot
+     * @param slot slot of the move
      * @return 
      */
     public data.Move getMoveAt(int slot)
@@ -96,16 +96,10 @@ public class PokemonExtended extends Pokemon
         return move[slot];
     }
     
-    /**
-     * Returns the current MovePP (int) of a given slot
-    public int getMovePPOf(int slot)
-    {
-        return movePP[slot];
-    }
     
     /**
      * Substracts the move pp by 1
-     * @param slot 
+     * @param slot  slot of the move
      */
     public void useMove(int slot)
     {
@@ -114,7 +108,7 @@ public class PokemonExtended extends Pokemon
     
     /**
      * Returns the realstats (Value)
-     * @return 
+     * @return stats 
      */
     public Values getRealStats()
     {
@@ -123,7 +117,7 @@ public class PokemonExtended extends Pokemon
 
     /**
      * Returns a boolean, if true the pokemon is still alive
-     * @return 
+     * @return true = alive
      */
     public boolean isAlive() {
         return alive;
@@ -131,7 +125,7 @@ public class PokemonExtended extends Pokemon
     
     /**
      * retuns movePPs (int[]) of all movess
-     * @return 
+     * @return PPs of all moves
      */
     public int[] getMovePP()
     {
@@ -140,7 +134,7 @@ public class PokemonExtended extends Pokemon
     
     /**
      * Gets the current HP (int) of the pokemon
-     * @return 
+     * @return currentHP 
      */
     public int getCurrentHP()
     {
@@ -149,8 +143,8 @@ public class PokemonExtended extends Pokemon
     
     /**
      * Returns the pp amount (int) of a given slot
-     * @param slot
-     * @return 
+     * @param slot wanted slot
+     * @return pp of wanted slot
      */
     public int getMovePPOf(int slot)
     {

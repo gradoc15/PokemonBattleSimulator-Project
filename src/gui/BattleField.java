@@ -39,7 +39,7 @@ public class BattleField extends javax.swing.JFrame
 
     /**
      * Constructor, creates label arrays for better handling and excecutes init()
-     * @param team 
+     * @param team team of player1
      */
     public BattleField(Pokemon[] team)
     {

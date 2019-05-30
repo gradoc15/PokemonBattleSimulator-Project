@@ -30,7 +30,7 @@ public class Values
 
     /**
      * Returns the HP stat (int)
-     * @return 
+     * @return hp stat
      */
     public int getHp()
     {
@@ -39,7 +39,7 @@ public class Values
 
     /**
      * Returns the Atk stat (int)
-     * @return 
+     * @return atk stat
      */
     public int getAtk()
     {
@@ -48,7 +48,7 @@ public class Values
 
     /**
      * Returns the Def stat (int)
-     * @return 
+     * @return def stat
      */
     public int getDef()
     {
@@ -57,7 +57,7 @@ public class Values
 
     /**
      * Returns the SpAtk stat
-     * @return 
+     * @return spatk stat
      */
     public int getSpAtk()
     {
@@ -66,7 +66,7 @@ public class Values
 
     /**
      * Returns the SpDef stat
-     * @return 
+     * @return spdef stat
      */
     public int getSpDef()
     {
@@ -75,7 +75,7 @@ public class Values
 
     /**
      * returns the ini stat
-     * @return 
+     * @return init stat
      */
     public int getIni()
     {

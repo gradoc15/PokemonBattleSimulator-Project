@@ -56,7 +56,7 @@ public class Pokemon
     
     /**
      * Set the ability (String) of the pokemon
-     * @param ability 
+     * @param ability the ability which is wanted to set
      */
     public void setAbility(Ability ability)
     {
@@ -65,7 +65,7 @@ public class Pokemon
 
     /**
      * Set the nature (Nature) of the pokemon
-     * @param nature 
+     * @param nature the nature which is wanted to set
      */
     public void setNature(Nature nature)
     {
@@ -74,7 +74,7 @@ public class Pokemon
 
     /**
      * Set the gender (Gender) of the pokemon
-     * @param gender 
+     * @param gender the gender which is wanted to set
      */
     public void setGender(Gender gender)
     {
@@ -83,7 +83,7 @@ public class Pokemon
 
     /**
      * set the level (int) of the pokemon
-     * @param lvl 
+     * @param lvl the level which is wanted to set
      */
     public void setLvl(int lvl)
     {
@@ -92,7 +92,7 @@ public class Pokemon
 
     /**
      * set the moves (Move[]) of the pokemon
-     * @param move 
+     * @param move the moves which are wanted to set
      */
     public void setMove(Move[] move)
     {
@@ -101,7 +101,7 @@ public class Pokemon
 
     /**
      * Set the shiny boolean of pokemon
-     * @param shiny 
+     * @param shiny true if the pokemon should be shiny
      */
     public void setShiny(boolean shiny)
     {
@@ -110,7 +110,7 @@ public class Pokemon
 
     /**
      * Set the primary type (String) of the pokemon
-     * @return 
+     * @return primary type (string)
      */
     public String getType1()
     {
@@ -119,7 +119,7 @@ public class Pokemon
 
     /**
      * Set the secondary type of the Pokemon
-     * @return 
+     * @return secondary type (string)
      */
     public String getType2()
     {
@@ -128,7 +128,7 @@ public class Pokemon
     
     /**
      * Set the Iv (Values) of the pokemon
-     * @param iv 
+     * @param iv iv (values)
      */
     public void setIv(Values iv)
     {
@@ -137,14 +137,17 @@ public class Pokemon
 
     /**
      * Set the ev (Value) of the pokemon
-     * @param ev 
+     * @param ev evs (values) which sould be set
      */
     public void setEv(Values ev)
     {
         this.ev = ev;
     }
 
-    //Get the id (int) of the pokemon
+    /**
+     * Get the id (int) of the pokemon
+     * @return the id of the pokemon (int)
+     */
     public int getId()
     {
         return id;
@@ -152,7 +155,7 @@ public class Pokemon
 
     /**
      * get the name (String) of the pokemon
-     * @return 
+     * @return  name of the pokemon
      */
     public String getName()
     {
@@ -161,7 +164,7 @@ public class Pokemon
 
     /**
      * Get the basicvalues (Values) of the pokemon
-     * @return 
+     * @return the basicvalues
      */
     public Values getBasicValues()
     {
@@ -170,7 +173,7 @@ public class Pokemon
 
     /**
      * Get the ability (Ability) of the pokemon
-     * @return 
+     * @return the ability
      */
     public Ability getAbility()
     {
@@ -179,7 +182,7 @@ public class Pokemon
 
     /**
      * get the nature (Nature) of the pokemon
-     * @return 
+     * @return the nature 
      */
     public Nature getNature()
     {
@@ -188,7 +191,7 @@ public class Pokemon
 
     /**
      * Get the gender (Gender) of the pokemon
-     * @return 
+     * @return the gender
      */
     public Gender getGender()
     {
@@ -197,7 +200,7 @@ public class Pokemon
 
     /**
      * Get the lvl (int) of the pokemon
-     * @return 
+     * @return the level
      */
     public int getLvl()
     {
@@ -206,7 +209,7 @@ public class Pokemon
 
     /**
      * Get the moves (Move[]) of the pokemon
-     * @return 
+     * @return all moves 
      */
     public Move[] getMove()
     {
@@ -215,7 +218,7 @@ public class Pokemon
 
     /**
      * Get the shiny status (boolean) of the pokemon
-     * @return 
+     * @return shiny status (true = shiny)
      */
     public boolean isShiny()
     {
@@ -224,7 +227,7 @@ public class Pokemon
 
     /**
      * Get the iv (Value) of the pokemon
-     * @return 
+     * @return the ivs (value)
      */
     public Values getIv()
     {
@@ -233,7 +236,7 @@ public class Pokemon
 
     /**
      * get the ev (Value) of the pokemon
-     * @return 
+     * @return the evs (value)
      */
     public Values getEv()
     {
@@ -243,7 +246,7 @@ public class Pokemon
 
     /**
      * Returns the name of the pokemon
-     * @return 
+     * @return the name of the pokemon
      */
     public String toString()
     {

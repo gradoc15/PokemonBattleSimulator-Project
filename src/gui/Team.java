@@ -235,7 +235,7 @@ public class Team extends javax.swing.JFrame
     
     /**
      * Opens the Pokeeditor with the data of the given slot
-     * @param slot 
+     * @param slot wanted slot
      */
     public void changePokemon(int slot)
     {

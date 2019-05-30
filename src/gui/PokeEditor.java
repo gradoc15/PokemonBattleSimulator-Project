@@ -882,7 +882,7 @@ public class PokeEditor extends javax.swing.JDialog
     
     /**
      * Returns the pokemon (Pokemon) object where changes are saved
-     * @return 
+     * @return pokemon with saved changes
      */
     public data.Pokemon getPokemon()
     {
@@ -892,7 +892,7 @@ public class PokeEditor extends javax.swing.JDialog
     
     /**
      * returns a boolean which says if the changes are saved (true = yes)
-     * @return 
+     * @return true = saved
      */
     public boolean isOkay()
     {
