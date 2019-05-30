@@ -206,8 +206,17 @@ public class Team extends javax.swing.JFrame
         
         sortTeam();
         
-        BattleField bf = new BattleField(team);
-        bf.setVisible(true);
+        for(data.Pokemon pkm: team)
+        {
+            if(pkm != null)
+                anz++;
+        }
+        
+        if(anz > 0)
+        {
+            BattleField bf = new BattleField(team);
+            bf.setVisible(true);
+        }
     }//GEN-LAST:event_btStartBattleActionPerformed
 
     /**
