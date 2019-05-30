@@ -150,4 +150,19 @@ public class PokemonExtended extends Pokemon
     {
         return movePP[slot];
     }
+    
+    /**
+     * Returns and calculates the sum of all stat, for compairing to other pokemon objects
+     * @return sum of all stats (int)
+     */
+    public int getStatSum()
+    {
+        int sum = 0;
+        
+        sum += iv.getHp() + iv.getAtk() + iv.getDef()+ iv.getSpAtk() + iv.getSpDef() + iv.getIni();
+        sum += ev.getHp() + ev.getAtk() + ev.getDef()+ ev.getSpAtk() + ev.getSpDef() + ev.getIni();
+        sum += realStats.getHp() + realStats.getAtk() + realStats.getDef()+ realStats.getSpAtk() + realStats.getSpDef() + realStats.getIni();
+        
+        return sum;
+    }
 }

@@ -98,6 +98,7 @@ public class Player
                     case "dragon": return 0.5;
                     case "bug":
                     case "grass":
+                    case "steel":
                     case "ice": return 2;
                 }break;
             case "water":
@@ -261,6 +262,7 @@ public class Player
                     case "steel":
                     case "fire": return 0.5;
                     case "fighting":
+                    case "dark": 
                     case "dragon": return 2;
                 }break;
         }

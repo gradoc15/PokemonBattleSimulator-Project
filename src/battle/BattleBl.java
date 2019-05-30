@@ -27,7 +27,7 @@ public class BattleBl
     
     /**
      * Construcor, creates players and creates teams out of PokemonExtended Objects from Pokemon objects
-     * @param team team of player1
+     * @param team team of player1, the array must have 6 fields, empty field must be null
      */
     public BattleBl(Pokemon[] team)
     {
